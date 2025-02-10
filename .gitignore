@@ -11,3 +11,6 @@ venv/
 # ignore log files
 logs/
 *.log
+
+# ignore IDE specific files
+.idea

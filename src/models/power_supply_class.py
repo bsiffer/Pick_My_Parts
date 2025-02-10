@@ -1,5 +1,6 @@
 # power supply class inheriting from part.py
-from models.part_class import Part
+from src.models.part import Part
+
 
 class PowerSupply(Part):
     def __init__(self, manufacturer, part_name, sku, price, size_standard, rated_wattage, certification_level, modular, efficiency_rating_percentage, pcie_connectors, length):
