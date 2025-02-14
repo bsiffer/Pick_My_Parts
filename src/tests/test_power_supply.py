@@ -1,5 +1,5 @@
 import pytest
-from src.models.power_supply_class import PowerSupply
+from src.models.power_supply import PowerSupply
 
 @pytest.fixture
 def sample_psu():
