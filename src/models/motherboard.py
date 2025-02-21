@@ -1,13 +1,13 @@
-# Motherboard class inheriting from part.py
+""" Motherboard class inheriting from part.py """
 from src.models.part import Part
 
 class Motherboard(Part):
     def __init__(self, manufacturer, name, sku, price, architecture, standard_size, ram_slots, compatibility):
         super().__init__(manufacturer, name, sku, price)
-        self.architecture = architecture  # e.g., x86, ARM
-        self.standard_size = standard_size  # e.g., ATX, Micro-ATX, Mini-ITX
-        self.ram_slots = ram_slots  # Number of RAM slots
-        self.compatibility = compatibility  # List of compatible CPUs, RAM types, etc.
+        self.architecture = architecture  """ e.g., x86, ARM """
+        self.standard_size = standard_size  """ e.g., ATX, Micro-ATX, Mini-ITX """
+        self.ram_slots = ram_slots  """ Number of RAM slots """
+        self.compatibility = compatibility  """ List of compatible CPUs, RAM types, etc. """
 
     def display_info(self):
         base_info = super().display_info()
