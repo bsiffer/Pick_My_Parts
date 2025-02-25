@@ -2,7 +2,7 @@
 from part import Part
 
 
-class cpu(Part):
+class CPU(Part):
     # Constructor to create a CPU.
     def __init__(
         self,
