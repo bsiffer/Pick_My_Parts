@@ -1,5 +1,5 @@
 import unittest
-from src.models.cpu import cpu
+from src.models.cpu import CPU
 
 
 class TestCPU(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestCPU(unittest.TestCase):
     __chipset_compatibility = "Yes"
 
     def setUp(self):
-        self.__cpu = cpu(
+        self.__cpu = CPU(
             self.__manufacturer,
             self.__name,
             self.__sku,
@@ -92,12 +92,12 @@ class TestCPU(unittest.TestCase):
         self.__cpu.set_chipset_compatibility("No")
         self.assertEqual(self.__cpu.get_chipset_compatibility(), "No")
 
-    def test_display_info(self):
+    def test_to_string(self):
         expected_output = (
-            f"Part Name: {self.__name}\nPrice: {self.__price}\n "
+            f"Part Name: {self.__name}\nPrice: {self.__price}\nSKU: {self.__sku}\nManufacturer: {self.__manufacturer}\n"
             f"Architecture: {self.__architecture}\nClock Speed: {self.__clock_speed}\n"
         )
-        self.assertEqual(self.__cpu.display_info(), expected_output)
+        self.assertEqual(self.__cpu.to_string(), expected_output)
 
 
 if __name__ == "__main__":

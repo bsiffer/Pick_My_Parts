@@ -29,12 +29,12 @@ class TestMotherboard(unittest.TestCase):
     def test_get_price(self):
         self.assertEqual(self.__motherboard.get_price(), self.__price)
 
-    def test_display_info(self):
-        expected_output = (f"Part Name: {self.__name}\nPrice: {self.__price}\n "
+    def test_to_string(self):
+        expected_output = (f"Part Name: {self.__name}\nPrice: {self.__price}\n"
                            f"SKU: {self.__sku}\nManufacturer: {self.__manufacturer}\n"
                            f"Architecture: {self.__architecture}, Size: {self.__standard_size}, "
                            f"RAM Slots: {self.__ram_slots}, Compatibility: {self.__compatibility}")
-        self.assertEqual(self.__motherboard.display_info(), expected_output)
+        self.assertEqual(self.__motherboard.to_string(), expected_output)
 
 if __name__ == '__main__':
     unittest.main()

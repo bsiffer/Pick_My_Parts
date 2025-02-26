@@ -10,11 +10,11 @@ class ComputerCase(Part):
     def is_compatible(self, motherboard_size: str) -> bool:
         return motherboard_size in self.compatibility
     
-    def display_info(self):
-        base_info = super().display_info()
+    def to_string(self):
+        base_info = super().to_string()
         return f"{base_info}\nSize: {self.size}, Color: {self.color}, Compatible with: {', '.join(self.compatibility)}"
 
 # Example usage:
 case1 = ComputerCase("NZXT", "H510", 123456, 99.99, "ATX", "Black", ["ATX", "Micro-ATX", "Mini-ITX"])
-print(case1.display_info())
+print(case1.to_string())
 print("Compatible with ATX:", case1.is_compatible("ATX"))

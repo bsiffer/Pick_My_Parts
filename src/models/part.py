@@ -82,9 +82,9 @@ class Part:
         """
         self.__price = price
 
-    def display_info(self) -> None:
+    def to_string(self) -> str:
         """
         Method to display Part's Information
         """
-        print(f'Part Name: {self.__name}\nPrice: {self.__price}\n '
+        return(f'Part Name: {self.__name}\nPrice: {self.__price}\n'
               f'SKU: {self.__sku}\nManufacturer: {self.__manufacturer}')
