@@ -59,9 +59,9 @@ class PowerSupply(Part):
     def set_length(self, length: int) -> None:
         self.__length = length
 
-    def display_info(self) -> str:
+    def to_string(self) -> str:
         # return power supply details in a formatted string.
-        base_info = super().display_info()
+        base_info = super().to_string()
         return (f"{base_info}\n"
                 f"size standard: {self.__size_standard}\n"
                 f"wattage: {self.__rated_wattage}W\n"

@@ -1,5 +1,5 @@
 # CPU class inheriting from part.py
-from part import Part
+from src.models.part import Part
 
 
 class CPU(Part):
@@ -81,11 +81,11 @@ class CPU(Part):
         self.__chipset_compatibility = chipset_compatibility
 
     # Method to display part and CPU details.
-    def display_info(self):
+    def to_string(self):
         return (
-            super().display_info()
-            + f"Architecture: {self.__architecture}\nClock Speed: {self.__clock_speed}\n"
+            super().to_string()
+            + f"\nArchitecture: {self.__architecture}\nClock Speed: {self.__clock_speed}\n"
         )
 
-    def Check_compatibility():
+    def Check_compatibility(self):
         pass  # To be implemented later

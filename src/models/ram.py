@@ -58,8 +58,8 @@ class Ram(Part):
         self.__color = color
 
     # Information display for the RAM class
-    def display_info(self):
-        part_information = super().display_info()
+    def to_string(self):
+        part_information = super().to_string()
         print(f'{part_information}\n'
               f'Part Name: {self.__name}\n'
               f'Price: {self.__price}\n'

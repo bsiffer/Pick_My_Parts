@@ -1,5 +1,5 @@
 import unittest
-from src.models.computer_case import ComputerCase
+from src.models.cases import ComputerCase
 
 class TestComputerCase(unittest.TestCase):
     def setUp(self):
@@ -19,10 +19,10 @@ class TestComputerCase(unittest.TestCase):
         self.assertTrue(self.case.is_compatible("Micro-ATX"))
         self.assertFalse(self.case.is_compatible("E-ATX"))
     
-    def test_display_info(self):
-        expected_output = ("Part Name: H510\nPrice: 99.99\n SKU: 123456\nManufacturer: NZXT\n"
+    def test_to_string(self):
+        expected_output = ("Part Name: H510\nPrice: 99.99\nSKU: 123456\nManufacturer: NZXT\n"
                            "Size: ATX, Color: Black, Compatible with: ATX, Micro-ATX, Mini-ITX")
-        self.assertEqual(self.case.display_info(), expected_output)
+        self.assertEqual(self.case.to_string(), expected_output)
 
 if __name__ == "__main__":
     unittest.main()
