@@ -89,3 +89,5 @@ class CPU(Part):
 
     def Check_compatibility(self):
         pass  # To be implemented later
+
+    # Comment placed here for troubleshooting
