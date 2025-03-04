@@ -87,5 +87,35 @@ class CPU(Part):
             + f"\nArchitecture: {self.__architecture}\nClock Speed: {self.__clock_speed}\n"
         )
 
-    def Check_compatibility(self):
-        pass  # To be implemented later
+    def check_compatibility(self, part_list):
+        if not self.__socket_type == part_list["motherboard"].get_socket_type():
+            part_list.incompatibilities.append(
+                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+            )
+        if not self.__wattage_compatibility <= part_list["power_supply"].get_wattage():
+            part_list.incompatibilities.append(
+                f"CPU {self.get_name()} is not compatible with Power Supply {part_list['power_supply'].get_name()}"
+            )
+        if (
+            not self.__bios_compatibility
+            == part_list["motherboard"].get_bios_compatibility()
+        ):
+            part_list.incompatibilities.append(
+                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+            )
+        if (
+            not self.__chipset_compatibility
+            == part_list["motherboard"].get_chipset_compatibility()
+        ):
+            part_list.incompatibilities.append(
+                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+            )
+        if (
+            not self.__ddr4_compatibility
+            and part_list["ram"].get_ddr_standard() == "DDR4"
+            or not self.__ddr5_compatibility
+            and part_list["ram"].get_ddr_standard() == "DDR5"
+        ):
+            part_list.incompatibilities.append(
+                f"CPU {self.get_name()} is not compatible with RAM {part_list['ram'].get_name()}"
+            )
