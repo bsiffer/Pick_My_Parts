@@ -1,3 +1,4 @@
+from src.models.cooling import CoolingAccessory
 from src.models.part import Part
 from src.models.motherboard import Motherboard
 
@@ -31,34 +32,30 @@ class ComputerCase(Part):
         if motherboard_size in self.compatibility:
             self.compatibility.remove(motherboard_size)
     
-    def to_string(self):
-        base_info = super().to_string()
-        return f"{base_info}\nSize: {self.size}, Color: {self.color}, Compatible with: {', '.join(self.compatibility)}"
-
     def is_cooling_compatible(self, cooling: CoolingAccessory) -> bool:
         """
         Checks if the case supports the given cooling accessory.
         :param cooling: CoolingAccessory object to check compatibility against
         :return: True if the cooling type is in the case's cooling compatibility list, False otherwise
         """
-        return cooling.get_cooling_type() in self.cooling_compatibility
+        return cooling.get_cooling_type() in self.compatibility
     
     def add_cooling_compatibility(self, cooling_type: str):
         """
         Adds a new cooling type compatibility if not already present.
         :param cooling_type: The cooling type to add to the compatibility list
         """
-        if cooling_type not in self.cooling_compatibility:
-            self.cooling_compatibility.append(cooling_type)
+        if cooling_type not in self.compatibility:
+            self.compatibility.append(cooling_type)
             
     def remove_cooling_compatibility(self, cooling_type: str):
         """
         Removes a cooling type from compatibility list if present.
         :param cooling_type: The cooling type to remove from the compatibility list
         """
-        if cooling_type in self.cooling_compatibility:
-            self.cooling_compatibility.remove(cooling_type)
+        if cooling_type in self.compatibility:
+            self.compatibility.remove(cooling_type)
     def to_string(self):
         base_info = super().to_string()
-        return f"{base_info}\nSize: {self.size}, Color: {self.color}, Compatible with: {', '.join(self.compatibility)}, Cooling Support: {', '.join(self.cooling_compatibility)}"
+        return f"{base_info}\nSize: {self.size}, Color: {self.color}, Compatible with: {', '.join(self.compatibility)}"
     

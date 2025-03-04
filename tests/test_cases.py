@@ -1,5 +1,7 @@
 import unittest
 from src.models.cases import ComputerCase
+from src.models.motherboard import Motherboard
+
 
 class TestComputerCase(unittest.TestCase):
     def setUp(self):
@@ -15,9 +17,25 @@ class TestComputerCase(unittest.TestCase):
         self.assertListEqual(self.case.compatibility, ["ATX", "Micro-ATX", "Mini-ITX"])
     
     def test_is_compatible(self):
-        self.assertTrue(self.case.is_compatible("ATX"))
-        self.assertTrue(self.case.is_compatible("Micro-ATX"))
-        self.assertFalse(self.case.is_compatible("E-ATX"))
+        manufacturer = "ASUS"
+        name = "ROG STRIX B550-F Gaming"
+        sku = 1234567
+        price = 189.99
+        architecture = "x86-64"
+        standard_size = "ATX"
+        ram_slots = 4
+        compatibility = ["AMD Ryzen 3000 Series", "AMD Ryzen 5000 Series"]
+
+        self.assertTrue(self.case.is_compatible(Motherboard(manufacturer, name, sku, price,
+            architecture, standard_size, ram_slots, compatibility)))
+
+        standard_size = "Micro-ATX"
+        self.assertTrue(self.case.is_compatible(Motherboard(manufacturer, name, sku, price,
+            architecture, standard_size, ram_slots, compatibility)))
+
+        standard_size = "E-ATX"
+        self.assertFalse(self.case.is_compatible(Motherboard(manufacturer, name, sku, price,
+            architecture, standard_size, ram_slots, compatibility)))
     
     def test_to_string(self):
         expected_output = ("Part Name: H510\nPrice: 99.99\nSKU: 123456\nManufacturer: NZXT\n"
