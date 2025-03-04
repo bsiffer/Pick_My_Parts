@@ -1,4 +1,4 @@
-from src.models.part import Part
+from apps.core.models.part import Part
 
 class Storage(Part):
     """
@@ -13,10 +13,10 @@ class Storage(Part):
         self.size = size
         self.compatibility = compatibility
 
-    def display_info(self):
+    def to_string(self):
         """
         Returns storage details.
         """
-        base_info = super().display_info()
+        base_info = super().to_string()
         return (f"{base_info}\nType: {self.storage_type}, Size: {self.size}GB, "
                 f"Compatibility: {self.compatibility}")

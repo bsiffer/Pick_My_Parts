@@ -73,9 +73,9 @@ class Gpu(Part):
         self.__color = color
 
     # Information display for GPU part
-    def display_info(self):
-        part_information = super().display_info()
-        print(f'{part_information}\n'
+    def to_string(self):
+        part_information = super().to_string()
+        return (f'{part_information}\n'
               f'Part Name: {self.__name}\n'
               f'Price: {self.__price}\n'
               f'SKU: {self.__sku}\n'

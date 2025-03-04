@@ -1,5 +1,5 @@
 import unittest
-from src.models.part import Part
+from apps.core.models.part import Part
 
 
 class TestPart(unittest.TestCase):
