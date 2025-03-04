@@ -1,5 +1,5 @@
 import unittest
-from src.models.cooling import CoolingAccessory
+from apps.core.models.cooling import CoolingAccessory
 
 
 class TestCoolingAccessory(unittest.TestCase):

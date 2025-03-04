@@ -1,5 +1,7 @@
 import unittest
-from src.models.motherboard import Motherboard
+
+from apps.core.models.motherboard import Motherboard
+
 
 class TestMotherboard(unittest.TestCase):
     __manufacturer = "ASUS"

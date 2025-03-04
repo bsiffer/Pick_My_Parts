@@ -1,5 +1,5 @@
 import unittest
-from src.models.cpu import CPU
+from apps.core.models.cpu import CPU
 
 
 class TestCPU(unittest.TestCase):
