@@ -1,5 +1,5 @@
 """ Motherboard class inheriting from part.py """
-from src.models.part import Part
+from apps.core.models.part import Part
 
 class Motherboard(Part):
     def __init__(self, manufacturer, name, sku, price, architecture, standard_size, ram_slots, compatibility):

@@ -1,5 +1,5 @@
 import unittest
-from src.models.power_supply import PowerSupply
+from apps.core.models.power_supply import PowerSupply
 
 
 class TestPowerSupply(unittest.TestCase):

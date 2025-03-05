@@ -1,5 +1,5 @@
 import unittest
-from src.models.storage import Storage
+from apps.core.models.storage import Storage
 
 class TestStorage(unittest.TestCase):
     def setUp(self):
