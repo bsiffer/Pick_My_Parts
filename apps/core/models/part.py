@@ -1,5 +1,3 @@
-from part import Part
-
 class Part:
     """Represents a generic part with manufacturer, name, SKU, and price attributes."""
 
