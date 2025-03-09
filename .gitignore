@@ -1,5 +1,6 @@
 # ignore Python cache files
 __pycache__/
+.pytest_cache/
 *.pyc
 *.pyo
 .pytest_cache/
@@ -16,4 +17,4 @@ logs/
 
 # ignore IDE specific files
 .idea
-.vscode
+.vscode/
