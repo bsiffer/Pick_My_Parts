@@ -1,90 +1,45 @@
-class Part:
-    """
-    Class that represents the Part.
+from part import Part
 
-    Attributes
-    ----------
-    __manufacturer : str
-        Private variable for the Part Manufacturer
-    __name : str
-        Private variable for the Part Name
-    __sku : int
-        Private variable for the Part SKU
-    __price : float
-        Private variable for the Part Price
-    """
-    def __init__(self, manufacturer: str, name: str, sku: int, price: float) -> None:
-        """
-        Constructor to create a Part.
-        :param manufacturer: Part Manufacturer
-        :param name: Part Name
-        :param sku: Part SKU
-        :param price: Part Price
-        """
+class Part:
+    """Represents a generic part with manufacturer, name, SKU, and price attributes."""
+
+    def __init__(self, manufacturer, name, sku, price):
+        """Initializes a Part instance."""
         self.__manufacturer = manufacturer
         self.__name = name
         self.__sku = sku
-        self.__price = price
+        self.set_price(price)  # Use setter to ensure validation
 
-    def get_manufacturer(self) -> str:
-        """
-        Getter for private variable __manufacturer that represents Part Manufacturer
-        :return: __manufacturer
-        """
+    def get_manufacturer(self):
         return self.__manufacturer
 
-    def get_name(self) -> str:
-        """
-        Getter for private variable __name that represents Part Name
-        :return: __name
-        """
-        return self.__name
-
-    def get_sku(self) -> int:
-        """
-        Getter for private variable __sku that represents Part SKU
-        :return: __sku
-        """
-        return self.__sku
-
-    def get_price(self) -> float:
-        """
-        Getter for private variable __price that represents Part Price
-        :return: __price
-        """
-        return self.__price
-
-    def set_manufacturer(self, manufacturer: str) -> None:
-        """
-        Setter for private variable __manufacturer
-        :param manufacturer:
-        """
+    def set_manufacturer(self, manufacturer):
         self.__manufacturer = manufacturer
 
-    def set_name(self, name: str) -> None:
-        """
-        Setter for private variable __name
-        :param name: Part Name
-        """
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
         self.__name = name
 
-    def set_sku(self, sku: int) -> None:
-        """
-        Setter for private variable __sku
-        :param sku: Part SKU
-        """
+    def get_sku(self):
+        return self.__sku
+
+    def set_sku(self, sku):
         self.__sku = sku
 
-    def set_price(self, price: float) -> None:
-        """
-        Setter for private variable __price
-        :param price: Part Price
-        """
+    def get_price(self):
+        return self.__price
+
+    def set_price(self, price):
+        """Ensures price is not negative before setting it."""
+        if price < 0:
+            raise ValueError("Price cannot be negative.")
         self.__price = price
 
-    def to_string(self) -> str:
-        """
-        Method to display Part's Information
-        """
-        return(f'Part Name: {self.__name}\nPrice: {self.__price}\n'
-              f'SKU: {self.__sku}\nManufacturer: {self.__manufacturer}')
+    def __str__(self):
+        """Returns a string representation of the part."""
+        return (f"Manufacturer: {self.__manufacturer}\n"
+                f"Name: {self.__name}\n"
+                f"SKU: {self.__sku}\n"
+                f"Price: ${self.__price:.2f}")

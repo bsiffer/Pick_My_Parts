@@ -1,91 +1,107 @@
-from ..models.part import Part
-
+from part import Part
 
 class Gpu(Part):
-    def __init__(self, manufacturer: str, name: str, sku: int, price: float, architecture: str,
-                 memory_bus: int, pcie_standard: int, slot_size: int, length: int, cooling_type: str,
-                 power_requirement: int, power_connectors: str, color: str) -> None:
+    """Represents a GPU with attributes related to performance, power, and compatibility."""
 
+    def __init__(self, manufacturer, name, sku, price, architecture, memory_bus, pcie_standard, slot_size,
+                 length, cooling_type, power_requirement, power_connectors, color):
+        """Initializes a Gpu instance."""
         super().__init__(manufacturer, name, sku, price)
-        self.__architecture = architecture  # Defines the GPU architecture
-        self.__memory_bus = memory_bus  # Defines the bit size for memory bus
-        self.__pcie_standard = pcie_standard  # Defines the PCIe standard for card
-        self.__slot_size = slot_size  # Defines the amount of case slots that card uses
-        self.__length = length  # Defines the length of gpu card and cooler
-        self.__cooling_type = cooling_type  # Defines the cooling type on card
-        self.__power_requirement = power_requirement  # Defines the power in watts required for the card
-        self.__power_connectors = power_connectors  # Defines the type of power delivery needed
-        self.__color = color  # Defines the majority color of the card and cooler
-
-    # Get and set methods for each GPU attribute
-    def get_architecture(self) -> str:
-        return self.__architecture
-
-    def set_architecture(self, architecture: str) -> None:
         self.__architecture = architecture
-
-    def get_memory_bus(self) -> int:
-        return self.__memory_bus
-
-    def set_memory_bus(self, memory_bus: int) -> None:
         self.__memory_bus = memory_bus
-
-    def get_pcie_standard(self) -> int:
-        return self.__pcie_standard
-
-    def set_pcie_standard(self, pcie_standard: int) -> None:
         self.__pcie_standard = pcie_standard
-
-    def get_slot_size(self) -> int:
-        return self.__slot_size
-
-    def set_slot_size(self, slot_size: int) -> None:
         self.__slot_size = slot_size
-
-    def get_length(self) -> int:
-        return self.__length
-
-    def set_length(self, length: int) -> None:
         self.__length = length
-
-    def get_cooling_type(self) -> str:
-        return self.__cooling_type
-
-    def set_cooling_type(self, cooling_type: str) -> None:
         self.__cooling_type = cooling_type
-
-    def get_power_requirement(self) -> int:
-        return self.__power_requirement
-
-    def set_power_requirement(self, power_req: int) -> None:
-        self.__power_requirement = power_req
-
-    def get_power_connectors(self) -> str:
-        return self.__power_connectors
-
-    def set_power_connectors(self, power_connectors: str) -> None:
+        self.__power_requirement = power_requirement
         self.__power_connectors = power_connectors
-
-    def get_color(self) -> str:
-        return self.__color
-
-    def set_color(self, color: str) -> None:
         self.__color = color
 
-    # Information display for GPU part
+    def get_architecture(self):
+        return self.__architecture
+
+    def set_architecture(self, architecture):
+        self.__architecture = architecture
+
+    def get_memory_bus(self):
+        return self.__memory_bus
+
+    def set_memory_bus(self, memory_bus):
+        self.__memory_bus = memory_bus
+
+    def get_pcie_standard(self):
+        return self.__pcie_standard
+
+    def set_pcie_standard(self, pcie_standard):
+        self.__pcie_standard = pcie_standard
+
+    def get_slot_size(self):
+        return self.__slot_size
+
+    def set_slot_size(self, slot_size):
+        self.__slot_size = slot_size
+
+    def get_length(self):
+        return self.__length
+
+    def set_length(self, length):
+        self.__length = length
+
+    def get_cooling_type(self):
+        return self.__cooling_type
+
+    def set_cooling_type(self, cooling_type):
+        self.__cooling_type = cooling_type
+
+    def get_power_requirement(self):
+        return self.__power_requirement
+
+    def set_power_requirement(self, power_requirement):
+        self.__power_requirement = power_requirement
+
+    def get_power_connectors(self):
+        return self.__power_connectors
+
+    def set_power_connectors(self, power_connectors):
+        self.__power_connectors = power_connectors
+
+    def get_color(self):
+        return self.__color
+
+    def set_color(self, color):
+        self.__color = color
+
+    def check_compatibility(self, parts_list):
+        """Checks GPU compatibility with the power supply and case."""
+        issues = []
+
+        # Check power supply compatibility
+        psu = parts_list.get_part("PowerSupply")
+        if psu:
+            if psu.get_rated_wattage() < self.__power_requirement:
+                issues.append(f"GPU requires {self.__power_requirement}W, but PSU provides only {psu.get_rated_wattage()}W.")
+            if psu.get_pcie_connectors() < int(self.__power_connectors):
+                issues.append(f"GPU requires {self.__power_connectors} PCIe connectors, but PSU provides only {psu.get_pcie_connectors()}.")
+
+        # Check case compatibility
+        case = parts_list.get_part("ComputerCase")
+        if case:
+            if self.__length > case.get_length():
+                issues.append(f"GPU length ({self.__length}mm) exceeds the case's maximum supported length ({case.get_length()}mm).")
+            if self.__slot_size > case.get_slot_capacity():
+                issues.append(f"GPU requires {self.__slot_size} expansion slots, but case only supports {case.get_slot_capacity()}.")
+
+        return issues
+
     def to_string(self):
-        part_information = super().to_string()
-        return (f'{part_information}\n'
-              f'Part Name: {self.__name}\n'
-              f'Price: {self.__price}\n'
-              f'SKU: {self.__sku}\n'
-              f'Manufacturer: {self.__manufacturer}\n'
-              f'Architecture: {self.__architecture}\n'
-              f'Memory Bus: {self.__memory_bus}\n'
-              f'PCIe Standard: {self.__pcie_standard}\n'
-              f'Slot Size: {self.__slot_size}\n '
-              f'GPU Length: {self.__length}\n'
-              f'Cooling Type: {self.__cooling_type}\n'
-              f'Power Requirement: {self.__power_requirement}\n'
-              f'Power Connectors: {self.__power_connectors}\n'
-              f'Color: {self.__color}')
+        """Returns a string representation of the GPU."""
+        base_info = super().to_string()
+        return (f"{base_info}\nArchitecture: {self.__architecture}\n"
+                f"Memory Bus: {self.__memory_bus}-bit\n"
+                f"PCIe Standard: {self.__pcie_standard}\n"
+                f"Slot Size: {self.__slot_size}\n"
+                f"Length: {self.__length}mm\n"
+                f"Cooling Type: {self.__cooling_type}\n"
+                f"Power Requirement: {self.__power_requirement}W\n"
+                f"Power Connectors: {self.__power_connectors}\n"
+                f"Color: {self.__color}")

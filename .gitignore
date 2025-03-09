@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 *.pyo
+.pytest_cache/
 
 # ignore environment-specific files
 .env
@@ -11,6 +12,7 @@ venv/
 # ignore log files
 logs/
 *.log
+.git/
 
 # ignore IDE specific files
 .idea

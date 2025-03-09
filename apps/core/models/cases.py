@@ -1,61 +1,55 @@
-from apps.core.models.cooling import CoolingAccessory
-from apps.core.models.part import Part
-from apps.core.models.motherboard import Motherboard
+from part import Part
 
 class ComputerCase(Part):
-    def __init__(self, manufacturer: str, name: str, sku: int, price: float, size: str, color: str, compatibility: list):
+    """Represents a computer case with attributes related to size, color, and compatibility."""
+
+    def __init__(self, manufacturer, name, sku, price, form_factor, color, supported_form_factors):
+        """Initializes a ComputerCase instance."""
         super().__init__(manufacturer, name, sku, price)
-        self.size = size
-        self.color = color
-        self.compatibility = compatibility
-    
-    def is_compatible(self, motherboard: Motherboard) -> bool:
-        """
-        Checks if the case is compatible with the given motherboard.
-        :param motherboard: Motherboard object to check compatibility against
-        """
-        return motherboard.standard_size in self.compatibility
-    
-    def add_compatibility(self, motherboard_size: str):
-        """
-        Adds a new compatible motherboard size if not already present.
-        
-        :param motherboard_size: The motherboard size to add to the compatibility list
-        """
-        if motherboard_size not in self.compatibility:
-            self.compatibility.append(motherboard_size)
-    
-    def remove_compatibility(self, motherboard_size: str):
-        """
-        Removes a motherboard size from compatibility list if present.
-                """
-        if motherboard_size in self.compatibility:
-            self.compatibility.remove(motherboard_size)
-    
-    def is_cooling_compatible(self, cooling: CoolingAccessory) -> bool:
-        """
-        Checks if the case supports the given cooling accessory.
-        :param cooling: CoolingAccessory object to check compatibility against
-        :return: True if the cooling type is in the case's cooling compatibility list, False otherwise
-        """
-        return cooling.get_cooling_type() in self.compatibility
-    
-    def add_cooling_compatibility(self, cooling_type: str):
-        """
-        Adds a new cooling type compatibility if not already present.
-        :param cooling_type: The cooling type to add to the compatibility list
-        """
-        if cooling_type not in self.compatibility:
-            self.compatibility.append(cooling_type)
-            
-    def remove_cooling_compatibility(self, cooling_type: str):
-        """
-        Removes a cooling type from compatibility list if present.
-        :param cooling_type: The cooling type to remove from the compatibility list
-        """
-        if cooling_type in self.compatibility:
-            self.compatibility.remove(cooling_type)
+        self.__form_factor = form_factor
+        self.__color = color
+        self.__supported_form_factors = supported_form_factors  # List of supported motherboard form factors
+
+    def get_form_factor(self):
+        return self.__form_factor
+
+    def set_form_factor(self, form_factor):
+        self.__form_factor = form_factor
+
+    def get_color(self):
+        return self.__color
+
+    def set_color(self, color):
+        self.__color = color
+
+    def get_supported_form_factors(self):
+        return self.__supported_form_factors
+
+    def add_supported_form_factor(self, form_factor):
+        """Adds a motherboard form factor if not already present."""
+        if form_factor not in self.__supported_form_factors:
+            self.__supported_form_factors.append(form_factor)
+
+    def remove_supported_form_factor(self, form_factor):
+        """Removes a motherboard form factor if present."""
+        if form_factor in self.__supported_form_factors:
+            self.__supported_form_factors.remove(form_factor)
+
+    def check_compatibility(self, parts_list):
+        """Checks if the case can accommodate the selected motherboard."""
+        issues = []
+
+        motherboard = parts_list.get_part("Motherboard")
+        if motherboard:
+            if motherboard.get_form_factor() not in self.__supported_form_factors:
+                issues.append(
+                    f"Case does not support the motherboard's form factor ({motherboard.get_form_factor()})."
+                )
+
+        return issues
+
     def to_string(self):
+        """Returns a string representation of the computer case."""
         base_info = super().to_string()
-        return f"{base_info}\nSize: {self.size}, Color: {self.color}, Compatible with: {', '.join(self.compatibility)}"
-    
+        return (f"{base_info}\nForm Factor: {self.__form_factor}, Color: {self.__color}, "
+                f"Supported Motherboard Sizes: {', '.join(self.__supported_form_factors)}")

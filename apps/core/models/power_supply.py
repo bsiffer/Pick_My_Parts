@@ -1,73 +1,85 @@
-# power supply class inheriting from part.py
-from ..models.part import Part
+from part import Part
 
 class PowerSupply(Part):
-    def __init__(self, manufacturer: str, name: str, sku: int, price: float, size_standard: str, 
-                 rated_wattage: int, certification_level: str, modular: str, 
-                 efficiency_rating_percentage: float, pcie_connectors: int, length: int) -> None:
+    """Represents a power supply unit (PSU) with attributes for size, wattage, efficiency, and compatibility."""
 
+    def __init__(self, manufacturer, name, sku, price, size_standard, rated_wattage, certification_level, 
+                 modular, efficiency_rating_percentage, pcie_connectors, length):
+        """Initializes a PowerSupply instance."""
         super().__init__(manufacturer, name, sku, price)
-        self.__size_standard = size_standard  # defines physical size standard for case compatibility
-        self.__rated_wattage = rated_wattage  # stores psu wattage to check power requirements
-        self.__certification_level = certification_level  # efficiency certification for power consumption
-        self.__modular = modular  # indicates if the psu is modular, semi-modular, non-modular
-        self.__efficiency_rating_percentage = efficiency_rating_percentage  # determines energy conversion efficiency
-        self.__pcie_connectors = pcie_connectors  # defines available pcie connectors for gpu compatibility
-        self.__length = length  # used for checking fit within cases
-
-    # getters
-    def get_size_standard(self) -> str:
-        return self.__size_standard
-
-    def get_rated_wattage(self) -> int:
-        return self.__rated_wattage
-
-    def get_certification_level(self) -> str:
-        return self.__certification_level
-
-    def get_modular(self) -> str:
-        return self.__modular
-
-    def get_efficiency_rating_percentage(self) -> float:
-        return self.__efficiency_rating_percentage
-
-    def get_pcie_connectors(self) -> int:
-        return self.__pcie_connectors
-
-    def get_length(self) -> int:
-        return self.__length
-
-    # setters
-    def set_size_standard(self, size_standard: str) -> None:
         self.__size_standard = size_standard
-
-    def set_rated_wattage(self, rated_wattage: int) -> None:
         self.__rated_wattage = rated_wattage
-
-    def set_certification_level(self, certification_level: str) -> None:
         self.__certification_level = certification_level
-
-    def set_modular(self, modular: str) -> None:
         self.__modular = modular
-
-    def set_efficiency_rating_percentage(self, efficiency_rating_percentage: float) -> None:
         self.__efficiency_rating_percentage = efficiency_rating_percentage
-
-    def set_pcie_connectors(self, pcie_connectors: int) -> None:
         self.__pcie_connectors = pcie_connectors
-
-    def set_length(self, length: int) -> None:
         self.__length = length
 
-    def to_string(self) -> str:
-        # return power supply details in a formatted string.
+    def get_size_standard(self):
+        return self.__size_standard
+
+    def set_size_standard(self, size_standard):
+        self.__size_standard = size_standard
+
+    def get_rated_wattage(self):
+        return self.__rated_wattage
+
+    def set_rated_wattage(self, rated_wattage):
+        self.__rated_wattage = rated_wattage
+
+    def get_certification_level(self):
+        return self.__certification_level
+
+    def set_certification_level(self, certification_level):
+        self.__certification_level = certification_level
+
+    def get_modular(self):
+        return self.__modular
+
+    def set_modular(self, modular):
+        self.__modular = modular
+
+    def get_efficiency_rating_percentage(self):
+        return self.__efficiency_rating_percentage
+
+    def set_efficiency_rating_percentage(self, efficiency_rating_percentage):
+        self.__efficiency_rating_percentage = efficiency_rating_percentage
+
+    def get_pcie_connectors(self):
+        return self.__pcie_connectors
+
+    def set_pcie_connectors(self, pcie_connectors):
+        self.__pcie_connectors = pcie_connectors
+
+    def get_length(self):
+        return self.__length
+
+    def set_length(self, length):
+        self.__length = length
+
+    def check_compatibility(self, parts_list):
+        """Checks PSU compatibility with GPU and power requirements."""
+        issues = []
+
+        # Check GPU power requirements
+        gpu = parts_list.get_part("GPU")
+        if gpu:
+            if gpu.get_required_wattage() > self.__rated_wattage:
+                issues.append(f"GPU requires {gpu.get_required_wattage()}W, but PSU is only rated for {self.__rated_wattage}W.")
+
+            if gpu.get_required_pcie_connectors() > self.__pcie_connectors:
+                issues.append(f"GPU requires {gpu.get_required_pcie_connectors()} PCIe connectors, but PSU only provides {self.__pcie_connectors}.")
+
+        return issues
+
+    def to_string(self):
+        """Returns a string representation of the power supply."""
         base_info = super().to_string()
         return (f"{base_info}\n"
-                f"size standard: {self.__size_standard}\n"
-                f"wattage: {self.__rated_wattage}W\n"
-                f"certification: {self.__certification_level}\n"
-                f"modular: {self.__modular}\n"
-                f"efficiency rating: {self.__efficiency_rating_percentage}%\n"
-                f"pcie connectors: {self.__pcie_connectors}\n"
-                f"length: {self.__length}mm")
-
+                f"Size Standard: {self.__size_standard}\n"
+                f"Wattage: {self.__rated_wattage}W\n"
+                f"Certification: {self.__certification_level}\n"
+                f"Modular: {self.__modular}\n"
+                f"Efficiency Rating: {self.__efficiency_rating_percentage}%\n"
+                f"PCIe Connectors: {self.__pcie_connectors}\n"
+                f"Length: {self.__length}mm")
