@@ -1,77 +1,70 @@
 from part import Part
 
-
 class PartsList:
-    """
-    Represents a list of parts selected by the user.
-    Provides methods to create, read, update, and delete parts in the list.
-    """
+    """Represents a list of parts selected by the user."""
 
-    # initializes an empty list to store parts
     def __init__(self):
-        self.parts = []
+        """Initializes an empty dictionary to store parts."""
+        self.parts = {}
         self.incompatibilities = []
 
-    # adds a new part to the list
     def add_part(self, part: Part):
-        self.parts.append(part)
+        """Adds a new part to the dictionary and checks compatibility."""
+        part_type = part.__class__.__name__
+        if part_type not in self.parts:
+            self.parts[part_type] = []
+        self.parts[part_type].append(part)
         print(f"Part added: {part.get_name()} ({part.get_sku()})")
 
-    # removes a part from the list by SKU
+        # Check compatibility after adding a new part
+        self.check_compatibility()
+
     def remove_part(self, sku: int):
-        for part in self.parts:
-            if part.get_sku() == sku:
-                self.parts.remove(part)
-                print(f"Part removed: {part.get_name()} ({part.get_sku()})")
-                return
-        print("Part not found.")
+        """Removes a part from the dictionary by SKU."""
+        for part_type, part_list in list(self.parts.items()):
+            for part in part_list:
+                if part.get_sku() == sku:
+                    part_list.remove(part)
+                    print(f"Removed: {part.get_name()} ({part.get_sku()})")
+                    self.check_compatibility()  # Checking remaining compatibility
+                    return
+        print(f"No part with SKU {sku} found.")
 
-    # updates an attribute of a part in the list by SKU
     def update_part(self, sku: int, attribute: str, new_value):
-        for part in self.parts:
-            if part.get_sku() == sku:
-                if hasattr(part, attribute):
-                    setattr(part, attribute, new_value)
-                    print(f"Updated {attribute} of {part.get_name()} to {new_value}")
-                else:
-                    print(f"Attribute '{attribute}' not found in {part.get_name()}")
-                return
-        print("Part not found.")
+        """Updates an attribute of a part in the dictionary by SKU."""
+        for part_list in self.parts.values():
+            for part in part_list:
+                if part.get_sku() == sku:
+                    if hasattr(part, f"set_{attribute}"):
+                        getattr(part, f"set_{attribute}")(new_value)
+                        print(f"Updated {attribute} of {part.get_name()} to {new_value}")
+                    else:
+                        print(f"Attribute '{attribute}' cannot be updated in {part.get_name()}.")
+                    return
+        print(f"No part with SKU {sku} found.")
 
-    # retrieves a part from the list by SKU
-    def get_part(self, sku: int):
-        for part in self.parts:
-            if part.get_sku() == sku:
-                return part
-        print("Part not found.")
-        return None
-
-    # displays all parts in the list
     def display_parts(self):
+        """Displays all parts in the dictionary."""
         if not self.parts:
             print("No parts in the list.")
             return
-        for part in self.parts:
-            print(part.display_info())
+        for part_list in self.parts.values():
+            for part in part_list:
+                print(part)  # Calls __str__()
 
-    # clears all parts from the list
-    def clear_list(self):
-        self.parts.clear()
-        print("Parts list cleared.")
-
-    # placeholder for compatibility checking
     def check_compatibility(self):
+        """Checks compatibility of all parts in the list."""
         self.incompatibilities = []
-        for part in self.parts:
-            if hasattr(part, "check_compatibility") and callable(
-                part.check_compatibility
-            ):
-                issues = part.check_compatibility(self.parts)
-                if issues:
-                    self.incompatibilities.extend(issues)
-            if self.incompatibilities:
-                print("Compatibility issues: ")
-                for issue in self.incompatibilities:
-                    print(issue)
-            else:
-                print("All parts are compatible.")
+        for part_list in self.parts.values():
+            for part in part_list:
+                if hasattr(part, "check_compatibility") and callable(part.check_compatibility):
+                    issues = part.check_compatibility(self)
+                    if issues:
+                        self.incompatibilities.extend(issues)
+
+        if self.incompatibilities:
+            print("Compatibility issues found:")
+            for issue in self.incompatibilities:
+                print(issue)
+        else:
+            print("All parts are compatible.")

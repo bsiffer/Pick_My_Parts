@@ -1,5 +1,5 @@
 # CPU class inheriting from part.py
-from apps.core.models.part import Part
+from part import Part
 
 
 class CPU(Part):
