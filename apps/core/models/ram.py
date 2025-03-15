@@ -1,9 +1,23 @@
 from part import Part
 
+
 class Ram(Part):
     """Represents a RAM module with attributes for capacity, speed, and compatibility."""
 
-    def __init__(self, manufacturer, name, sku, price, capacity, standard, speed, sticks, latency, rgb, color):
+    def __init__(
+        self,
+        manufacturer,
+        name,
+        sku,
+        price,
+        capacity,
+        standard,
+        speed,
+        sticks,
+        latency,
+        rgb,
+        color,
+    ):
         """Initializes a Ram instance."""
         super().__init__(manufacturer, name, sku, price)
         self.__capacity = capacity
@@ -59,9 +73,9 @@ class Ram(Part):
     def check_compatibility(self, parts_list):
         """Checks if the RAM is compatible with the selected motherboard."""
         issues = []
+        motherboard = parts_list.parts["Motherboard"]
 
-        motherboard = parts_list.get_part("Motherboard")
-        if motherboard:
+        if motherboard != []:
             if self.__ddr_standard != motherboard.get_supported_ram_type():
                 issues.append(
                     f"Motherboard supports {motherboard.get_supported_ram_type()}, but selected RAM is {self.__ddr_standard}."
@@ -70,16 +84,20 @@ class Ram(Part):
                 issues.append(
                     f"Motherboard has {motherboard.get_ram_slots()} RAM slots, but {self.__sticks} sticks were selected."
                 )
+        else:
+            issues.append("No motherboard selected.")
 
         return issues
 
     def to_string(self):
         """Returns a string representation of the RAM module."""
         base_info = super().to_string()
-        return (f"{base_info}\nCapacity: {self.__capacity}GB\n"
-                f"DDR Standard: {self.__ddr_standard}\n"
-                f"Speed: {self.__speed}MHz\n"
-                f"Sticks: {self.__sticks}\n"
-                f"CAS Latency: {self.__latency}\n"
-                f"RGB: {'Yes' if self.__rgb else 'No'}\n"
-                f"Color: {self.__color}")
+        return (
+            f"{base_info}\nCapacity: {self.__capacity}GB\n"
+            f"DDR Standard: {self.__ddr_standard}\n"
+            f"Speed: {self.__speed}MHz\n"
+            f"Sticks: {self.__sticks}\n"
+            f"CAS Latency: {self.__latency}\n"
+            f"RGB: {'Yes' if self.__rgb else 'No'}\n"
+            f"Color: {self.__color}"
+        )
