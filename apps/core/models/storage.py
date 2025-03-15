@@ -1,9 +1,12 @@
 from part import Part
 
+
 class Storage(Part):
     """Represents a storage device with attributes related to type, capacity, and compatibility."""
 
-    def __init__(self, manufacturer, name, sku, price, storage_type, capacity, interface):
+    def __init__(
+        self, manufacturer, name, sku, price, storage_type, capacity, interface
+    ):
         """Initializes a Storage instance."""
         super().__init__(manufacturer, name, sku, price)
         self.__storage_type = storage_type  # e.g., HDD, SSD, NVMe
@@ -31,19 +34,23 @@ class Storage(Part):
     def check_compatibility(self, parts_list):
         """Checks if the storage device is compatible with the selected motherboard."""
         issues = []
+        motherboard = parts_list.parts["Motherboard"]
 
-        motherboard = parts_list.get_part("Motherboard")
-        if motherboard:
+        if motherboard != []:
             if self.__interface not in motherboard.get_supported_storage_interfaces():
                 issues.append(
                     f"Motherboard does not support {self.__interface} storage interface."
                 )
+        else:
+            issues.append("No motherboard selected.")
 
         return issues
 
     def to_string(self):
         """Returns a string representation of the storage device."""
         base_info = super().to_string()
-        return (f"{base_info}\nType: {self.__storage_type}\n"
-                f"Capacity: {self.__capacity}GB\n"
-                f"Interface: {self.__interface}")
+        return (
+            f"{base_info}\nType: {self.__storage_type}\n"
+            f"Capacity: {self.__capacity}GB\n"
+            f"Interface: {self.__interface}"
+        )

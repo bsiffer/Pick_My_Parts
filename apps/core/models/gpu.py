@@ -1,10 +1,25 @@
 from part import Part
 
+
 class Gpu(Part):
     """Represents a GPU with attributes related to performance, power, and compatibility."""
 
-    def __init__(self, manufacturer, name, sku, price, architecture, memory_bus, pcie_standard, slot_size,
-                 length, cooling_type, power_requirement, power_connectors, color):
+    def __init__(
+        self,
+        manufacturer,
+        name,
+        sku,
+        price,
+        architecture,
+        memory_bus,
+        pcie_standard,
+        slot_size,
+        length,
+        cooling_type,
+        power_requirement,
+        power_connectors,
+        color,
+    ):
         """Initializes a Gpu instance."""
         super().__init__(manufacturer, name, sku, price)
         self.__architecture = architecture
@@ -74,34 +89,48 @@ class Gpu(Part):
     def check_compatibility(self, parts_list):
         """Checks GPU compatibility with the power supply and case."""
         issues = []
+        psu = parts_list.parts["PowerSupply"]
+        case = parts_list.parts["ComputerCase"]
 
         # Check power supply compatibility
-        psu = parts_list.get_part("PowerSupply")
-        if psu:
+        if psu != []:
             if psu.get_rated_wattage() < self.__power_requirement:
-                issues.append(f"GPU requires {self.__power_requirement}W, but PSU provides only {psu.get_rated_wattage()}W.")
+                issues.append(
+                    f"GPU requires {self.__power_requirement}W, but PSU provides only {psu.get_rated_wattage()}W."
+                )
             if psu.get_pcie_connectors() < int(self.__power_connectors):
-                issues.append(f"GPU requires {self.__power_connectors} PCIe connectors, but PSU provides only {psu.get_pcie_connectors()}.")
+                issues.append(
+                    f"GPU requires {self.__power_connectors} PCIe connectors, but PSU provides only {psu.get_pcie_connectors()}."
+                )
+        else:
+            issues.append("No power supply selected.")
 
         # Check case compatibility
-        case = parts_list.get_part("ComputerCase")
-        if case:
+        if case != []:
             if self.__length > case.get_length():
-                issues.append(f"GPU length ({self.__length}mm) exceeds the case's maximum supported length ({case.get_length()}mm).")
+                issues.append(
+                    f"GPU length ({self.__length}mm) exceeds the case's maximum supported length ({case.get_length()}mm)."
+                )
             if self.__slot_size > case.get_slot_capacity():
-                issues.append(f"GPU requires {self.__slot_size} expansion slots, but case only supports {case.get_slot_capacity()}.")
+                issues.append(
+                    f"GPU requires {self.__slot_size} expansion slots, but case only supports {case.get_slot_capacity()}."
+                )
+        else:
+            issues.append("No case selected.")
 
         return issues
 
     def to_string(self):
         """Returns a string representation of the GPU."""
         base_info = super().to_string()
-        return (f"{base_info}\nArchitecture: {self.__architecture}\n"
-                f"Memory Bus: {self.__memory_bus}-bit\n"
-                f"PCIe Standard: {self.__pcie_standard}\n"
-                f"Slot Size: {self.__slot_size}\n"
-                f"Length: {self.__length}mm\n"
-                f"Cooling Type: {self.__cooling_type}\n"
-                f"Power Requirement: {self.__power_requirement}W\n"
-                f"Power Connectors: {self.__power_connectors}\n"
-                f"Color: {self.__color}")
+        return (
+            f"{base_info}\nArchitecture: {self.__architecture}\n"
+            f"Memory Bus: {self.__memory_bus}-bit\n"
+            f"PCIe Standard: {self.__pcie_standard}\n"
+            f"Slot Size: {self.__slot_size}\n"
+            f"Length: {self.__length}mm\n"
+            f"Cooling Type: {self.__cooling_type}\n"
+            f"Power Requirement: {self.__power_requirement}W\n"
+            f"Power Connectors: {self.__power_connectors}\n"
+            f"Color: {self.__color}"
+        )

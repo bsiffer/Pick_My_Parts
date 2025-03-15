@@ -1,5 +1,6 @@
 from part import Part
 
+
 class CoolingAccessory(Part):
     """Represents a cooling accessory with attributes related to cooling type and compatibility."""
 
@@ -17,13 +18,18 @@ class CoolingAccessory(Part):
     def check_compatibility(self, parts_list):
         """Checks if the cooling accessory is compatible with the selected CPU."""
         issues = []
+        cpu = parts_list.parts["CPU"]
 
-        cpu = parts_list.get_part("CPU")
-        if cpu:
-            if cpu.get_supported_cooling_type() and self.__cooling_type not in cpu.get_supported_cooling_type():
+        if cpu != []:
+            if (
+                cpu.get_supported_cooling_type()
+                and self.__cooling_type not in cpu.get_supported_cooling_type()
+            ):
                 issues.append(
                     f"Cooling type {self.__cooling_type} is not supported by the selected CPU."
                 )
+        else:
+            issues.append("No CPU selected.")
 
         return issues
 

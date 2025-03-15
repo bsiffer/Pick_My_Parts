@@ -18,7 +18,6 @@ class CPU(Part):
         wattage_compatibility: float,
         bios_compatibility: str,
         chipset_compatibility: str,
-        # Compatibility to be determined later
     ):
         # Call super class constructor
         super().__init__(manufacturer, name, sku, price)
@@ -88,34 +87,55 @@ class CPU(Part):
         )
 
     def check_compatibility(self, part_list):
-        if not self.__socket_type == part_list["motherboard"].get_socket_type():
-            part_list.incompatibilities.append(
-                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
-            )
-        if not self.__wattage_compatibility <= part_list["power_supply"].get_wattage():
-            part_list.incompatibilities.append(
-                f"CPU {self.get_name()} is not compatible with Power Supply {part_list['power_supply'].get_name()}"
-            )
-        if (
-            not self.__bios_compatibility
-            == part_list["motherboard"].get_bios_compatibility()
-        ):
-            part_list.incompatibilities.append(
-                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
-            )
-        if (
-            not self.__chipset_compatibility
-            == part_list["motherboard"].get_chipset_compatibility()
-        ):
-            part_list.incompatibilities.append(
-                f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
-            )
-        if (
-            not self.__ddr4_compatibility
-            and part_list["ram"].get_ddr_standard() == "DDR4"
-            or not self.__ddr5_compatibility
-            and part_list["ram"].get_ddr_standard() == "DDR5"
-        ):
-            part_list.incompatibilities.append(
-                f"CPU {self.get_name()} is not compatible with RAM {part_list['ram'].get_name()}"
-            )
+        issues = []
+        motherboard = part_list["Motherboard"]
+        power_supply = part_list["PowerSupply"]
+        ram = part_list["RAM"]
+
+        if motherboard != []:  # Check if a motherboard is in the part list.
+            if not self.__socket_type == part_list["motherboard"].get_socket_type():
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+            if (
+                not self.__bios_compatibility
+                == part_list["motherboard"].get_bios_compatibility()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+            if (
+                not self.__chipset_compatibility
+                == part_list["motherboard"].get_chipset_compatibility()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+        else:
+            issues.append("no motherboard selected")
+
+        if power_supply != []:
+            if (
+                not self.__wattage_compatibility
+                <= part_list["power_supply"].get_wattage()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Power Supply {part_list['power_supply'].get_name()}"
+                )
+        else:
+            issues.append("no power supply selected")
+
+        if ram != []:  # Check if a RAM stick/sticks are in the part list.
+            for ram in part_list["ram"]:
+                if (
+                    not self.__ddr4_compatibility
+                    and ram.get_ddr_standard() == "DDR4"
+                    or not self.__ddr5_compatibility
+                    and ram.get_ddr_standard() == "DDR5"
+                ):
+                    issues.append(
+                        f"CPU {self.get_name()} is not compatible with RAM {ram.get_name()}"
+                    )
+        else:
+            issues.append("no ram selected")
+        return issues
