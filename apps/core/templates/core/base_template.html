@@ -1,8 +1,10 @@
 <!-- base_template.html -->
+{% load static %}
 <html>
 <head>
     <title>Pick My Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -46,7 +48,8 @@
 </nav>
 
 <div class="p-5 bg-light border rounded">
-    {{ custom_html | safe }}
+    {% block content %}
+    {% endblock %}
 </div>
 </body>
 </html>
