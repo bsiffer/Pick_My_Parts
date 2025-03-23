@@ -8,8 +8,6 @@ def cooling_accessory_view(request):
     if request.method == 'POST':
         if 'create_cooling_accessory' in request.POST:
             cooling_accessory_form = CoolingAccessoryForm(request.POST)
-            print(cooling_accessory_form.data)
-            print(cooling_accessory_form.errors)
             if cooling_accessory_form.is_valid():
                 cooling_accessory_form.save()
                 return redirect('All Cooling Accessories')

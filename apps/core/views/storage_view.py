@@ -8,8 +8,6 @@ def storage_view(request):
     if request.method == 'POST':
         if 'create_storage' in request.POST:
             storage_form = StorageForm(request.POST)
-            print(storage_form.data)
-            print(storage_form.errors)
             if storage_form.is_valid():
                 storage_form.save()
                 return redirect('All Storages')
