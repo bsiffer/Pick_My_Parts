@@ -72,6 +72,11 @@ python manage.py runserver
 ```
 
 ___
+- **Running Django Unit Tests (Individual Test File)**
+```commandline
+python manage.py test apps.core.tests.test_computer_case --settings=config.test_settings
+```
+___
 **NOTE 1: Create a .env file to hold all environment variables used in config/settings.py. Do not commit and push .env file.**
 ```
 DB_HOST=*******
