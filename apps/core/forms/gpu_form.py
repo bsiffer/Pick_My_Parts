@@ -5,4 +5,4 @@ class GPUForm(forms.ModelForm):
     class Meta:
         model = GPU
         fields = ('manufacturer', 'name', 'sku', 'price', 'architecture', 'memory_bus', 'pcie_standard', 'slot_size',
-                  'length', 'cooling_type', 'power_requirement', 'power_connectors', 'color')
+                  'length_in_mm', 'cooling_type', 'power_requirement', 'power_connectors', 'color')

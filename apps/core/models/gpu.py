@@ -9,7 +9,7 @@ class GPU(Part, models.Model):
     memory_bus = models.IntegerField()
     pcie_standard = models.CharField(max_length=255)
     slot_size = models.CharField(max_length=255)
-    length = models.DecimalField(max_digits=10, decimal_places=2)
+    length_in_mm = models.DecimalField(max_digits=10, decimal_places=2)
     cooling_type = models.CharField(max_length=255)
     power_requirement = models.DecimalField(max_digits=10, decimal_places=2)
     power_connectors = models.CharField(max_length=255)
@@ -26,7 +26,7 @@ class GPU(Part, models.Model):
             f"Memory Bus: {self.memory_bus}-bit\n"
             f"PCIe Standard: {self.pcie_standard}\n"
             f"Slot Size: {self.slot_size}\n"
-            f"Length: {self.length}mm\n"
+            f"Length: {self.length_in_mm}mm\n"
             f"Cooling Type: {self.cooling_type}\n"
             f"Power Requirement: {self.power_requirement}W\n"
             f"Power Connectors: {self.power_connectors}\n"
