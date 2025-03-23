@@ -5,6 +5,7 @@ from .views.home import home
 from .views.about import about
 from .views.cpu_view import cpu_view
 from .views.power_supply_view import power_supply_view
+from .views.ram_view import ram_view
 from .views.storage_view import storage_view
 from .views.under_construction import under_construction
 from .views.computer_case_view import computer_case_view
@@ -13,7 +14,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('about', about, name='about'),
     path('parts/cpus', cpu_view, name='All CPUs'),
-    path('parts/rams', under_construction, name='All RAMs'),
+    path('parts/rams', ram_view, name='All RAMs'),
     path('parts/motherboards', under_construction, name='All Motherboards'),
     path('parts/cooling-accessories', cooling_accessory_view, name='All Cooling Accessories'),
     path('parts/gpus', gpu_view, name='All GPUs'),
