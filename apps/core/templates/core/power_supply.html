@@ -9,94 +9,16 @@
             <div class="card-body">
                 <form method="post" class="form-horizontal" name="power_supply_form">
                     {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.manufacturer.label_tag }}
+                    {% for field in power_supply_form %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ field }}
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.manufacturer }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.name.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.name }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.sku.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.sku }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.price.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.price }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.size_standard.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.size_standard }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.rated_wattage.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.rated_wattage }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.certification_level.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.certification_level }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.modular.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.modular }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.efficiency_rating_percentage.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.efficiency_rating_percentage }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.pcie_connectors.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.pcie_connectors }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.length_in_mm.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ power_supply_form.length_in_mm }}
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     {% if power_supply_form.errors %}
                         <div class="alert alert-danger">

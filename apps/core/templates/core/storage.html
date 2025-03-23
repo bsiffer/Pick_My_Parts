@@ -9,62 +9,16 @@
             <div class="card-body">
                 <form method="post" class="form-horizontal" name="storage_form">
                     {% csrf_token %}
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.manufacturer.label_tag }}
+                    {% for field in storage_form %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ field }}
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.manufacturer }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.name.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.name }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.sku.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.sku }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.price.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.price }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.storage_type.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.storage_type }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.capacity_in_GB.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.capacity_in_GB }}
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            {{ storage_form.interface.label_tag }}
-                        </div>
-                        <div class="form-group col-md-6">
-                            {{ storage_form.interface }}
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     {% if storage_form.errors %}
                         <div class="alert alert-danger">
