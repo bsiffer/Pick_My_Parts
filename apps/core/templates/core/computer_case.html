@@ -125,15 +125,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for case in cases %}
+                    {% for computer_case in computer_cases %}
                     <tr>
-                        <td>{{ case.manufacturer }}</td>
-                        <td>{{ case.name }}</td>
-                        <td>{{ case.sku }}</td>
-                        <td>{{ case.price }}</td>
-                        <td>{{ case.form_factor }}</td>
-                        <td>{{ case.color }}</td>
-                        <td>{{ case.supported_form_factors.all|join:", " }}</td>
+                        <td>{{ computer_case.manufacturer }}</td>
+                        <td>{{ computer_case.name }}</td>
+                        <td>{{ computer_case.sku }}</td>
+                        <td>{{ computer_case.price }}</td>
+                        <td>{{ computer_case.form_factor }}</td>
+                        <td>{{ computer_case.color }}</td>
+                        <td>{{ computer_case.supported_form_factors.all|join:", " }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

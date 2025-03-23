@@ -1,7 +1,6 @@
 from django import forms
-from apps.core.models.cases import ComputerCase
+from apps.core.models.computer_case import ComputerCase
 from apps.core.models.form_factor import FormFactor
-
 
 class ComputerCaseForm(forms.ModelForm):
     supported_form_factors = forms.ModelMultipleChoiceField(

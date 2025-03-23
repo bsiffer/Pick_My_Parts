@@ -1,5 +1,4 @@
 from django.db import models
-
 from apps.core.models.form_factor import FormFactor
 from apps.core.models.part import Part
 
