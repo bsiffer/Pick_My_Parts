@@ -1,0 +1,151 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New Power Supply</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" class="form-horizontal" name="power_supply_form">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.manufacturer.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.manufacturer }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.name.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.sku.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.sku }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.price.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.price }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.size_standard.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.size_standard }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.rated_wattage.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.rated_wattage }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.certification_level.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.certification_level }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.modular.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.modular }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.efficiency_rating_percentage.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.efficiency_rating_percentage }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.pcie_connectors.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.pcie_connectors }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.length_in_mm.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ power_supply_form.length_in_mm }}
+                        </div>
+                    </div>
+
+                    {% if power_supply_form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Form Errors:</strong>
+                            {{ power_supply_form.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary" name="create_power_supply">Create Power Supply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Size Standard</th>
+                        <th>Rated Wattage</th>
+                        <th>Certification Level</th>
+                        <th>Modular</th>
+                        <th>Efficiency Rating %</th>
+                        <th>PCIE Connectors</th>
+                        <th>Length (in mm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for power_supply in power_supplies %}
+                    <tr>
+                        <td>{{ power_supply.manufacturer }}</td>
+                        <td>{{ power_supply.name }}</td>
+                        <td>{{ power_supply.sku }}</td>
+                        <td>{{ power_supply.price }}</td>
+                        <td>{{ power_supply.size_standard }}</td>
+                        <td>{{ power_supply.rated_wattage }}</td>
+                        <td>{{ power_supply.certification_level }}</td>
+                        <td>{{ power_supply.modular }}</td>
+                        <td>{{ power_supply.efficiency_rating_percentage }}</td>
+                        <td>{{ power_supply.pcie_connectors }}</td>
+                        <td>{{ power_supply.length_in_mm }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
