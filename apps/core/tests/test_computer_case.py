@@ -1,5 +1,5 @@
 from django.test import TestCase
-from apps.core.models.cases import ComputerCase
+from apps.core.models.computer_case import ComputerCase
 from apps.core.models.form_factor import FormFactor
 
 class TestComputerCase(TestCase):
