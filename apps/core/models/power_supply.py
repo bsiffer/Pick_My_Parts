@@ -6,7 +6,7 @@ class PowerSupply(Part, models.Model):
     rated_wattage = models.DecimalField(max_digits=10, decimal_places=2)
     certification_level = models.CharField(max_length=255)
     modular = models.CharField(max_length=255)
-    efficiency_rating_percentage = models.DecimalField(max_digits=3, decimal_places=2)
+    efficiency_rating_percentage = models.DecimalField(max_digits=4, decimal_places=2)
     pcie_connectors = models.IntegerField()
     length_in_mm = models.IntegerField()
 
@@ -24,5 +24,5 @@ class PowerSupply(Part, models.Model):
             f"Modular: {self.modular}\n"
             f"Efficiency Rating: {self.efficiency_rating_percentage}%\n"
             f"PCIe Connectors: {self.pcie_connectors}\n"
-            f"Length: {self.length}mm"
+            f"Length: {self.length_in_mm}mm"
         )

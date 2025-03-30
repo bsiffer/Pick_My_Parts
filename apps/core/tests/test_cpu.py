@@ -1,35 +1,35 @@
 from django.test import TestCase
 from apps.core.models.cpu import CPU
 
-class TestCoolingAccessory(TestCase):
+class TestCPU(TestCase):
     def setUp(self):
         self.cpu = CPU.objects.create(
-            manufacturer="XYZ",
-            name="XYZ CPU",
+            name="Intel Core i9-13900K",
+            manufacturer="Intel",
             sku=112233,
             price=49.99,
-            architecture="Zen 5",
-            clock_speed = 4.7,
-            ddr4_compatibility = True,
-            ddr5_compatibility = False,
-            socket_type = 'AM5',
-            wattage_compatibility = 105,
-            bios_compatibility = True,
-            chipset_compatibility = True,
+            architecture="Raptor Lake",
+            clock_speed=5.80,
+            ddr4_compatibility=True,
+            ddr5_compatibility=True,
+            socket_type="LGA 1700",
+            wattage_compatibility=125.0,
+            bios_compatibility=True,
+            chipset_compatibility=True
         )
 
     def test_initialization(self):
-        self.assertEqual(self.cpu.manufacturer, "XYZ")
-        self.assertEqual(self.cpu.name, "XYZ CPU")
+        self.assertEqual(self.cpu.manufacturer, "Intel")
+        self.assertEqual(self.cpu.name, "Intel Core i9-13900K")
         self.assertEqual(self.cpu.sku, 112233)
         self.assertEqual(self.cpu.price, 49.99)
 
-        self.assertEqual(self.cpu.architecture, "Zen 5")
-        self.assertEqual(self.cpu.clock_speed, 4.7)
+        self.assertEqual(self.cpu.architecture, "Raptor Lake")
+        self.assertEqual(self.cpu.clock_speed, 5.8)
         self.assertEqual(self.cpu.ddr4_compatibility, True)
-        self.assertEqual(self.cpu.ddr5_compatibility, False)
-        self.assertEqual(self.cpu.socket_type, 'AM5')
-        self.assertEqual(self.cpu.wattage_compatibility, 105)
+        self.assertEqual(self.cpu.ddr5_compatibility, True)
+        self.assertEqual(self.cpu.socket_type, 'LGA 1700')
+        self.assertEqual(self.cpu.wattage_compatibility, 125.0)
         self.assertEqual(self.cpu.bios_compatibility, True)
         self.assertEqual(self.cpu.chipset_compatibility, True)
 
