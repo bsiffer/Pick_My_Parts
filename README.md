@@ -76,6 +76,10 @@ ___
 ```commandline
 python manage.py test apps.core.tests.test_computer_case --settings=config.test_settings
 ```
+- **Running Django Unit Tests (All Tests)**
+```commandline
+python manage.py test core --settings=config.test_settings
+```
 ___
 **NOTE 1: Create a .env file to hold all environment variables used in config/settings.py. Do not commit and push .env file.**
 ```

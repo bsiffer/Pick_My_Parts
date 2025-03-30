@@ -11,7 +11,7 @@ class TestRAM(TestCase):
             capacity_in_gb=16,
             ddr_standard="DDR4",
             speed_in_mhz=3200,
-            stick=4,
+            sticks=4,
             latency="CL16",
             rgb=False,
             color="Black"
@@ -26,20 +26,23 @@ class TestRAM(TestCase):
         self.assertEqual(self.ram.capacity_in_gb, 16)
         self.assertEqual(self.ram.ddr_standard, "DDR4")
         self.assertEqual(self.ram.speed_in_mhz, 3200)
-        self.assertEqual(self.ram.sticks, 2)
+        self.assertEqual(self.ram.sticks, 4)
         self.assertEqual(self.ram.latency, "CL16")
-        self.assertTrue(self.ram.rgb)
+        self.assertFalse(self.ram.rgb)
         self.assertEqual(self.ram.color, "Black")
 
     def test_string_representation(self):
         expected_str = (
-            f"{self.ram.manufacturer} - {self.ram.name} ({self.ram.sku})\n"
-            f"Capacity: {self.ram.capacity_in_gb}GB\n"
+            f"Manufacturer: {self.ram.manufacturer}\n"
+            f"Name: {self.ram.name}\n"
+            f"SKU: {self.ram.sku}\n"
+            f"Price: ${self.ram.price:.2f}"
+            f"\nCapacity: {self.ram.capacity_in_gb}GB\n"
             f"DDR Standard: {self.ram.ddr_standard}\n"
             f"Speed: {self.ram.speed_in_mhz}MHz\n"
             f"Sticks: {self.ram.sticks}\n"
             f"CAS Latency: {self.ram.latency}\n"
-            f"RGB: Yes\n"
+            f"RGB: No\n"
             f"Color: {self.ram.color}"
         )
         self.assertEqual(str(self.ram), expected_str)

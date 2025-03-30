@@ -33,8 +33,11 @@ class TestMotherboard(TestCase):
     def test_string_representation(self):
         """Test the string rep of the motherboard."""
         expected_str = (
-            f"{self.motherboard.manufacturer} - {self.motherboard.name} ({self.motherboard.sku})\n"
-            f"Socket Type: {self.motherboard.socket_type}, Form Factor: {self.motherboard.form_factor}, "
+            f"Manufacturer: {self.motherboard.manufacturer}\n"
+            f"Name: {self.motherboard.name}\n"
+            f"SKU: {self.motherboard.sku}\n"
+            f"Price: ${self.motherboard.price:.2f}"
+            f"\nSocket Type: {self.motherboard.socket_type}, Form Factor: {self.motherboard.form_factor}, "
             f"RAM Slots: {self.motherboard.ram_slots}, Supported RAM Type: {self.motherboard.supported_ram_type}"
         )
         self.assertEqual(str(self.motherboard), expected_str)
