@@ -17,5 +17,12 @@ class CPU(Part, models.Model):
     def __str__(self):
         return (
                 super().__str__()
-                + f"\nArchitecture: {self.architecture}\nClock Speed: {self.clock_speed}\n"
+                + f"\nArchitecture: {self.architecture}"
+                  f"\nClock Speed: {self.clock_speed}"
+                  f"\nDDR4 Compatibility = {self.ddr4_compatibility}"
+                  f"\nDDR5 Compatibility = {self.ddr5_compatibility}"
+                  f"\nSocket Type = {self.socket_type}"
+                  f"\nWattage Compatibility = {self.wattage_compatibility}"
+                  f"\nBIOS Compatibility = {self.bios_compatibility}"
+                  f"\nChipset Compatibility = {self.chipset_compatibility}"
         )

@@ -16,5 +16,7 @@ class ComputerCase(Part, models.Model):
         """Returns a string representation of the computer case."""
         base_info = super().__str__()
         return (
-            f"{base_info}\nForm Factor: {self.form_factor}, Color: {self.color}, "
+            f"{base_info}\nForm Factor: {self.form_factor},"
+            f"\nColor: {self.color},"
+            f"\nSupported Form Factors: {self.supported_form_factors}"
         )

@@ -30,3 +30,15 @@ class TestComputerCase(TestCase):
             [form_factor.name for form_factor in self.case.supported_form_factors.all()],
             ["ATX", "Micro-ATX", "Mini-ITX"]
         )
+
+    def test_string_representation(self):
+        expected_str = (
+            f"Manufacturer: {self.case.manufacturer}\n"
+            f"Name: {self.case.name}\n"
+            f"SKU: {self.case.sku}\n"
+            f"Price: ${self.case.price:.2f}"
+            f"\nForm Factor: {self.case.form_factor},"
+            f"\nColor: {self.case.color},"
+            f"\nSupported Form Factors: {self.case.supported_form_factors}"
+        )
+        self.assertEqual(str(self.case), expected_str)
