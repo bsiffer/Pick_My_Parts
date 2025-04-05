@@ -12,7 +12,58 @@ class CPU(Part, models.Model):
     chipset_compatibility = models.BooleanField(default=False)
 
     def check_compatibility(self, part_list):
-        pass
+        issues = []
+        motherboard = part_list.parts["Motherboard"]
+        power_supply = part_list.parts["PowerSupply"]
+        ram = part_list.parts["RAM"]
+
+        if motherboard != []:  # Check if a motherboard is in the part list.
+            if not self.socket_type == part_list["motherboard"].get_socket_type():
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+            if (
+                not self.bios_compatibility
+                == part_list["motherboard"].get_bios_compatibility()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+            if (
+                not self.chipset_compatibility
+                == part_list["motherboard"].get_chipset_compatibility()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                )
+        else:
+            issues.append("no motherboard selected")
+
+        if power_supply != []:
+            if (
+                not self.wattage_compatibility
+                <= part_list["power_supply"].get_wattage()
+            ):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with Power Supply {part_list['power_supply'].get_name()}"
+                )
+        else:
+            issues.append("no power supply selected")
+
+        if ram != []:  # Check if a RAM stick/sticks are in the part list.
+            for ram in part_list["ram"]:
+                if (
+                    not self.ddr4_compatibility
+                    and ram.get_ddr_standard() == "DDR4"
+                    or not self.ddr5_compatibility
+                    and ram.get_ddr_standard() == "DDR5"
+                ):
+                    issues.append(
+                        f"CPU {self.get_name()} is not compatible with RAM {ram.get_name()}"
+                    )
+        else:
+            issues.append("no ram selected")
+        return issues
 
     def __str__(self):
         return (
