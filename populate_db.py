@@ -96,7 +96,7 @@ cpus_data = [
     },
 ]
 for data in cpus_data:
-    CPU.objects.create(**data)
+    CPU.objects.get_or_create(**data)
 
 # Create sample GPUs
 gpus_data = [
@@ -177,7 +177,7 @@ gpus_data = [
     },
 ]
 for data in gpus_data:
-    GPU.objects.create(**data)
+    GPU.objects.get_or_create(**data)
 
 # Create sample Motherboards
 motherboards_data = [
@@ -243,7 +243,7 @@ motherboards_data = [
     },
 ]
 for data in motherboards_data:
-    Motherboard.objects.create(**data)
+    Motherboard.objects.get_or_create(**data)
 
 # Create sample Power Supplies
 power_supplies_data = [
@@ -314,7 +314,7 @@ power_supplies_data = [
     },
 ]
 for data in power_supplies_data:
-    PowerSupply.objects.create(**data)
+    PowerSupply.objects.get_or_create(**data)
 
 # Create sample RAM modules
 rams_data = [
@@ -385,7 +385,7 @@ rams_data = [
     },
 ]
 for data in rams_data:
-    RAM.objects.create(**data)
+    RAM.objects.get_or_create(**data)
 
 # Create sample Storage devices
 storages_data = [
@@ -436,7 +436,7 @@ storages_data = [
     },
 ]
 for data in storages_data:
-    Storage.objects.create(**data)
+    Storage.objects.get_or_create(**data)
 
 # Create sample Computer Cases
 cases_data = [
@@ -482,7 +482,7 @@ cases_data = [
     },
 ]
 for data in cases_data:
-    case = ComputerCase.objects.create(**data)
+    case, created = ComputerCase.objects.get_or_create(**data)
     # Set supported form factors for each case
     case.supported_form_factors.set([data["form_factor"], form_factors["Micro-ATX"]])
 
@@ -525,6 +525,6 @@ cooling_accessories_data = [
     },
 ]
 for data in cooling_accessories_data:
-    CoolingAccessory.objects.create(**data)
+    CoolingAccessory.objects.get_or_create(**data)
 
 print("Database populated successfully!")
