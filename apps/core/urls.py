@@ -1,4 +1,5 @@
 from django.urls import path
+from .views.build_view import build
 from .views.cooling_accessory_view import cooling_accessory_view
 from .views.gpu_view import gpu_view
 from .views.home import home
@@ -14,6 +15,7 @@ from .views.computer_case_view import computer_case_view
 urlpatterns = [
     path('', home, name='home'),
     path('about', about, name='about'),
+    path('build', build, name='build'),
     path('parts/cpus', cpu_view, name='All CPUs'),
     path('parts/rams', ram_view, name='All RAMs'),
     path('parts/motherboards', motherboard_view, name='All Motherboards'),
