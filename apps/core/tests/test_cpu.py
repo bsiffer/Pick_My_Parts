@@ -1,104 +1,51 @@
-import unittest
+from django.test import TestCase
 from apps.core.models.cpu import CPU
 
-
-class TestCPU(unittest.TestCase):
-    __manufacturer = "AMD"
-    __name = "AMD RYZEN 7 9800X3D"
-    __sku = 566623
-    __price = 339.99
-    __architecture = "Zen 5"
-    __clock_speed = 4.7
-    __ddr4_compatibility = True
-    __ddr5_compatibility = False
-    __socket_type = "AM5"
-    __wattage_compatibility = 105
-    __bios_compatibility = "Yes"
-    __chipset_compatibility = "Yes"
-
+class TestCPU(TestCase):
     def setUp(self):
-        self.__cpu = CPU(
-            self.__manufacturer,
-            self.__name,
-            self.__sku,
-            self.__price,
-            self.__architecture,
-            self.__clock_speed,
-            self.__ddr4_compatibility,
-            self.__ddr5_compatibility,
-            self.__socket_type,
-            self.__wattage_compatibility,
-            self.__bios_compatibility,
-            self.__chipset_compatibility,
+        self.cpu = CPU.objects.create(
+            name="Intel Core i9-13900K",
+            manufacturer="Intel",
+            sku=112233,
+            price=49.99,
+            architecture="Raptor Lake",
+            clock_speed=5.80,
+            ddr4_compatibility=True,
+            ddr5_compatibility=True,
+            socket_type="LGA 1700",
+            wattage_compatibility=125.0,
+            bios_compatibility=True,
+            chipset_compatibility=True
         )
 
-    def test_get_architecture(self):
-        self.assertEqual(self.__cpu.get_architecture(), self.__architecture)
+    def test_initialization(self):
+        self.assertEqual(self.cpu.manufacturer, "Intel")
+        self.assertEqual(self.cpu.name, "Intel Core i9-13900K")
+        self.assertEqual(self.cpu.sku, 112233)
+        self.assertEqual(self.cpu.price, 49.99)
 
-    def test_get_clock_speed(self):
-        self.assertEqual(self.__cpu.get_clock_speed(), self.__clock_speed)
+        self.assertEqual(self.cpu.architecture, "Raptor Lake")
+        self.assertEqual(self.cpu.clock_speed, 5.8)
+        self.assertEqual(self.cpu.ddr4_compatibility, True)
+        self.assertEqual(self.cpu.ddr5_compatibility, True)
+        self.assertEqual(self.cpu.socket_type, 'LGA 1700')
+        self.assertEqual(self.cpu.wattage_compatibility, 125.0)
+        self.assertEqual(self.cpu.bios_compatibility, True)
+        self.assertEqual(self.cpu.chipset_compatibility, True)
 
-    def test_get_ddr4_compatibility(self):
-        self.assertEqual(self.__cpu.get_ddr4_compatibility(), self.__ddr4_compatibility)
-
-    def test_get_ddr5_compatibility(self):
-        self.assertEqual(self.__cpu.get_ddr5_compatibility(), self.__ddr5_compatibility)
-
-    def test_get_socket_type(self):
-        self.assertEqual(self.__cpu.get_socket_type(), self.__socket_type)
-
-    def test_get_wattage_compatibility(self):
-        self.assertEqual(
-            self.__cpu.get_wattage_compatibility(), self.__wattage_compatibility
+    def test_string_representation(self):
+        expected_str = (
+            f"Manufacturer: {self.cpu.manufacturer}\n"
+            f"Name: {self.cpu.name}\n"
+            f"SKU: {self.cpu.sku}\n"
+            f"Price: ${self.cpu.price:.2f}"
+            f"\nArchitecture: {self.cpu.architecture}"
+            f"\nClock Speed: {self.cpu.clock_speed}"
+            f"\nDDR4 Compatibility = {self.cpu.ddr4_compatibility}"
+            f"\nDDR5 Compatibility = {self.cpu.ddr5_compatibility}"
+            f"\nSocket Type = {self.cpu.socket_type}"
+            f"\nWattage Compatibility = {self.cpu.wattage_compatibility}"
+            f"\nBIOS Compatibility = {self.cpu.bios_compatibility}"
+            f"\nChipset Compatibility = {self.cpu.chipset_compatibility}"
         )
-
-    def test_get_bios_compatibility(self):
-        self.assertEqual(self.__cpu.get_bios_compatibility(), self.__bios_compatibility)
-
-    def test_get_chipset_compatibility(self):
-        self.assertEqual(
-            self.__cpu.get_chipset_compatibility(), self.__chipset_compatibility
-        )
-
-    def test_set_architecture(self):
-        self.__cpu.set_architecture("Zen 3")
-        self.assertEqual(self.__cpu.get_architecture(), "Zen 3")
-
-    def test_set_clock_speed(self):
-        self.__cpu.set_clock_speed(4.2)
-        self.assertEqual(self.__cpu.get_clock_speed(), 4.2)
-
-    def test_set_ddr4_compatibility(self):
-        self.__cpu.set_ddr4_compatibility(False)
-        self.assertEqual(self.__cpu.get_ddr4_compatibility(), False)
-
-    def test_set_ddr5_compatibility(self):
-        self.__cpu.set_ddr5_compatibility(True)
-        self.assertEqual(self.__cpu.get_ddr5_compatibility(), True)
-
-    def test_set_socket_type(self):
-        self.__cpu.set_socket_type("AM4")
-        self.assertEqual(self.__cpu.get_socket_type(), "AM4")
-
-    def test_set_wattage_compatibility(self):
-        self.__cpu.set_wattage_compatibility(95)
-        self.assertEqual(self.__cpu.get_wattage_compatibility(), 95)
-
-    def test_set_bios_compatibility(self):
-        self.__cpu.set_bios_compatibility("No")
-        self.assertEqual(self.__cpu.get_bios_compatibility(), "No")
-
-    def test_set_chipset_compatibility(self):
-        self.__cpu.set_chipset_compatibility("No")
-        self.assertEqual(self.__cpu.get_chipset_compatibility(), "No")
-
-    def test_to_string(self):
-        expected_output = (
-            f"Part Name: {self.__name}\nPrice: {self.__price}\nSKU: {self.__sku}\nManufacturer: {self.__manufacturer}\n"
-            f"Architecture: {self.__architecture}\nClock Speed: {self.__clock_speed}\n"
-        )
-        self.assertEqual(self.__cpu.to_string(), expected_output)
-
-
-if __name__ == "__main__":
-    unittest.main()
+        self.assertEqual(str(self.cpu), expected_str)
