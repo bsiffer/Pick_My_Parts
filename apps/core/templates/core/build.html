@@ -1,0 +1,109 @@
+{% extends 'core/base_template.html' %}
+{% load custom_filters %}
+{% block content %}
+    <style>
+        form div {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .input-container > label {
+            flex: 1;
+            text-align: left;
+            margin-right: 10px;
+        }
+        .input-container > input {
+            flex: 2;
+            text-align: left;
+            padding-right: 60px;
+        }
+        .clear-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: none;
+            z-index: 2;
+        }
+        input:not(:placeholder-shown) ~ .clear-icon {
+            display: block;
+        }
+        .dropdown-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        #bubble-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .bubble {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            white-space: normal;
+            overflow-wrap: break-word;
+            max-width: 800px;
+        }
+        .bubble.visible {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <h1>Build Your PC</h1>
+
+    <form>
+        {% csrf_token %}
+        {% include 'core/partials/select_input.html' with field_name="cpu" label="CPU" queryset=form.fields.cpu.queryset formatter="format_cpu" %}
+        {% include 'core/partials/select_input.html' with field_name="motherboard" label="Motherboard" queryset=form.fields.motherboard.queryset formatter="format_motherboard" %}
+        {% include 'core/partials/select_input.html' with field_name="gpu" label="GPU" queryset=form.fields.gpu.queryset formatter="format_gpu" %}
+        {% include 'core/partials/select_input.html' with field_name="ram" label="RAM" queryset=form.fields.ram.queryset formatter="format_ram" %}
+        {% include 'core/partials/select_input.html' with field_name="storage" label="Storage" queryset=form.fields.storage.queryset formatter="format_storage" %}
+        {% include 'core/partials/select_input.html' with field_name="case" label="Case" queryset=form.fields.computer_case.queryset formatter="format_computer_case" %}
+        {% include 'core/partials/select_input.html' with field_name="cooling_accessory" label="Cooling Accessory" queryset=form.fields.cooling_accessory.queryset formatter="format_cooling_accessory" %}
+    </form>
+
+    <script>
+        function clearField(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.value = '';
+            field.dispatchEvent(new Event('input'));
+        }
+
+        function validateInput(inputId, datalistId) {
+            const input = document.getElementById(inputId);
+            const datalist = document.getElementById(datalistId);
+            const options = Array.from(datalist.options).map(option => option.value);
+            const bubble = document.getElementById(`${inputId}_bubble`);
+
+            if (!bubble) {
+                return;
+            }
+
+            if (options.includes(input.value)) {
+                input.setCustomValidity("");
+                bubble.textContent = `${input.value}`;
+                bubble.classList.add('visible');
+            } else {
+                input.setCustomValidity("Please select a valid option from the dropdown.");
+                bubble.textContent = "";
+                bubble.classList.remove('visible');
+            }
+        }
+    </script>
+{% endblock %}
