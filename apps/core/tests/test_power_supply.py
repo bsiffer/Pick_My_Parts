@@ -1,85 +1,49 @@
-import unittest
+from django.test import TestCase
 from apps.core.models.power_supply import PowerSupply
 
-
-class TestPowerSupply(unittest.TestCase):
+class TestGPU(TestCase):
     def setUp(self):
-        """create a sample power supply object for testing"""
-        self.sample_psu = PowerSupply(
-            manufacturer="SilverStone",
-            name="SX750",
-            sku=67890,
+        self.power_supply = PowerSupply.objects.create(
+            manufacturer="Corsair",
+            name="Corsair RM850x",
             price=139.99,
-            size_standard="SFX",
-            rated_wattage=750,
-            certification_level="80+ Platinum",
+            sku=8899550,
+
+            size_standard="ATX",
+            rated_wattage=850.00,
+            certification_level="80 PLUS Gold",
             modular="Fully Modular",
-            efficiency_rating_percentage=92.0,
+            efficiency_rating_percentage=90.0,
             pcie_connectors=6,
-            length=125
+            length_in_mm=160
         )
 
-    # test getter methods
-    def test_get_size_standard(self):
-        self.assertEqual(self.sample_psu.get_size_standard(), "SFX")
+    def test_initialization(self):
+        self.assertEqual(self.power_supply.manufacturer, "Corsair")
+        self.assertEqual(self.power_supply.name, "Corsair RM850x")
+        self.assertEqual(self.power_supply.sku, 8899550)
+        self.assertEqual(self.power_supply.price, 139.99)
 
-    def test_get_rated_wattage(self):
-        self.assertEqual(self.sample_psu.get_rated_wattage(), 750)
+        self.assertEqual(self.power_supply.size_standard, "ATX")
+        self.assertEqual(self.power_supply.rated_wattage, 850.0)
+        self.assertEqual(self.power_supply.certification_level, "80 PLUS Gold")
+        self.assertEqual(self.power_supply.modular, "Fully Modular")
+        self.assertEqual(self.power_supply.efficiency_rating_percentage, 90.0)
+        self.assertEqual(self.power_supply.pcie_connectors, 6)
+        self.assertEqual(self.power_supply.length_in_mm, 160)
 
-    def test_get_certification_level(self):
-        self.assertEqual(self.sample_psu.get_certification_level(), "80+ Platinum")
-
-    def test_get_modular(self):
-        self.assertEqual(self.sample_psu.get_modular(), "Fully Modular")
-
-    def test_get_efficiency_rating_percentage(self):
-        self.assertEqual(self.sample_psu.get_efficiency_rating_percentage(), 92.0)
-
-    def test_get_pcie_connectors(self):
-        self.assertEqual(self.sample_psu.get_pcie_connectors(), 6)
-
-    def test_get_length(self):
-        self.assertEqual(self.sample_psu.get_length(), 125)
-
-    # test setter methods
-    def test_set_size_standard(self):
-        self.sample_psu.set_size_standard("ATX")
-        self.assertEqual(self.sample_psu.get_size_standard(), "ATX")
-
-    def test_set_rated_wattage(self):
-        self.sample_psu.set_rated_wattage(850)
-        self.assertEqual(self.sample_psu.get_rated_wattage(), 850)
-
-    def test_set_certification_level(self):
-        self.sample_psu.set_certification_level("80+ Gold")
-        self.assertEqual(self.sample_psu.get_certification_level(), "80+ Gold")
-
-    def test_set_modular(self):
-        self.sample_psu.set_modular("Semi-Modular")
-        self.assertEqual(self.sample_psu.get_modular(), "Semi-Modular")
-
-    def test_set_efficiency_rating_percentage(self):
-        self.sample_psu.set_efficiency_rating_percentage(90.5)
-        self.assertEqual(self.sample_psu.get_efficiency_rating_percentage(), 90.5)
-
-    def test_set_pcie_connectors(self):
-        self.sample_psu.set_pcie_connectors(4)
-        self.assertEqual(self.sample_psu.get_pcie_connectors(), 4)
-
-    def test_set_length(self):
-        self.sample_psu.set_length(130)
-        self.assertEqual(self.sample_psu.get_length(), 130)
-
-    # test to_string method
-    def test_to_string(self):
-        expected_output = (f"Part Name: SX750\nPrice: 139.99\n"
-                           f"SKU: 67890\nManufacturer: SilverStone\n"
-            "size standard: SFX\n"
-            "wattage: 750W\n"
-            "certification: 80+ Platinum\n"
-            "modular: Fully Modular\n"
-            "efficiency rating: 92.0%\n"
-            "pcie connectors: 6\n"
-            "length: 125mm"
+    def test_string_representation(self):
+        expected_str = (
+            f"Manufacturer: {self.power_supply.manufacturer}\n"
+            f"Name: {self.power_supply.name}\n"
+            f"SKU: {self.power_supply.sku}\n"
+            f"Price: ${self.power_supply.price:.2f}\n"
+            f"Size Standard: {self.power_supply.size_standard}\n"
+            f"Wattage: {self.power_supply.rated_wattage}W\n"
+            f"Certification: {self.power_supply.certification_level}\n"
+            f"Modular: {self.power_supply.modular}\n"
+            f"Efficiency Rating: {self.power_supply.efficiency_rating_percentage}%\n"
+            f"PCIe Connectors: {self.power_supply.pcie_connectors}\n"
+            f"Length: {self.power_supply.length_in_mm}mm"
         )
-        self.assertEqual(self.sample_psu.to_string(), expected_output)
+        self.assertEqual(str(self.power_supply), expected_str)

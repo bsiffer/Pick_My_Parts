@@ -1,0 +1,75 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New CPU</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" class="form-horizontal" name="cpu_form">
+                    {% csrf_token %}
+                    {% for field in cpu_form %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% if cpu_form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Form Errors:</strong>
+                            {{ cpu_form.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary" name="create_cpu">Create CPU</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Architecture</th>
+                        <th>Clock Speed</th>
+                        <th>DDR4 Compatibility</th>
+                        <th>DDR5 Compatibility</th>
+                        <th>Socket Type</th>
+                        <th>Wattage Compatibility</th>
+                        <th>BIOS Compatibility</th>
+                        <th>Chipset Compatibility</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cpu in cpus %}
+                    <tr>
+                        <td>{{ cpu.manufacturer }}</td>
+                        <td>{{ cpu.name }}</td>
+                        <td>{{ cpu.sku }}</td>
+                        <td>{{ cpu.price }}</td>
+                        <td>{{ cpu.architecture }}</td>
+                        <td>{{ cpu.clock_speed }}</td>
+                        <td>{{ cpu.ddr4_compatibility }}</td>
+                        <td>{{ cpu.ddr5_compatibility }}</td>
+                        <td>{{ cpu.socket_type }}</td>
+                        <td>{{ cpu.wattage_compatibility }}</td>
+                        <td>{{ cpu.bios_compatibility }}</td>
+                        <td>{{ cpu.chipset_compatibility }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

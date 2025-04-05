@@ -1,42 +1,43 @@
-import unittest
-
+from django.test import TestCase
 from apps.core.models.motherboard import Motherboard
 
-
-class TestMotherboard(unittest.TestCase):
-    __manufacturer = "ASUS"
-    __name = "ROG STRIX B550-F Gaming"
-    __sku = 1234567
-    __price = 189.99
-    __architecture = "x86-64"
-    __standard_size = "ATX"
-    __ram_slots = 4
-    __compatibility = ["AMD Ryzen 3000 Series", "AMD Ryzen 5000 Series"]
-
+class TestMotherboard(TestCase):
     def setUp(self):
-        self.__motherboard = Motherboard(
-            self.__manufacturer, self.__name, self.__sku, self.__price,
-            self.__architecture, self.__standard_size, self.__ram_slots, self.__compatibility
+        """Set up a sample motherboard for testing."""
+        self.motherboard = Motherboard.objects.create(
+            manufacturer="ASUS",
+            name="ROG Strix B550-F",
+            sku=654321,
+            price=179.99,
+            socket_type="AM4",
+            form_factor="ATX",
+            ram_slots=4,
+            supported_ram_type="DDR4",
+            chipset_compatibility="B550",
+            bios_compatibility="UEFI",
         )
 
-    def test_get_manufacturer(self):
-        self.assertEqual(self.__motherboard.get_manufacturer(), self.__manufacturer)
+    def test_motherboard_creation(self):
+        """Test if the motherboard is created with correct attributes."""
+        self.assertEqual(self.motherboard.manufacturer, "ASUS")
+        self.assertEqual(self.motherboard.name, "ROG Strix B550-F")
+        self.assertEqual(self.motherboard.sku, 654321)
+        self.assertEqual(self.motherboard.price, 179.99)
+        self.assertEqual(self.motherboard.socket_type, "AM4")
+        self.assertEqual(self.motherboard.form_factor, "ATX")
+        self.assertEqual(self.motherboard.ram_slots, 4)
+        self.assertEqual(self.motherboard.supported_ram_type, "DDR4")
+        self.assertEqual(self.motherboard.chipset_compatibility, "B550")
+        self.assertEqual(self.motherboard.bios_compatibility, "UEFI")
 
-    def test_get_name(self):
-        self.assertEqual(self.__motherboard.get_name(), self.__name)
-
-    def test_get_sku(self):
-        self.assertEqual(self.__motherboard.get_sku(), self.__sku)
-
-    def test_get_price(self):
-        self.assertEqual(self.__motherboard.get_price(), self.__price)
-
-    def test_to_string(self):
-        expected_output = (f"Part Name: {self.__name}\nPrice: {self.__price}\n"
-                           f"SKU: {self.__sku}\nManufacturer: {self.__manufacturer}\n"
-                           f"Architecture: {self.__architecture}, Size: {self.__standard_size}, "
-                           f"RAM Slots: {self.__ram_slots}, Compatibility: {self.__compatibility}")
-        self.assertEqual(self.__motherboard.to_string(), expected_output)
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_string_representation(self):
+        """Test the string rep of the motherboard."""
+        expected_str = (
+            f"Manufacturer: {self.motherboard.manufacturer}\n"
+            f"Name: {self.motherboard.name}\n"
+            f"SKU: {self.motherboard.sku}\n"
+            f"Price: ${self.motherboard.price:.2f}"
+            f"\nSocket Type: {self.motherboard.socket_type}, Form Factor: {self.motherboard.form_factor}, "
+            f"RAM Slots: {self.motherboard.ram_slots}, Supported RAM Type: {self.motherboard.supported_ram_type}"
+        )
+        self.assertEqual(str(self.motherboard), expected_str)

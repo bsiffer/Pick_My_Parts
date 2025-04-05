@@ -1,8 +1,10 @@
 <!-- base_template.html -->
+{% load static %}
 <html>
 <head>
     <title>Pick My Parts</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -31,8 +33,9 @@
                         <li><a class="dropdown-item" href="/parts/cpus">CPUs</a></li>
                         <li><a class="dropdown-item" href="/parts/rams">RAMs</a></li>
                         <li><a class="dropdown-item" href="/parts/storages">Storages</a></li>
-                        <li><a class="dropdown-item" href="/parts/coolings">Coolings</a></li>
-                        <li><a class="dropdown-item" href="/parts/cases">Cases</a></li>
+                        <li><a class="dropdown-item" href="/parts/cooling-accessories">Cooling Accessories</a></li>
+                        <li><a class="dropdown-item" href="/parts/computer-cases">Computer Cases</a></li>
+                        <li><a class="dropdown-item" href="/parts/power-supplies">Power Supplies</a></li>
                         <li><a class="dropdown-item" href="/parts/gpus">GPUs</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -46,7 +49,8 @@
 </nav>
 
 <div class="p-5 bg-light border rounded">
-    {{ custom_html | safe }}
+    {% block content %}
+    {% endblock %}
 </div>
 </body>
 </html>
