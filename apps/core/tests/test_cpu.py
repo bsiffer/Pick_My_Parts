@@ -14,8 +14,8 @@ class TestCPU(TestCase):
             ddr5_compatibility=True,
             socket_type="LGA 1700",
             wattage_compatibility=125.0,
-            bios_compatibility=True,
-            chipset_compatibility=True
+            bios_compatibility='UEFI',
+            chipset_compatibility='B550'
         )
 
     def test_initialization(self):
@@ -30,8 +30,8 @@ class TestCPU(TestCase):
         self.assertEqual(self.cpu.ddr5_compatibility, True)
         self.assertEqual(self.cpu.socket_type, 'LGA 1700')
         self.assertEqual(self.cpu.wattage_compatibility, 125.0)
-        self.assertEqual(self.cpu.bios_compatibility, True)
-        self.assertEqual(self.cpu.chipset_compatibility, True)
+        self.assertEqual(self.cpu.bios_compatibility, 'UEFI')
+        self.assertEqual(self.cpu.chipset_compatibility, 'B550')
 
     def test_string_representation(self):
         expected_str = (
