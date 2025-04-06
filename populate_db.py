@@ -35,8 +35,8 @@ cpus_data = [
         "ddr5_compatibility": True,
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
-        "bios_compatibility": True,
-        "chipset_compatibility": True
+        "bios_compatibility": "UEFI",
+        "chipset_compatibility": "Z690"
     },
     {
         "manufacturer": "AMD",
@@ -49,8 +49,8 @@ cpus_data = [
         "ddr5_compatibility": False,
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
-        "bios_compatibility": True,
-        "chipset_compatibility": True
+        "bios_compatibility": "UEFI",
+        "chipset_compatibility": "X570"
     },
     {
         "manufacturer": "Intel",
@@ -63,8 +63,8 @@ cpus_data = [
         "ddr5_compatibility": True,
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
-        "bios_compatibility": True,
-        "chipset_compatibility": True
+        "bios_compatibility": "UEFI",
+        "chipset_compatibility": "Z690"
     },
     {
         "manufacturer": "AMD",
@@ -77,8 +77,8 @@ cpus_data = [
         "ddr5_compatibility": False,
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
-        "bios_compatibility": True,
-        "chipset_compatibility": True
+        "bios_compatibility": "UEFI",
+        "chipset_compatibility": "X570"
     },
     {
         "manufacturer": "Intel",
@@ -91,9 +91,9 @@ cpus_data = [
         "ddr5_compatibility": True,
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
-        "bios_compatibility": True,
-        "chipset_compatibility": True
-    },
+        "bios_compatibility": "UEFI",
+        "chipset_compatibility": "Z690"
+    }
 ]
 for data in cpus_data:
     CPU.objects.get_or_create(**data)

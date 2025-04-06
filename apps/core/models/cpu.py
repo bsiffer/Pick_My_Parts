@@ -8,8 +8,8 @@ class CPU(Part, models.Model):
     ddr5_compatibility = models.BooleanField(default=False)
     socket_type = models.CharField(max_length=255)
     wattage_compatibility = models.DecimalField(max_digits=10, decimal_places=2)
-    bios_compatibility = models.BooleanField(default=False)
-    chipset_compatibility = models.BooleanField(default=False)
+    bios_compatibility = models.CharField(max_length=255)
+    chipset_compatibility = models.CharField(max_length=255)
 
     def check_compatibility(self, part_list):
         issues = []
