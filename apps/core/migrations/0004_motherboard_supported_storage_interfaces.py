@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("core", "0002_alter_powersupply_efficiency_rating_percentage"),
+        ("core", "0003_alter_cpu_bios_compatibility_and_more"),
     ]
 
     operations = [
