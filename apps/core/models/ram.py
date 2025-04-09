@@ -1,5 +1,6 @@
 from django.db import models
 from apps.core.models.part import Part
+from apps.core.models.motherboard import Motherboard 
 
 class RAM(Part, models.Model):
     capacity_in_gb = models.IntegerField()
@@ -11,7 +12,23 @@ class RAM(Part, models.Model):
     color = models.CharField(max_length=255)
 
     def check_compatibility(self, parts_list):
-        pass
+        incompatibilities = []
+
+    # Check if the motherboard is selected
+        motherboard_parts = parts_list.parts.get("Motherboard", [])
+        if motherboard_parts:
+            for motherboard in motherboard_parts:
+                if self.ddr_standard != motherboard.supported_ram_type:
+                    incompatibilities.append(
+                        f"{self.get_name()} is incompatible: RAM type {self.ddr_standard} does not match motherboard's supported type {motherboard.supported_ram_type}."
+                    )
+            # Example check for number of RAM slots
+                elif self.sticks > motherboard.ram_slots:
+                    incompatibilities.append(
+                        f"{self.get_name()} is incompatible: The motherboard only supports {motherboard.ram_slots} RAM slots, but {self.sticks} sticks were selected."
+                    )
+
+        return incompatibilities
 
     def __str__(self):
         """Returns a string representation of the RAM module."""

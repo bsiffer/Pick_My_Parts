@@ -1,5 +1,6 @@
 from django.db import models
 from apps.core.models.part import Part
+from apps.core.models.motherboard import Motherboard 
 
 class GPU(Part, models.Model):
     """
@@ -16,7 +17,27 @@ class GPU(Part, models.Model):
     color = models.CharField(max_length=255)
 
     def check_compatibility(self, parts_list):
-        pass
+        """
+        Checks if this GPU is compatible with the motherboard in the parts list.
+        Currently checks PCIe standard compatibility.
+        """
+        motherboard = None
+
+        for part in parts_list:
+            if isinstance(part, Motherboard):
+                motherboard = part
+                break
+
+        if not motherboard:
+            return False  # No motherboard to compare with
+   
+        gpu_pcie = self.pcie_standard.lower().replace("pcie ", "")
+        mobo_chipset = motherboard.chipset_compatibility.lower()
+
+        if gpu_pcie not in mobo_chipset:
+            return False
+
+        return True
 
     def __str__(self):
         """Returns a string representation of the GPU."""

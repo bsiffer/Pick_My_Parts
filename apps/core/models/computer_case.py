@@ -9,8 +9,20 @@ class ComputerCase(Part, models.Model):
     supported_form_factors = models.ManyToManyField(FormFactor, related_name="compatible_cases")
 
     def check_compatibility(self, parts_list):
-        """Checks if the case can accommodate the selected motherboard."""
-        pass
+        issues = []
+        motherboards = parts_list.parts.get("Motherboard", [])
+        if not motherboards:
+            issues.append("No motherboard selected.")
+        else:
+            # Assume only one motherboard is selected.
+            mb = motherboards[0]
+            # Get the names of the supported form factors.
+            supported = [ff.name for ff in self.supported_form_factors.all()]
+            if mb.form_factor not in supported:
+                issues.append(
+                    f"Computer Case '{self.get_name()}' does not support the motherboard form factor '{mb.form_factor}'."
+                )
+        return issues
 
     def __str__(self):
         """Returns a string representation of the computer case."""
