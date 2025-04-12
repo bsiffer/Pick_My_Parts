@@ -17,17 +17,15 @@ class PowerSupply(Part, models.Model):
         cpus = parts_list.parts.get("CPU", [])
         gpus = parts_list.parts.get("GPU", [])
 
-        if cpus:
+        if len(cpus) == 1:
+            # Assume only one CPU can be selected
             cpu = cpus[0]
             total_power += float(cpu.wattage_compatibility)
-        else:
-            issues.append("No CPU selected.")
 
-        if gpus:
+        if len(gpus) == 1:
+            # Assume only one GPU can be selected
             gpu = gpus[0]
             total_power += float(gpu.power_requirement)
-        else:
-            issues.append("No GPU selected.")
 
         if total_power > float(self.rated_wattage) * .75:  # Multiplied by 75% to allow overhead for other components
             issues.append(
