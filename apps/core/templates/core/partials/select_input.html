@@ -1,15 +1,22 @@
-{% load custom_filters custom_tags %}
-<div>
+<fieldset>
     <div class="input-container">
         <label for="id_{{ field_name }}">{{ label }}</label>
-        <input type="text" name="{{ field_name }}" id="id_{{ field_name }}" list="{{ field_name }}_suggestions" placeholder=" " oninput="validateInput('id_{{ field_name }}', '{{ field_name }}_suggestions')">
+        <input 
+            onfocus="getSuggestions('{{ field_name }}')"
+            onblur="setTimeout(() => showOrHideDropdown('{{ field_name }}', false), 200)"
+            type="text" 
+            name="{{ field_name }}" 
+            id="id_{{ field_name }}" 
+            placeholder=" " 
+            oninput="filterDropdown('{{ field_name }}', this.value)">
         <i class="clear-icon bi bi-x-circle" onclick="clearField('id_{{ field_name }}')"></i>
-        <i class="dropdown-icon bi bi-caret-down-fill"></i>
+        <i class="dropdown-icon bi bi-caret-down-fill" onclick="requestFocus('id_{{ field_name }}')"></i>
+        <div class="custom-dropdown" id="{{ field_name }}_dropdown">
+            <ul id="{{ field_name }}_dropdown_list"></ul>
+        </div>
     </div>
-    <datalist id="{{ field_name }}_suggestions">
-        {% for item in queryset %}
-        <option value="{% apply_formatter item formatter %}">{% apply_formatter item formatter %}</option>
-        {% endfor %}
-    </datalist>
-    <div id="bubble-container"><div class="bubble" id="id_{{ field_name }}_bubble"></div></div>
-</div>
+    <div class="bubble-container">
+        <div id="bubble_{{ field_name }}_container">
+        </div>
+    </div>
+</fieldset>
