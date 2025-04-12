@@ -12,6 +12,28 @@
             PowerSupply: []
         };
 
+        const MAX_SELECTIONS_BY_TYPE = {
+            Motherboard: 1,
+            CPU: 1,
+            GPU: 1,
+            ComputerCase: 1,
+            RAM: undefined,
+            Storage: undefined,
+            PowerSupply: undefined,
+            CoolingAccessory: undefined
+        }
+
+        function enableOrDisableInputFieldsBasedOnSelections() {
+            for (const fieldName in selectedParts) {
+                const inputField = document.getElementById(`id_${fieldName}`);
+                if (selectedParts[fieldName] && selectedParts[fieldName].length >= MAX_SELECTIONS_BY_TYPE[fieldName]) {
+                    inputField.disabled = true;
+                } else {
+                    inputField.disabled = false;
+                }
+            }
+        }
+
         function requestFocus(inputFieldId) {
             const field = document.getElementById(inputFieldId);
             field.focus();
@@ -60,7 +82,7 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('data', data);
+                    //console.log('data', data);
 
                     if (data.length > 0) {
                         updateDropdown(requestForField, data);
@@ -93,8 +115,9 @@
                 bubbleContainer.removeChild(bubble);
                 
                 selectedParts[fieldName] = selectedParts[fieldName].filter(p => p.sku !== parseInt(part.sku, 10));
+                enableOrDisableInputFieldsBasedOnSelections();
 
-                console.log(`Updated selectedParts:`, selectedParts);
+                //console.log(`Updated selectedParts:`, selectedParts);
             });
 
             bubble.appendChild(bubbleText);
@@ -130,6 +153,7 @@
 
             if (!selectedParts[fieldName].some(p => p.sku === part.sku)) {
                 selectedParts[fieldName].push({ sku: part.sku });
+                enableOrDisableInputFieldsBasedOnSelections();
 
                 const bubble = createBubble(fieldName, part);
                 const bubbleContainer = document.getElementById(`bubble_${fieldName}_container`);
@@ -140,7 +164,7 @@
             showOrHideDropdown(fieldName, false);
             clearField(`id_${fieldName}`);
 
-            console.log(`Updated selectedParts:`, selectedParts);
+            //console.log(`Updated selectedParts:`, selectedParts);
         }
     </script>
     <style>
