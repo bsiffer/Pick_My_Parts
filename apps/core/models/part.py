@@ -8,6 +8,22 @@ class Part(models.Model):
     sku = models.IntegerField(unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def get_price(self):
+        """Returns the price of the part."""
+        return self.price
+
+    def get_sku(self):
+        """Returns the SKU of the part."""
+        return self.sku
+    
+    def get_name(self):
+        """Returns the name of the part."""
+        return self.name
+    
+    def get_part_type(self):
+        """Returns the type of the part."""
+        return self.__class__.__name__
+
     def set_price(self, price):
         """Ensures price is not negative before setting it."""
         if price < 0:
