@@ -1,4 +1,5 @@
 from django.urls import path
+from .views.suggestions import suggestions
 from .views.build_view import build
 from .views.cooling_accessory_view import cooling_accessory_view
 from .views.gpu_view import gpu_view
@@ -25,4 +26,5 @@ urlpatterns = [
     path('parts/storages', storage_view, name='All Storages'),
     path('parts/power-supplies', power_supply_view, name='All Power Supplies'),
     path('parts/accessories', under_construction, name='All other accessories'),
+    path('api/suggestions', suggestions, name='Suggestions based on current selection'),
 ]
