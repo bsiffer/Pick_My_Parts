@@ -1,10 +1,9 @@
 from django.db import models
 from apps.core.models.part import Part
-from apps.core.models.cpu import CPU
-from apps.core.models.computer_case import ComputerCase
 
 class CoolingAccessory(Part, models.Model):
     cooling_type = models.CharField(max_length=255)
+    supported_sockets = models.JSONField(default=list)
 
     def check_compatibility(self, parts_list):
         """
@@ -13,29 +12,28 @@ class CoolingAccessory(Part, models.Model):
         - CPU socket type (must be in the cooler's supported_sockets)
         - Case form factor must support the cooling type (AIR, Liquid, AIO)
         """
-        cpu = None
-        computer_case = None
+        issues = []
+        cpus = parts_list.parts.get("CPU", [])
+        computer_cases = parts_list.parts.get("ComputerCase", [])
 
-        for part in parts_list:
-            if isinstance(part, CPU):
-                cpu = part
-            elif isinstance(part, ComputerCase):
-                computer_case = part
+        if len(cpus) == 1:
+            # Assume only one CPU can be selected
+            cpu = cpus[0]
+            # Check socket compatibility
+            if cpu.socket_type not in self.supported_sockets:
+                issues.append(
+                    f"{self.get_name()} is incompatible: CPU socket type {cpu.socket_type} is not supported by the cooling accessory."
+                )
 
-        if not cpu or not computer_case:
-            return False
+        if len(computer_cases) == 1:
+            # Assume only one computer case can be selected
+            computer_case = computer_cases[0]
+            if self.cooling_type not in computer_case.supported_cooling_types:
+                issues.append(
+                    f"{self.get_name()} is incompatible: Cooling type {self.cooling_type} is not supported by the computer case."
+                )
 
-        # Check socket compatibility
-        if cpu.socket_type not in self.supported_sockets:
-            return False
-
-        if not hasattr(computer_case, "supported_cooling_types"):
-            return False
-
-        if self.cooling_type not in computer_case.supported_cooling_types():
-            return False
-
-        return True
+        return issues
 
     def __str__(self):
         """Returns a string representation of the cooling accessory."""

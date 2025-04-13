@@ -9,25 +9,26 @@ class Motherboard(Part, models.Model):
     chipset_compatibility = models.CharField(max_length=255)
     bios_compatibility = models.CharField(max_length=255)
     supported_storage_interfaces = models.JSONField(default=list)
+    supported_pcie_standards = models.JSONField(default=list)
     
     def check_compatibility(self, parts_list):
         issues = []
 
-        cpu = parts_list.parts.get("CPU")
+        cpus = parts_list.parts.get("CPU", [])
         ram_modules = parts_list.parts.get("RAM", [])
-        case = parts_list.parts.get("ComputerCase")
+        computer_cases = parts_list.parts.get("ComputerCase", [])
         storage_devices = parts_list.parts.get("Storage", [])
 
         # Check CPU compatibility
-        if cpu:
+        if len(cpus) == 1:
+            # Assume only one CPU can be selected
+            cpu = cpus[0]
             if cpu.socket_type != self.socket_type:
                 issues.append(f"CPU socket type '{cpu.socket_type}' is not compatible with motherboard socket '{self.socket_type}'.")
-            if cpu.bios_compatibility != bool(self.bios_compatibility):
+            if cpu.bios_compatibility != self.bios_compatibility:
                 issues.append("CPU BIOS compatibility does not match the motherboard.")
-            if cpu.chipset_compatibility != bool(self.chipset_compatibility):
+            if cpu.chipset_compatibility != self.chipset_compatibility:
                 issues.append("CPU chipset compatibility does not match the motherboard.")
-        else:
-            issues.append("No CPU selected.")
 
         # Check RAM compatibility
         if ram_modules:
@@ -36,23 +37,19 @@ class Motherboard(Part, models.Model):
             for ram in ram_modules:
                 if ram.ddr_standard != self.supported_ram_type:
                     issues.append(f"RAM {ram.get_name()} with DDR {ram.ddr_standard} is not compatible with motherboard DDR {self.supported_ram_type}.")
-        else:
-            issues.append("No RAM selected.")
 
         # Check Computer Case compatibility
-        if case:
+        if len(computer_cases) == 1:
+            # Assume only one computer case can be selected
+            case = computer_cases[0]
             if not case.supported_form_factors.filter(name=self.form_factor).exists():
                 issues.append(f"Motherboard form factor '{self.form_factor}' is not supported by the selected case.")
-        else:
-            issues.append("No computer case selected.")
 
         # Check Storage compatibility
         if storage_devices:
             for storage in storage_devices:
                 if storage.interface not in self.supported_storage_interfaces:
                     issues.append(f"Storage interface '{storage.interface}' not supported by the motherboard.")
-        else:
-            issues.append("No storage selected.")
 
         return issues
 

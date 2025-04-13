@@ -7,13 +7,12 @@ class ComputerCase(Part, models.Model):
     form_factor = models.ForeignKey(FormFactor, on_delete=models.SET_NULL, null=True, related_name="primary_cases")
     color = models.CharField(max_length=255)
     supported_form_factors = models.ManyToManyField(FormFactor, related_name="compatible_cases")
+    supported_cooling_types = models.JSONField(default=list)
 
     def check_compatibility(self, parts_list):
         issues = []
         motherboards = parts_list.parts.get("Motherboard", [])
-        if not motherboards:
-            issues.append("No motherboard selected.")
-        else:
+        if len(motherboards) == 1:
             # Assume only one motherboard is selected.
             mb = motherboards[0]
             # Get the names of the supported form factors.

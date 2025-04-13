@@ -1,6 +1,5 @@
 from django.db import models
 from apps.core.models.part import Part
-from apps.core.models.motherboard import Motherboard 
 
 class Storage(Part, models.Model):
     storage_type = models.CharField(max_length=255)
@@ -12,10 +11,16 @@ class Storage(Part, models.Model):
         Checks if this storage device is compatible with a motherboard in the parts list.
         Returns True if compatible, False otherwise.
         """
-        for part in parts_list:
-            if isinstance(part, Motherboard):
-                return self.interface in part.supported_storage_interfaces
-        return False
+        issues = []
+        motherboards = parts_list.parts.get("Motherboard", [])
+
+        if len(motherboards) == 1:
+            # Assume only one motherboard can be selected
+            motherboard = motherboards[0]
+            if self.interface not in motherboard.supported_storage_interfaces:
+                issues.append(f"{self} is not compatible with {motherboard}.")
+                
+        return issues
     
     def __str__(self):
         """Returns a string representation of the storage device."""

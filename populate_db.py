@@ -191,7 +191,9 @@ motherboards_data = [
         "ram_slots": 4,
         "supported_ram_type": "DDR5",
         "chipset_compatibility": "Z690",
-        "bios_compatibility": "UEFI"
+        "bios_compatibility": "UEFI",
+        "supported_storage_interfaces": ["SATA III", "PCIe 4.0"], # check/add appropriate values
+        "supported_pcie_standards": ["PCIe 4.0"] # check/add appropriate values
     },
     {
         "manufacturer": "MSI",
@@ -203,7 +205,9 @@ motherboards_data = [
         "ram_slots": 4,
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "B550",
-        "bios_compatibility": "UEFI"
+        "bios_compatibility": "UEFI",
+        "supported_storage_interfaces": [], # add appropriate values
+        "supported_pcie_standards": [] # add appropriate values
     },
     {
         "manufacturer": "Gigabyte",
@@ -215,7 +219,9 @@ motherboards_data = [
         "ram_slots": 4,
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "B450",
-        "bios_compatibility": "UEFI"
+        "bios_compatibility": "UEFI",
+        "supported_storage_interfaces": [], # add appropriate values
+        "supported_pcie_standards": [] # add appropriate values
     },
     {
         "manufacturer": "ASRock",
@@ -227,7 +233,9 @@ motherboards_data = [
         "ram_slots": 4,
         "supported_ram_type": "DDR5",
         "chipset_compatibility": "Z690",
-        "bios_compatibility": "UEFI"
+        "bios_compatibility": "UEFI",
+        "supported_storage_interfaces": [], # add appropriate values
+        "supported_pcie_standards": [] # add appropriate values
     },
     {
         "manufacturer": "EVGA",
@@ -239,7 +247,9 @@ motherboards_data = [
         "ram_slots": 4,
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "Z490",
-        "bios_compatibility": "UEFI"
+        "bios_compatibility": "UEFI",
+        "supported_storage_interfaces": [], # add appropriate values
+        "supported_pcie_standards": [] # add appropriate values
     },
 ]
 for data in motherboards_data:
@@ -446,7 +456,8 @@ cases_data = [
         "sku": 700001,
         "price": 69.99,
         "form_factor": form_factors["ATX"],
-        "color": "Black"
+        "color": "Black",
+        "supported_cooling_types": ["Air"]  # check/add appropriate values
     },
     {
         "manufacturer": "Corsair",
@@ -454,7 +465,8 @@ cases_data = [
         "sku": 700002,
         "price": 149.99,
         "form_factor": form_factors["ATX"],
-        "color": "White"
+        "color": "White",
+        "supported_cooling_types": []  # check/add appropriate values
     },
     {
         "manufacturer": "Phanteks",
@@ -462,7 +474,8 @@ cases_data = [
         "sku": 700003,
         "price": 79.99,
         "form_factor": form_factors["ATX"],
-        "color": "Black"
+        "color": "Black",
+        "supported_cooling_types": []  # check/add appropriate values
     },
     {
         "manufacturer": "Cooler Master",
@@ -470,7 +483,8 @@ cases_data = [
         "sku": 700004,
         "price": 39.99,
         "form_factor": form_factors["Micro-ATX"],
-        "color": "Black"
+        "color": "Black",
+        "supported_cooling_types": []  # check/add appropriate values
     },
     {
         "manufacturer": "Fractal Design",
@@ -478,7 +492,8 @@ cases_data = [
         "sku": 700005,
         "price": 129.99,
         "form_factor": form_factors["ATX"],
-        "color": "Black"
+        "color": "Black",
+        "supported_cooling_types": []  # check/add appropriate values
     },
 ]
 for data in cases_data:
@@ -493,35 +508,40 @@ cooling_accessories_data = [
         "name": "NH-D15",
         "sku": 800001,
         "price": 89.99,
-        "cooling_type": "Air"
+        "cooling_type": "Air",
+        "supported_sockets": ["LGA1700"] # check/add appropriate values
     },
     {
         "manufacturer": "Corsair",
         "name": "H100i",
         "sku": 800002,
         "price": 119.99,
-        "cooling_type": "Liquid"
+        "cooling_type": "Liquid",
+        "supported_sockets": [] # check/add appropriate values
     },
     {
         "manufacturer": "be quiet!",
         "name": "Dark Rock Pro 4",
         "sku": 800003,
         "price": 89.99,
-        "cooling_type": "Air"
+        "cooling_type": "Air",
+        "supported_sockets": [] # check/add appropriate values
     },
     {
         "manufacturer": "Cooler Master",
         "name": "MasterLiquid ML240L",
         "sku": 800004,
         "price": 99.99,
-        "cooling_type": "Liquid"
+        "cooling_type": "Liquid",
+        "supported_sockets": [] # check/add appropriate values
     },
     {
         "manufacturer": "NZXT",
         "name": "Kraken X53",
         "sku": 800005,
         "price": 109.99,
-        "cooling_type": "Liquid"
+        "cooling_type": "Liquid",
+        "supported_sockets": [] # check/add appropriate values
     },
 ]
 for data in cooling_accessories_data:
