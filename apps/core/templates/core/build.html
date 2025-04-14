@@ -123,7 +123,50 @@
             bubble.appendChild(bubbleText);
             bubble.appendChild(closeIcon);
 
+            bubbleText.addEventListener('click', () => {
+                createModalDialog(part);
+            });
+
             return bubble;
+        }
+
+        function createModalDialog(part) {
+            // Create a new modal dialog
+            const partStringForModal = Object.entries(part)
+                            .filter(([key, value]) => key !== 'id')
+                            .map(([key, value]) => `${key}: ${value}`).join('<br/>');
+            const modal = document.createElement("div");
+            modal.className = "modal";
+            modal.style.display = "block";
+            modal.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${partStringForModal}
+                </div>
+                </div>
+            </div>`;
+
+            // Add event listener to close button
+            const closeButton = modal.querySelector(".close");
+            closeButton.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            // Add event listener to modal background
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            document.body.appendChild(modal);
         }
 
         function filterDropdown(fieldName, query) {
@@ -234,6 +277,7 @@
             overflow-wrap: break-word;
             font-size: 12px;
             padding-right: 15px;
+            cursor: pointer;
         }
         .bubble i.bi-x-circle {
             position: absolute;

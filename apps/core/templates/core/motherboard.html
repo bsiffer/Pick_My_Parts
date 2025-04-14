@@ -50,7 +50,7 @@
                 </thead>
                 <tbody>
                     {% for motherboard in motherboards %}
-                    <tr>
+                    <tr onclick="goToDetailPage('Motherboard', '{{ motherboard.sku }}')">
                         <td>{{ motherboard.manufacturer }}</td>
                         <td>{{ motherboard.name }}</td>
                         <td>{{ motherboard.sku }}</td>

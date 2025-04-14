@@ -57,5 +57,10 @@
     {% block content %}
     {% endblock %}
 </div>
+<script>
+    function goToDetailPage(partType, partId) {
+        window.location.href = '/parts/' + partType + '/' + partId + '/';
+    }
+</script>
 </body>
 </html>

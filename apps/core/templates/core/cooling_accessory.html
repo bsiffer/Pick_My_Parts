@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     {% for cooling_accessory in cooling_accessories %}
-                    <tr>
+                    <tr onclick="goToDetailPage('CoolingAccessory', '{{ cooling_accessory.sku }}')">
                         <td>{{ cooling_accessory.manufacturer }}</td>
                         <td>{{ cooling_accessory.name }}</td>
                         <td>{{ cooling_accessory.sku }}</td>
