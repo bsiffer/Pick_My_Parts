@@ -126,7 +126,7 @@
                 </thead>
                 <tbody>
                     {% for computer_case in computer_cases %}
-                    <tr>
+                    <tr onclick="goToDetailPage('ComputerCase', '{{ computer_case.sku }}')">
                         <td>{{ computer_case.manufacturer }}</td>
                         <td>{{ computer_case.name }}</td>
                         <td>{{ computer_case.sku }}</td>

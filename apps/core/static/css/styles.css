@@ -42,3 +42,6 @@
     width: 15px;
     height: 15px;
 }
+.table.table-striped.table-bordered.table-hover tr {
+    cursor: pointer;
+}

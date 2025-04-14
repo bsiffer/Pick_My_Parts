@@ -1,0 +1,25 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{ part.name }}</h4>
+            </div>
+            <div class="card-body">
+                <img src="https://c.pxhere.com/photos/5a/99/motherboard_tech_hardware_board_chip_processor_system-713482.jpg!d" alt="picture" class="img-fluid" width="300"><br>
+                Manufacturer: {{ part.manufacturer }}<br>
+                SKU: {{ part.sku }}<br>
+                Price: {{ part.price }}<br>
+                Capacity: {{ part.capacity_in_gb }}<br>
+                DDR Standard: {{ part.ddr_standard }}<br>
+                Speed: {{ part.speed_in_mhz }} mhz<br>
+                Sticks: {{ part.sticks }}<br>
+                Latency: {{ part.latency }}<br>
+                RGB: {{ part.rgb }}<br>
+                Color: {{ part.color }}<br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

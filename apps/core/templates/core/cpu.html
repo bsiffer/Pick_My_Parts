@@ -52,7 +52,7 @@
                 </thead>
                 <tbody>
                     {% for cpu in cpus %}
-                    <tr>
+                    <tr onclick="goToDetailPage('CPU', '{{ cpu.sku }}')">
                         <td>{{ cpu.manufacturer }}</td>
                         <td>{{ cpu.name }}</td>
                         <td>{{ cpu.sku }}</td>
