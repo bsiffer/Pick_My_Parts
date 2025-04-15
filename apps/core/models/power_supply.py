@@ -11,7 +11,27 @@ class PowerSupply(Part, models.Model):
     length_in_mm = models.IntegerField()
 
     def check_compatibility(self, parts_list):
-        pass
+        issues = []
+        total_power = 0.0
+
+        cpus = parts_list.parts.get("CPU", [])
+        gpus = parts_list.parts.get("GPU", [])
+
+        if len(cpus) == 1:
+            # Assume only one CPU can be selected
+            cpu = cpus[0]
+            total_power += float(cpu.wattage_compatibility)
+
+        if len(gpus) == 1:
+            # Assume only one GPU can be selected
+            gpu = gpus[0]
+            total_power += float(gpu.power_requirement)
+
+        if total_power > float(self.rated_wattage) * .75:  # Multiplied by 75% to allow overhead for other components
+            issues.append(
+                f"Power supply '{self.get_name()}' rated at {self.rated_wattage}W may be insufficient for the total power requirement ({total_power}W)."
+            )
+        return issues
 
     def __str__(self):
         """Returns a string representation of the power supply."""

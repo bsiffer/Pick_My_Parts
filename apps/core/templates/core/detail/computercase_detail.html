@@ -1,0 +1,21 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{ part.name }}</h4>
+            </div>
+            <div class="card-body">
+                <img src="https://c.pxhere.com/photos/5a/99/motherboard_tech_hardware_board_chip_processor_system-713482.jpg!d" alt="picture" class="img-fluid" width="300"><br>
+                Manufacturer: {{ part.manufacturer }}<br>
+                SKU: {{ part.sku }}<br>
+                Price: {{ part.price }}<br>
+                Form Factor: {{ part.form_factor }}<br>
+                Color: {{ part.color }}<br>
+                Supported Form Factors: {{ part.supported_form_factors.all|join:", " }}<br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

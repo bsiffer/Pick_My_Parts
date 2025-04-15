@@ -7,11 +7,13 @@ class PartsList:
     def __init__(self):
         """Initializes a dictionary with predefined part types set to None."""
         self.parts = {
-            "Case": [],
+            "ComputerCase": [],
             "CPU": [],
             "GPU": [],
             "Motherboard": [],
             "PowerSupply": [],
+            "Storage": [],
+            "CoolingAccessory": [],
             "RAM": [],
         }
         self.incompatibilities = []
@@ -26,9 +28,6 @@ class PartsList:
         self.parts[part_type].append(part)
         print(f"Part added: {part.get_name()} ({part.get_sku()})")
 
-        # Check compatibility after adding a new part
-        self.check_compatibility()
-
     def remove_part(self, sku: int):
         """Removes a part from the dictionary by SKU."""
         for part_type, part_list in self.parts.items():
@@ -36,7 +35,6 @@ class PartsList:
                 if part.get_sku() == sku:
                     part_list.remove(part)
                     print(f"Removed: {part.get_name()} ({part.get_sku()})")
-                    self.check_compatibility()  # Checking remaining compatibility
                     return
         print(f"No part with SKU {sku} found.")
 
@@ -70,19 +68,20 @@ class PartsList:
                 for part in part_list:  # Handles None or empty lists
                     print(part.display_info())  # Calls __str__()
 
-    def check_compatibility(self):
-        """Checks compatibility of all parts in the list."""
+    def check_compatibility(self, part_type):
+        """Checks compatibility of all parts in the list for the given part type."""
         self.incompatibilities = []
+        compatible_parts = []
 
-        for part_list in self.parts.values():
-            if part_list:
-                for part in part_list:
-                    if hasattr(part, "check_compatibility") and callable(
-                        part.check_compatibility
-                    ):
-                        issues = part.check_compatibility(self)
-                        if issues:
-                            self.incompatibilities.extend(issues)
+        for part in self.parts[part_type]:
+            if hasattr(part, "check_compatibility") and callable(
+                part.check_compatibility
+            ):
+                issues = part.check_compatibility(self)
+                if issues:
+                    self.incompatibilities.extend(issues)
+                else:
+                    compatible_parts.append(part)
 
         if self.incompatibilities:
             print("Compatibility issues found:")
@@ -90,6 +89,11 @@ class PartsList:
                 print(issue)
         else:
             print("All parts are compatible.")
+
+        return {
+            "incompatibilities": self.incompatibilities,
+            "compatible_parts": [part for part in compatible_parts]
+        }
 
     def clear_list(self):
         """Resets all parts to None and cleard incompatibilities."""

@@ -72,6 +72,12 @@ Run the sample data script to populate the database with sample data
 python populate_db.py
 ```
 
+- **Reset the Database**
+Run the sample data script to populate the database with sample data
+```bash
+python reset_db.py
+```
+
 - **Run Django server**
 ```bash
 python manage.py runserver

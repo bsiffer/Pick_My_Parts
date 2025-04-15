@@ -47,7 +47,7 @@
                 </thead>
                 <tbody>
                     {% for storage in storages %}
-                    <tr>
+                    <tr onclick="goToDetailPage('Storage', '{{ storage.sku }}')">
                         <td>{{ storage.manufacturer }}</td>
                         <td>{{ storage.name }}</td>
                         <td>{{ storage.sku }}</td>

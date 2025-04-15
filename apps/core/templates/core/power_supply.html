@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     {% for power_supply in power_supplies %}
-                    <tr>
+                    <tr onclick="goToDetailPage('PowerSupply', '{{ power_supply.sku }}')">
                         <td>{{ power_supply.manufacturer }}</td>
                         <td>{{ power_supply.name }}</td>
                         <td>{{ power_supply.sku }}</td>

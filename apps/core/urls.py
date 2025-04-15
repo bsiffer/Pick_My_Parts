@@ -1,4 +1,7 @@
 from django.urls import path
+from .views.detail_view import detail_view
+from .views.suggestions import suggestions
+from .views.build_view import build
 from .views.cooling_accessory_view import cooling_accessory_view
 from .views.gpu_view import gpu_view
 from .views.home import home
@@ -14,6 +17,7 @@ from .views.computer_case_view import computer_case_view
 urlpatterns = [
     path('', home, name='home'),
     path('about', about, name='about'),
+    path('build', build, name='build'),
     path('parts/cpus', cpu_view, name='All CPUs'),
     path('parts/rams', ram_view, name='All RAMs'),
     path('parts/motherboards', motherboard_view, name='All Motherboards'),
@@ -23,4 +27,6 @@ urlpatterns = [
     path('parts/storages', storage_view, name='All Storages'),
     path('parts/power-supplies', power_supply_view, name='All Power Supplies'),
     path('parts/accessories', under_construction, name='All other accessories'),
+    path('api/suggestions', suggestions, name='Suggestions based on current selection'),
+    path('parts/<str:model_name>/<int:sku>/', detail_view, name='power_supply_detail'),
 ]

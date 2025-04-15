@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     {% for ram in rams %}
-                    <tr>
+                    <tr onclick="goToDetailPage('RAM', '{{ ram.sku }}')">
                         <td>{{ ram.manufacturer }}</td>
                         <td>{{ ram.name }}</td>
                         <td>{{ ram.sku }}</td>

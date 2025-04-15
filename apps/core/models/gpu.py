@@ -16,7 +16,22 @@ class GPU(Part, models.Model):
     color = models.CharField(max_length=255)
 
     def check_compatibility(self, parts_list):
-        pass
+        """
+        Checks if this GPU is compatible with the motherboard in the parts list.
+        Currently checks PCIe standard compatibility.
+        """
+        issues = []
+        motherboards = parts_list.parts.get("Motherboard", [])
+
+        if len(motherboards) == 1:
+            # Assume only one motherboard can be selected
+            motherboard = motherboards[0]
+            if self.pcie_standard not in motherboard.supported_pcie_standards:
+                issues.append(
+                    f"GPU {self.get_name()} is not compatible with motherboard {motherboard.get_name()} (PCIe standard mismatch)."      
+                )
+
+        return issues
 
     def __str__(self):
         """Returns a string representation of the GPU."""

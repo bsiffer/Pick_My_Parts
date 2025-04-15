@@ -11,7 +11,34 @@ class RAM(Part, models.Model):
     color = models.CharField(max_length=255)
 
     def check_compatibility(self, parts_list):
-        pass
+        incompatibilities = []
+
+    # Check if the motherboard is selected
+        motherboard_parts = parts_list.parts.get("Motherboard", [])
+        cpu_parts = parts_list.parts.get("CPU", [])
+
+        if len(motherboard_parts) == 1:
+            # Assume only one motherboard can be selected
+            motherboard = motherboard_parts[0]
+            if self.ddr_standard != motherboard.supported_ram_type:
+                incompatibilities.append(
+                    f"{self.get_name()} is incompatible: RAM type {self.ddr_standard} does not match motherboard's supported type {motherboard.supported_ram_type}."
+                )
+            # Example check for number of RAM slots
+            elif self.sticks > motherboard.ram_slots:
+                incompatibilities.append(
+                    f"{self.get_name()} is incompatible: The motherboard only supports {motherboard.ram_slots} RAM slots, but {self.sticks} sticks were selected."
+                )
+
+        if len(cpu_parts) == 1:
+            # Assume only one CPU can be selected
+            cpu = cpu_parts[0]
+            if not (cpu.ddr4_compatibility and self.ddr_standard == "DDR4") and not (cpu.ddr5_compatibility and self.ddr_standard == "DDR5"):
+                incompatibilities.append(
+                    f"{self.get_name()} is incompatible: RAM type {self.ddr_standard} does not match CPU's DDR compatibility."
+                )
+
+        return incompatibilities
 
     def __str__(self):
         """Returns a string representation of the RAM module."""

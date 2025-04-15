@@ -90,7 +90,7 @@ class TestPartsList(unittest.TestCase):
     def test_check_compatibility(self):
         print("Testing compatibility check function...")
         self.parts_list.add_part(self.part1)
-        self.parts_list.check_compatibility()
+        self.parts_list.check_compatibility('CPU')
         self.assertEqual(len(self.parts_list.incompatibilities), 0)
 
 

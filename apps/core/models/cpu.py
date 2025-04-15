@@ -8,61 +8,43 @@ class CPU(Part, models.Model):
     ddr5_compatibility = models.BooleanField(default=False)
     socket_type = models.CharField(max_length=255)
     wattage_compatibility = models.DecimalField(max_digits=10, decimal_places=2)
-    bios_compatibility = models.BooleanField(default=False)
-    chipset_compatibility = models.BooleanField(default=False)
+    bios_compatibility = models.CharField(max_length=255)
+    chipset_compatibility = models.CharField(max_length=255)
 
     def check_compatibility(self, part_list):
         issues = []
-        motherboard = part_list.parts["Motherboard"]
-        power_supply = part_list.parts["PowerSupply"]
-        ram = part_list.parts["RAM"]
+        motherboards = part_list.parts.get("Motherboard", [])
+        power_supplies = part_list.parts.get("PowerSupply", [])
+        ram_modules = part_list.parts.get("RAM", [])
 
-        if motherboard != []:  # Check if a motherboard is in the part list.
-            if not self.socket_type == part_list["motherboard"].get_socket_type():
+        if len(motherboards) == 1:
+            # Assume only one motherboard can be selected.
+            motherboard = motherboards[0]
+            if self.socket_type != motherboard.socket_type:
                 issues.append(
-                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                    f"CPU {self.get_name()} is not compatible with Motherboard {motherboard.get_name()} (Socket mismatch)."
                 )
-            if (
-                not self.bios_compatibility
-                == part_list["motherboard"].get_bios_compatibility()
-            ):
+            if self.bios_compatibility != motherboard.bios_compatibility:
                 issues.append(
-                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                    f"CPU {self.get_name()} is not compatible with Motherboard {motherboard.get_name()} (BIOS mismatch)."
                 )
-            if (
-                not self.chipset_compatibility
-                == part_list["motherboard"].get_chipset_compatibility()
-            ):
+            if self.chipset_compatibility != motherboard.chipset_compatibility:
                 issues.append(
-                    f"CPU {self.get_name()} is not compatible with Motherboard {part_list['motherboard'].get_name()}"
+                    f"CPU {self.get_name()} is not compatible with Motherboard {motherboard.get_name()} (Chipset mismatch)."
                 )
-        else:
-            issues.append("no motherboard selected")
 
-        if power_supply != []:
-            if (
-                not self.wattage_compatibility
-                <= part_list["power_supply"].get_wattage()
-            ):
+        for power_supply in power_supplies:
+            if self.wattage_compatibility > power_supply.rated_wattage:
                 issues.append(
-                    f"CPU {self.get_name()} is not compatible with Power Supply {part_list['power_supply'].get_name()}"
+                    f"CPU {self.get_name()} is not compatible with Power Supply {power_supply.get_name()}"
                 )
-        else:
-            issues.append("no power supply selected")
 
-        if ram != []:  # Check if a RAM stick/sticks are in the part list.
-            for ram in part_list["ram"]:
-                if (
-                    not self.ddr4_compatibility
-                    and ram.get_ddr_standard() == "DDR4"
-                    or not self.ddr5_compatibility
-                    and ram.get_ddr_standard() == "DDR5"
-                ):
-                    issues.append(
-                        f"CPU {self.get_name()} is not compatible with RAM {ram.get_name()}"
-                    )
-        else:
-            issues.append("no ram selected")
+        for ram in ram_modules:
+            if not (self.ddr4_compatibility and ram.ddr_standard == "DDR4") and not (self.ddr5_compatibility and ram.ddr_standard == "DDR5"):
+                issues.append(
+                    f"CPU {self.get_name()} is not compatible with RAM {ram.get_name()}"
+                )
+
         return issues
 
     def __str__(self):

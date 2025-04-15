@@ -53,7 +53,7 @@
                 </thead>
                 <tbody>
                     {% for gpu in gpus %}
-                    <tr>
+                    <tr onclick="goToDetailPage('GPU', '{{ gpu.sku }}')">
                         <td>{{ gpu.manufacturer }}</td>
                         <td>{{ gpu.name }}</td>
                         <td>{{ gpu.sku }}</td>
