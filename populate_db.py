@@ -2,7 +2,7 @@ import os
 import django
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from apps.core.models.cpu import CPU
@@ -19,10 +19,10 @@ from apps.core.models.form_factor import FormFactor
 ff_names = ["ATX", "Micro-ATX", "Mini-ITX", "E-ATX", "BTX"]
 form_factors = {}
 for name in ff_names:
-    ff, created = FormFactor.objects.get_or_create(name=name)
+    ff, _ = FormFactor.objects.get_or_create(name=name)
     form_factors[name] = ff
 
-# Create sample CPUs
+# Create sample CPUs (5 items)
 cpus_data = [
     {
         "manufacturer": "Intel",
@@ -50,7 +50,7 @@ cpus_data = [
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "X570"
+        "chipset_compatibility": "B550"
     },
     {
         "manufacturer": "Intel",
@@ -78,7 +78,7 @@ cpus_data = [
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "X570"
+        "chipset_compatibility": "B550"
     },
     {
         "manufacturer": "Intel",
@@ -98,7 +98,7 @@ cpus_data = [
 for data in cpus_data:
     CPU.objects.get_or_create(**data)
 
-# Create sample GPUs
+# Create sample GPUs (5 items)
 gpus_data = [
     {
         "manufacturer": "NVIDIA",
@@ -110,7 +110,7 @@ gpus_data = [
         "pcie_standard": "PCIe 4.0",
         "slot_size": "2-Slot",
         "length_in_mm": 285.0,
-        "cooling_type": "Air",
+        "cooling_type": "Air Cooler",
         "power_requirement": 320.0,
         "power_connectors": "2x8-pin",
         "color": "Black"
@@ -125,7 +125,7 @@ gpus_data = [
         "pcie_standard": "PCIe 4.0",
         "slot_size": "2-Slot",
         "length_in_mm": 267.0,
-        "cooling_type": "Air",
+        "cooling_type": "Air Cooler",
         "power_requirement": 300.0,
         "power_connectors": "2x8-pin",
         "color": "Black"
@@ -140,7 +140,7 @@ gpus_data = [
         "pcie_standard": "PCIe 4.0",
         "slot_size": "2-Slot",
         "length_in_mm": 242.0,
-        "cooling_type": "Air",
+        "cooling_type": "Air Cooler",
         "power_requirement": 220.0,
         "power_connectors": "1x8-pin",
         "color": "White"
@@ -155,7 +155,7 @@ gpus_data = [
         "pcie_standard": "PCIe 4.0",
         "slot_size": "2-Slot",
         "length_in_mm": 267.0,
-        "cooling_type": "Air",
+        "cooling_type": "Air Cooler",
         "power_requirement": 230.0,
         "power_connectors": "1x8-pin",
         "color": "Black"
@@ -170,16 +170,16 @@ gpus_data = [
         "pcie_standard": "PCIe 4.0",
         "slot_size": "2-Slot",
         "length_in_mm": 242.0,
-        "cooling_type": "Air",
+        "cooling_type": "Air Cooler",
         "power_requirement": 170.0,
         "power_connectors": "1x8-pin",
         "color": "Black"
-    },
+    }
 ]
 for data in gpus_data:
     GPU.objects.get_or_create(**data)
 
-# Create sample Motherboards
+# Create sample Motherboards (5 items)
 motherboards_data = [
     {
         "manufacturer": "ASUS",
@@ -192,8 +192,8 @@ motherboards_data = [
         "supported_ram_type": "DDR5",
         "chipset_compatibility": "Z690",
         "bios_compatibility": "UEFI",
-        "supported_storage_interfaces": ["SATA III", "PCIe 4.0"], # check/add appropriate values
-        "supported_pcie_standards": ["PCIe 4.0"] # check/add appropriate values
+        "supported_storage_interfaces": ["NVMe SSD", "SATA III"],
+        "supported_pcie_standards": ["PCIe 4.0", "PCIe 3.0"]
     },
     {
         "manufacturer": "MSI",
@@ -206,8 +206,8 @@ motherboards_data = [
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "B550",
         "bios_compatibility": "UEFI",
-        "supported_storage_interfaces": [], # add appropriate values
-        "supported_pcie_standards": [] # add appropriate values
+        "supported_storage_interfaces": ["SATA III"],
+        "supported_pcie_standards": ["PCIe 4.0"]
     },
     {
         "manufacturer": "Gigabyte",
@@ -220,8 +220,8 @@ motherboards_data = [
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "B450",
         "bios_compatibility": "UEFI",
-        "supported_storage_interfaces": [], # add appropriate values
-        "supported_pcie_standards": [] # add appropriate values
+        "supported_storage_interfaces": ["SATA III"],
+        "supported_pcie_standards": ["PCIe 3.0"]
     },
     {
         "manufacturer": "ASRock",
@@ -234,8 +234,8 @@ motherboards_data = [
         "supported_ram_type": "DDR5",
         "chipset_compatibility": "Z690",
         "bios_compatibility": "UEFI",
-        "supported_storage_interfaces": [], # add appropriate values
-        "supported_pcie_standards": [] # add appropriate values
+        "supported_storage_interfaces": ["NVMe SSD", "SATA III"],
+        "supported_pcie_standards": ["PCIe 4.0"]
     },
     {
         "manufacturer": "EVGA",
@@ -248,14 +248,14 @@ motherboards_data = [
         "supported_ram_type": "DDR4",
         "chipset_compatibility": "Z490",
         "bios_compatibility": "UEFI",
-        "supported_storage_interfaces": [], # add appropriate values
-        "supported_pcie_standards": [] # add appropriate values
+        "supported_storage_interfaces": ["SATA III"],
+        "supported_pcie_standards": ["PCIe 3.0"]
     },
 ]
 for data in motherboards_data:
     Motherboard.objects.get_or_create(**data)
 
-# Create sample Power Supplies
+# Create sample Power Supplies (5 items)
 power_supplies_data = [
     {
         "manufacturer": "Corsair",
@@ -326,7 +326,7 @@ power_supplies_data = [
 for data in power_supplies_data:
     PowerSupply.objects.get_or_create(**data)
 
-# Create sample RAM modules
+# Create sample RAM modules (5 items)
 rams_data = [
     {
         "manufacturer": "Corsair",
@@ -397,7 +397,7 @@ rams_data = [
 for data in rams_data:
     RAM.objects.get_or_create(**data)
 
-# Create sample Storage devices
+# Create sample Storage devices (5 items)
 storages_data = [
     {
         "manufacturer": "Samsung",
@@ -448,8 +448,8 @@ storages_data = [
 for data in storages_data:
     Storage.objects.get_or_create(**data)
 
-# Create sample Computer Cases
-cases_data = [
+# Create sample Computer Cases (5 items)
+computer_case_data = [
     {
         "manufacturer": "NZXT",
         "name": "H510",
@@ -457,7 +457,7 @@ cases_data = [
         "price": 69.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": ["Air"]  # check/add appropriate values
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
     },
     {
         "manufacturer": "Corsair",
@@ -466,7 +466,7 @@ cases_data = [
         "price": 149.99,
         "form_factor": form_factors["ATX"],
         "color": "White",
-        "supported_cooling_types": []  # check/add appropriate values
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
     },
     {
         "manufacturer": "Phanteks",
@@ -475,7 +475,7 @@ cases_data = [
         "price": 79.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": []  # check/add appropriate values
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler", "AIO"]
     },
     {
         "manufacturer": "Cooler Master",
@@ -484,7 +484,7 @@ cases_data = [
         "price": 39.99,
         "form_factor": form_factors["Micro-ATX"],
         "color": "Black",
-        "supported_cooling_types": []  # check/add appropriate values
+        "supported_cooling_types": ["Air Cooler"]
     },
     {
         "manufacturer": "Fractal Design",
@@ -493,58 +493,58 @@ cases_data = [
         "price": 129.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": []  # check/add appropriate values
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
     },
 ]
-for data in cases_data:
-    case, created = ComputerCase.objects.get_or_create(**data)
-    # Set supported form factors for each case
+for data in computer_case_data:
+    case, _ = ComputerCase.objects.get_or_create(**data)
+    # Set supported form factors for each case; assume each case supports its own form factor and "Micro-ATX"
     case.supported_form_factors.set([data["form_factor"], form_factors["Micro-ATX"]])
 
-# Create sample Cooling Accessories
-cooling_accessories_data = [
+# Create sample Cooling Accessories (5 items)
+cooling_accessory_data = [
     {
         "manufacturer": "Noctua",
         "name": "NH-D15",
         "sku": 800001,
         "price": 89.99,
-        "cooling_type": "Air",
-        "supported_sockets": ["LGA1700"] # check/add appropriate values
+        "cooling_type": "Air Cooler",
+        "supported_sockets": ["LGA1700", "LGA1151"]
     },
     {
         "manufacturer": "Corsair",
         "name": "H100i",
         "sku": 800002,
         "price": 119.99,
-        "cooling_type": "Liquid",
-        "supported_sockets": [] # check/add appropriate values
+        "cooling_type": "Liquid Cooler",
+        "supported_sockets": ["LGA1700", "AM4"]
     },
     {
         "manufacturer": "be quiet!",
         "name": "Dark Rock Pro 4",
         "sku": 800003,
         "price": 89.99,
-        "cooling_type": "Air",
-        "supported_sockets": [] # check/add appropriate values
+        "cooling_type": "Air Cooler",
+        "supported_sockets": ["AM4", "LGA1151"]
     },
     {
         "manufacturer": "Cooler Master",
         "name": "MasterLiquid ML240L",
         "sku": 800004,
         "price": 99.99,
-        "cooling_type": "Liquid",
-        "supported_sockets": [] # check/add appropriate values
+        "cooling_type": "Liquid Cooler",
+        "supported_sockets": ["LGA1700", "AM4"]
     },
     {
         "manufacturer": "NZXT",
         "name": "Kraken X53",
         "sku": 800005,
         "price": 109.99,
-        "cooling_type": "Liquid",
-        "supported_sockets": [] # check/add appropriate values
+        "cooling_type": "Liquid Cooler",
+        "supported_sockets": ["LGA1700"]
     },
 ]
-for data in cooling_accessories_data:
+for data in cooling_accessory_data:
     CoolingAccessory.objects.get_or_create(**data)
 
 print("Database populated successfully!")
