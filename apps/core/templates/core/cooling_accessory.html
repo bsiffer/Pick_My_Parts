@@ -1,0 +1,61 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New Cooling Accessory</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" class="form-horizontal" name="cooling_accessory_form">
+                    {% csrf_token %}
+                    {% for field in cooling_accessory_form %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% if cooling_accessory_form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Form Errors:</strong>
+                            {{ cooling_accessory_form.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary" name="create_cooling_accessory">Create Cooling Accessory</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Cooling Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cooling_accessory in cooling_accessories %}
+                    <tr onclick="goToDetailPage('CoolingAccessory', '{{ cooling_accessory.sku }}')">
+                        <td>{{ cooling_accessory.manufacturer }}</td>
+                        <td>{{ cooling_accessory.name }}</td>
+                        <td>{{ cooling_accessory.sku }}</td>
+                        <td>{{ cooling_accessory.price }}</td>
+                        <td>{{ cooling_accessory.cooling_type }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

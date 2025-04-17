@@ -1,0 +1,144 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New Form Factor</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" name="form_factor_form">
+                    {% csrf_token %}
+                    {{ form_factor_form.as_p }}
+                    <button type="submit" class="btn btn-primary" name="create_form_factor">Create</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New Case</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" class="form-horizontal" name="computer_case_form">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.manufacturer.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.manufacturer }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.name.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.name }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.sku.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.sku }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.price.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.price }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.form_factor.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.form_factor }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.color.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.color }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            {{ computer_case_form.supported_form_factors.label_tag }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {% for choice in computer_case_form.supported_form_factors %}
+                                <div class="form-check form-check-inline">
+                                    {{ choice }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if computer_case_form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Form Errors:</strong>
+                            {{ computer_case_form.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary" name="create_computer_case">Create Case</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Form Factor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form_factor in form_factors %}
+                    <tr>
+                        <td>{{ form_factor.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Form Factor</th>
+                        <th>Color</th>
+                        <th>Supported Form Factors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for computer_case in computer_cases %}
+                    <tr onclick="goToDetailPage('ComputerCase', '{{ computer_case.sku }}')">
+                        <td>{{ computer_case.manufacturer }}</td>
+                        <td>{{ computer_case.name }}</td>
+                        <td>{{ computer_case.sku }}</td>
+                        <td>{{ computer_case.price }}</td>
+                        <td>{{ computer_case.form_factor }}</td>
+                        <td>{{ computer_case.color }}</td>
+                        <td>{{ computer_case.supported_form_factors.all|join:", " }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">New RAM</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" class="form-horizontal" name="ram_form">
+                    {% csrf_token %}
+                    {% for field in ram_form %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% if ram_form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Form Errors:</strong>
+                            {{ ram_form.errors }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary" name="create_ram">Create RAM</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Manufacturer</th>
+                        <th>Name</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Capacity (in GB)</th>
+                        <th>DDR Standard</th>
+                        <th>Speed (in Mhz)</th>
+                        <th>Sticks</th>
+                        <th>Latency</th>
+                        <th>RGB</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ram in rams %}
+                    <tr onclick="goToDetailPage('RAM', '{{ ram.sku }}')">
+                        <td>{{ ram.manufacturer }}</td>
+                        <td>{{ ram.name }}</td>
+                        <td>{{ ram.sku }}</td>
+                        <td>{{ ram.price }}</td>
+                        <td>{{ ram.capacity_in_gb }}</td>
+                        <td>{{ ram.ddr_standard }}</td>
+                        <td>{{ ram.speed_in_mhz }}</td>
+                        <td>{{ ram.sticks }}</td>
+                        <td>{{ ram.latency }}</td>
+                        <td>{{ ram.rgb }}</td>
+                        <td>{{ ram.color }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,338 @@
+{% extends 'core/base_template.html' %}
+{% block content %}
+    <script>
+        const selectedParts = {
+            CPU: [],
+            Motherboard: [],
+            GPU: [],
+            RAM: [],
+            Storage: [],
+            ComputerCase: [],
+            CoolingAccessory: [],
+            PowerSupply: []
+        };
+
+        const MAX_SELECTIONS_BY_TYPE = {
+            Motherboard: 1,
+            CPU: 1,
+            GPU: 1,
+            ComputerCase: 1,
+            RAM: undefined,
+            Storage: undefined,
+            PowerSupply: undefined,
+            CoolingAccessory: undefined
+        }
+
+        function enableOrDisableInputFieldsBasedOnSelections() {
+            for (const fieldName in selectedParts) {
+                const inputField = document.getElementById(`id_${fieldName}`);
+                if (selectedParts[fieldName] && selectedParts[fieldName].length >= MAX_SELECTIONS_BY_TYPE[fieldName]) {
+                    inputField.disabled = true;
+                } else {
+                    inputField.disabled = false;
+                }
+            }
+        }
+
+        function requestFocus(inputFieldId) {
+            const field = document.getElementById(inputFieldId);
+            field.focus();
+        }
+
+        function clearField(inputFieldId) {
+            const field = document.getElementById(inputFieldId);
+            field.value = '';
+        }
+
+        function showOrHideDropdown(fieldName, show) {
+            const dropdown = document.getElementById(`${fieldName}_dropdown`);
+
+            if (show)
+                dropdown.classList.add('visible');
+            else
+                dropdown.classList.remove('visible');
+        }
+
+        function updateDropdown(fieldName, suggestions) {
+            const dropdownList = document.getElementById(`${fieldName}_dropdown_list`);
+            dropdownList.innerHTML = '';
+
+            suggestions.forEach(part => {
+                const listItem = document.createElement('li');
+                const attributes = Object.entries(part)
+                                    .filter(([key, value]) => key !== 'id')
+                                    .map(([key, value]) => `${key}: ${value}`).join(', ');
+
+                listItem.textContent = `${attributes})`;
+                listItem.setAttribute('data-id', part.sku);
+                listItem.setAttribute('data', encodeURIComponent(JSON.stringify(part)));
+                listItem.onclick = () => selectDropdownItem(fieldName, part);
+                dropdownList.appendChild(listItem);
+            });
+        }
+
+        function getSuggestions(requestForField) {
+            return fetch(
+                `/api/suggestions?selectedParts=${encodeURIComponent(JSON.stringify(selectedParts))}&requestForField=${requestForField}`, 
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //console.log('data', data);
+
+                    if (data.length > 0) {
+                        updateDropdown(requestForField, data);
+                        showOrHideDropdown(requestForField, true);
+                        filterDropdown(requestForField, document.getElementById(`id_${requestForField}`).value);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function createBubble(fieldName, part) {
+            const bubble = document.createElement('div');
+            bubble.id = `${fieldName}_${part.sku}_bubble`;
+            
+            bubble.classList.add('bubble');
+            bubble.classList.add('visible');
+
+            const partString = Object.entries(part)
+                                .filter(([key, value]) => key !== 'id')
+                                .map(([key, value]) => `${key}: ${value}`).join(', ');
+            const bubbleText = document.createElement('span');
+            bubbleText.textContent = `${partString}`;
+
+            const closeIcon = document.createElement('i');
+            closeIcon.classList.add('bi', 'bi-x-circle');
+            closeIcon.addEventListener('click', () => {
+                bubble.classList.remove('visible');
+                
+                const bubbleContainer = document.getElementById(`bubble_${fieldName}_container`);
+                bubbleContainer.removeChild(bubble);
+                
+                selectedParts[fieldName] = selectedParts[fieldName].filter(p => p.sku !== parseInt(part.sku, 10));
+                enableOrDisableInputFieldsBasedOnSelections();
+
+                //console.log(`Updated selectedParts:`, selectedParts);
+            });
+
+            bubble.appendChild(bubbleText);
+            bubble.appendChild(closeIcon);
+
+            bubbleText.addEventListener('click', () => {
+                createModalDialog(part);
+            });
+
+            return bubble;
+        }
+
+        function createModalDialog(part) {
+            // Create a new modal dialog
+            const partStringForModal = Object.entries(part)
+                            .filter(([key, value]) => key !== 'id')
+                            .map(([key, value]) => `${key}: ${value}`).join('<br/>');
+            const modal = document.createElement("div");
+            modal.className = "modal";
+            modal.style.display = "block";
+            modal.innerHTML = `
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ${partStringForModal}
+                </div>
+                </div>
+            </div>`;
+
+            // Add event listener to close button
+            const closeButton = modal.querySelector(".close");
+            closeButton.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            // Add event listener to modal background
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            document.body.appendChild(modal);
+        }
+
+        function filterDropdown(fieldName, query) {
+            const dropdownList = document.getElementById(`${fieldName}_dropdown_list`);
+            const items = dropdownList.querySelectorAll('li');
+            let visibleOptionCount = 0;
+
+            items.forEach(item => {
+                if (item.textContent.toLowerCase().includes(query.toLowerCase())) {
+                    item.style.display = 'block';
+                    visibleOptionCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (visibleOptionCount === 0)
+                showOrHideDropdown(fieldName, false);
+            else
+                showOrHideDropdown(fieldName, true);
+        }
+
+        function selectDropdownItem(fieldName, part) {
+            if (!selectedParts[fieldName]) {
+                selectedParts[fieldName] = [];
+            }
+
+            if (!selectedParts[fieldName].some(p => p.sku === part.sku)) {
+                selectedParts[fieldName].push({ sku: part.sku });
+                enableOrDisableInputFieldsBasedOnSelections();
+
+                const bubble = createBubble(fieldName, part);
+                const bubbleContainer = document.getElementById(`bubble_${fieldName}_container`);
+                
+                bubbleContainer.appendChild(bubble);
+            }
+
+            showOrHideDropdown(fieldName, false);
+            clearField(`id_${fieldName}`);
+
+            //console.log(`Updated selectedParts:`, selectedParts);
+        }
+    </script>
+    <style>
+        form div {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .input-container > label {
+            flex: 1;
+            text-align: left;
+            margin-right: 10px;
+        }
+        .input-container > input {
+            flex: 2;
+            text-align: left;
+            padding-right: 60px;
+        }
+        .clear-icon {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: none;
+            z-index: 2;
+        }
+        input:not(:placeholder-shown) ~ .clear-icon {
+            display: block;
+        }
+        .dropdown-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: auto;
+            cursor: pointer;
+        }
+        .bubble-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+        .bubble {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .bubble.visible {
+            margin-bottom: 10px;
+        }
+        .bubble span {
+            white-space: normal;
+            overflow-wrap: break-word;
+            font-size: 12px;
+            padding-right: 15px;
+            cursor: pointer;
+        }
+        .bubble i.bi-x-circle {
+            position: absolute;
+            top: 5px;
+            right: 5px; /* Position the clear icon on the right */
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        .custom-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            width: 100%;
+            top: calc(100% + 5px);
+            left: 0;
+        }
+        .custom-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .custom-dropdown ul li {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .custom-dropdown ul li:hover {
+            background-color: #f0f0f0;
+        }
+        .custom-dropdown.visible {
+            display: block;
+        }
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <h1>Build Your PC</h1>
+
+    <form>
+        {% csrf_token %}
+        {% include 'core/partials/select_input.html' with field_name="CPU" label="CPU" %}
+        {% include 'core/partials/select_input.html' with field_name="Motherboard" label="Motherboard" %}
+        {% include 'core/partials/select_input.html' with field_name="GPU" label="GPU" %}
+        {% include 'core/partials/select_input.html' with field_name="RAM" label="RAM" %}
+        {% include 'core/partials/select_input.html' with field_name="Storage" label="Storage" %}
+        {% include 'core/partials/select_input.html' with field_name="ComputerCase" label="Case" %}
+        {% include 'core/partials/select_input.html' with field_name="CoolingAccessory" label="Cooling Accessory" %}
+        {% include 'core/partials/select_input.html' with field_name="PowerSupply" label="Power Supply" %}
+    </form>
+{% endblock %}
