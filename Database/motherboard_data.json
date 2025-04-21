@@ -1,0 +1,27 @@
+{
+    "manufacturer": "ASUS",
+    "name": "ROG STRIX Z690-E",
+    "sku": "300001",
+    "price": "399.99",
+    "socket_type": "LGA1700",
+    "form_factor": "ATX",
+    "ram_slots": "4",
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "Z690",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": "SATA III, PCIe 4.0",
+    "supported_pcie_standards": "PCIe 4.0"
+}{
+    "manufacturer": "MSI",
+    "name": "MPG B550 Gaming Edge",
+    "sku": "300002",
+    "price": "179.99",
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": "4",
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B550",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": "SATA III, PCIe 3.0, M.2",
+    "supported_pcie_standards": "PCIe 3.0"
+}

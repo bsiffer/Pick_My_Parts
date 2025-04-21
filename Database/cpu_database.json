@@ -1,0 +1,27 @@
+{
+    "manufacturer": "Intel",
+    "name": "Core i9-12900k",
+    "sku": "100001",
+    "price": "589.99",
+    "architecture": "Alder Lake",
+    "clock_speed": "3.2",
+    "ddr4_compatibility": "True",
+    "ddr5_compatibility": "True",
+    "socket_type": "LGA1700",
+    "wattage_compatibility": "125.0",
+    "bios_compatibility": "UEFI",
+    "chipset_compatibility": "Z690"
+}{
+    "manufacturer": "AMD",
+    "name": "Ryzen 9 5950X",
+    "sku": "100002",
+    "price": "799.99",
+    "architecture": "Zen 3",
+    "clock_speed": "3.4",
+    "ddr4_compatibility": "True",
+    "ddr5_compatibility": "False",
+    "socket_type": "AM4",
+    "wattage_compatibility": "105.0",
+    "bios_compatibility": "UEFI",
+    "chipset_compatibility": "X570"
+}

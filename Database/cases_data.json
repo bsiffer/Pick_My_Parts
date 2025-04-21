@@ -1,0 +1,17 @@
+{
+    "manufacturer": "NZXT",
+    "name": "H510",
+    "sku": "700001",
+    "price": "69.99",
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_cooling_types": "Air"
+}{
+    "manufacturer": "Corsair",
+    "name": "Obsidian 500D",
+    "sku": "700002",
+    "price": "149.99",
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_cooling_types": "Air"
+}

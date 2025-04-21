@@ -1,0 +1,17 @@
+{
+    "manufacturer": "Samsung",
+    "name": "970 EVO Plus 1TB",
+    "sku": "600001",
+    "price": "149.99",
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": "1000",
+    "interface": "PCIe 3.0 x4"
+}{
+    "manufacturer": "Western Digital",
+    "name": "Blue 1TB",
+    "sku": "600002",
+    "price": "49.99",
+    "storage_type": "SATA SSD",
+    "capacity_in_GB": "1000",
+    "interface": "SATA III"
+}

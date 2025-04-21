@@ -1,0 +1,29 @@
+{
+    "manufacturer": "NVIDIA",
+    "name": "RTX 3080",
+    "sku": "200001",
+    "price": "699.99",
+    "architecture": "Ampere",
+    "memory_bus": "320",
+    "pcie_standard": "PCIe 4.0",
+    "slot_size": "2-Slot",
+    "length_in_mm": "285.0",
+    "cooling_type": "Air",
+    "power_requirement": "320.0",
+    "power_connectors": "2x8-pin",
+    "color": "Black"
+}{
+    "manufacturer": "AMD",
+    "name": "6800 XT",
+    "sku": "200002",
+    "price": "649.99",
+    "architecture": "RDNA 2",
+    "memory_bus": "256",
+    "pcie_standard": "PCIe 4.0",
+    "slot_size": "2-Slot",
+    "length_in_mm": "267.0",
+    "cooling_type": "Air",
+    "power_requirement": "300.0",
+    "power_connectors": "2x8-pin",
+    "color": "Black"
+}
