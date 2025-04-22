@@ -1,11 +1,11 @@
 {
-  "form_factors": [
+  "form_factor": [
     {"name": "ATX"},
     {"name": "Micro-ATX"},
     {"name": "Mini-ITX"},
     {"name": "E-ATX"}
   ],
-  "cpus": [
+  "cpu": [
     {
       "manufacturer": "Intel",
       "name": "Core i9-12900K",
@@ -215,9 +215,51 @@
       "wattage_compatibility": 35.0,
       "bios_compatibility": "UEFI",
       "chipset_compatibility": "A320"
+    },
+    {
+      "manufacturer": "Intel",
+      "name": "Core i5-9600K",
+      "sku": 100016,
+      "price": 219.99,
+      "architecture": "Coffee Lake",
+      "clock_speed": 3.7,
+      "ddr4_compatibility": true,
+      "ddr5_compatibility": false,
+      "socket_type": "LGA1151",
+      "wattage_compatibility": 95.0,
+      "bios_compatibility": true,
+      "chipset_compatibility": true
+    },
+    {
+      "manufacturer": "AMD",
+      "name": "Ryzen Threadripper 3960X",
+      "sku": 100017,
+      "price": 1399.99,
+      "architecture": "Zen 2",
+      "clock_speed": 3.8,
+      "ddr4_compatibility": true,
+      "ddr5_compatibility": false,
+      "socket_type": "sTRX4",
+      "wattage_compatibility": 280.0,
+      "bios_compatibility": true,
+      "chipset_compatibility": true
+    },
+    {
+      "manufacturer": "Intel",
+      "name": "Pentium Gold G6400",
+      "sku": 100018,
+      "price": 64.99,
+      "architecture": "Comet Lake",
+      "clock_speed": 4.0,
+      "ddr4_compatibility": true,
+      "ddr5_compatibility": false,
+      "socket_type": "LGA1200",
+      "wattage_compatibility": 58.0,
+      "bios_compatibility": true,
+      "chipset_compatibility": true
     }
   ],
-  "gpus": [
+  "gpu": [
     {
       "manufacturer": "NVIDIA",
       "name": "GeForce RTX 4090",
@@ -442,9 +484,54 @@
       "power_requirement": 185.0,
       "power_connectors": "1x8-pin",
       "color": "Black"
+    },
+    {
+      "manufacturer": "NVIDIA",
+      "name": "GeForce GTX 1060",
+      "sku": 200016,
+      "price": 249.99,
+      "architecture": "Pascal",
+      "memory_bus": 192,
+      "pcie_standard": "PCIe 3.0",
+      "slot_size": "2-Slot",
+      "length_in_mm": 210.0,
+      "cooling_type": "Air",
+      "power_requirement": 120.0,
+      "power_connectors": "1x6-pin",
+      "color": "Black"
+    },
+    {
+      "manufacturer": "AMD",
+      "name": "Radeon RX 580",
+      "sku": 200017,
+      "price": 199.99,
+      "architecture": "Polaris",
+      "memory_bus": 256,
+      "pcie_standard": "PCIe 3.0",
+      "slot_size": "2-Slot",
+      "length_in_mm": 241.0,
+      "cooling_type": "Air",
+      "power_requirement": 185.0,
+      "power_connectors": "1x8-pin",
+      "color": "Red"
+    },
+    {
+      "manufacturer": "NVIDIA",
+      "name": "Quadro RTX 4000",
+      "sku": 200018,
+      "price": 899.99,
+      "architecture": "Turing",
+      "memory_bus": 256,
+      "pcie_standard": "PCIe 3.0",
+      "slot_size": "Single Slot",
+      "length_in_mm": 267.0,
+      "cooling_type": "Blower",
+      "power_requirement": 160.0,
+      "power_connectors": "None (PCIe-powered)",
+      "color": "Black"
     }
   ],
-  "motherboards": [
+  "motherboard": [
     {
       "manufacturer": "ASUS",
       "name": "ROG Strix Z690-E Gaming",
@@ -654,9 +741,79 @@
       "bios_compatibility": "UEFI",
       "supported_storage_interfaces": ["PCIe 5.0 x4", "PCIe 4.0 x4", "SATA III"],
       "supported_pcie_standards": ["PCIe 5.0", "PCIe 4.0"]
+    },
+    {
+      "manufacturer": "ASRock",
+      "name": "X299E-ITX/ac",
+      "sku": 300016,
+      "price": 319.99,
+      "socket_type": "LGA2066",
+      "form_factor": "Mini-ITX",
+      "ram_slots": 2,
+      "supported_ram_type": "DDR4",
+      "chipset_compatibility": "X299",
+      "bios_compatibility": "UEFI",
+      "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+      "supported_pcie_standards": ["PCIe 3.0"]
+    },
+    {
+      "manufacturer": "Gigabyte",
+      "name": "B460M DS3H",
+      "sku": 300017,
+      "price": 99.99,
+      "socket_type": "LGA1200",
+      "form_factor": "Micro-ATX",
+      "ram_slots": 4,
+      "supported_ram_type": "DDR4",
+      "chipset_compatibility": "B460",
+      "bios_compatibility": "UEFI",
+      "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+      "supported_pcie_standards": ["PCIe 3.0"]
+    },
+    {
+      "manufacturer": "MSI",
+      "name": "MEG X570 GODLIKE",
+      "sku": 300018,
+      "price": 699.99,
+      "socket_type": "AM4",
+      "form_factor": "E-ATX",
+      "ram_slots": 4,
+      "supported_ram_type": "DDR4",
+      "chipset_compatibility": "X570",
+      "bios_compatibility": "UEFI",
+      "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+      "supported_pcie_standards": ["PCIe 4.0"]
+    },
+    {
+      "manufacturer": "ASUS",
+      "name": "ROG Strix Z590-I Gaming WiFi",
+      "sku": 300019,
+      "price": 399.99,
+      "socket_type": "LGA1200",
+      "form_factor": "Mini-ITX",
+      "ram_slots": 2,
+      "supported_ram_type": "DDR4",
+      "chipset_compatibility": "Z590",
+      "bios_compatibility": "UEFI",
+      "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+      "supported_pcie_standards": ["PCIe 4.0"]
+    },
+    {
+      "manufacturer": "Supermicro",
+      "name": "X12SCA-F",
+      "sku": 300020,
+      "price": 249.99,
+      "socket_type": "LGA1200",
+      "form_factor": "Thin Mini-ITX",
+      "ram_slots": 2,
+      "supported_ram_type": "DDR4",
+      "chipset_compatibility": "C246",
+      "bios_compatibility": "UEFI",
+      "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+      "supported_pcie_standards": ["PCIe 3.0"]
     }
   ],
-  "power_supplies": [
+  "power_supply": [
     {
       "manufacturer": "Corsair",
       "name": "RM750x",
@@ -853,7 +1010,7 @@
       "length_in_mm": 180
     }
   ],
-  "rams": [
+  "ram": [
     {
       "manufacturer": "Corsair",
       "name": "Vengeance LPX 16GB",
@@ -1050,7 +1207,7 @@
       "color": "Black"
     }
   ],
-  "storages": [
+  "storage": [
     {
       "manufacturer": "Samsung",
       "name": "970 EVO Plus 1TB",
@@ -1187,7 +1344,7 @@
       "interface": "SATA III"
     }
   ],
-  "computer_cases": [
+  "computer_case": [
     {
       "manufacturer": "NZXT",
       "name": "H510",
@@ -1337,9 +1494,27 @@
       "color": "Black",
       "supported_form_factors": ["ATX", "Micro-ATX"],
       "supported_cooling_types": ["Air", "Liquid"]
+    },
+    {
+      "manufacturer": "Thermaltake",
+      "name": "Core V1",
+      "sku": 700016,
+      "price": 59.99,
+      "form_factor": "Mini-ITX",
+      "color": "Black",
+      "supported_form_factors": ["Mini-ITX"]
+    },
+    {
+      "manufacturer": "Cooler Master",
+      "name": "MasterCase H500P",
+      "sku": 700017,
+      "price": 149.99,
+      "form_factor": "ATX",
+      "color": "White",
+      "supported_form_factors": ["ATX", "Micro-ATX", "Mini-ITX"]
     }
   ],
-  "cooling_accessories": [
+  "cooling_accessory": [
     {
       "manufacturer": "Noctua",
       "name": "NH-D15",
@@ -1459,6 +1634,22 @@
       "price": 7.99,
       "cooling_type": "Accessory",
       "supported_sockets": []
+    },
+    {
+      "manufacturer": "Corsair",
+      "name": "H55",
+      "sku": 800016,
+      "price": 69.99,
+      "cooling_type": "Liquid",
+      "supported_sockets": ["LGA115x", "AM4", "TR4"]
+    },
+    {
+      "manufacturer": "Noctua",
+      "name": "NH-L9i",
+      "sku": 800017,
+      "price": 44.99,
+      "cooling_type": "Air",
+      "supported_sockets": ["LGA115x", "AM4"]
     }
   ]
 }

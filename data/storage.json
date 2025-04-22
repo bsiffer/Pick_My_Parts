@@ -133,5 +133,32 @@
     "storage_type": "SATA SSD",
     "capacity_in_GB": 500,
     "interface": "SATA III"
+  },
+  {
+    "manufacturer": "Seagate",
+    "name": "Exos X16 16TB",
+    "sku": 600016,
+    "price": 499.99,
+    "storage_type": "Enterprise HDD",
+    "capacity_in_GB": 16000,
+    "interface": "SAS 12Gb/s"
+  },
+  {
+    "manufacturer": "Kingston",
+    "name": "A400 240GB",
+    "sku": 600017,
+    "price": 29.99,
+    "storage_type": "SATA SSD",
+    "capacity_in_GB": 240,
+    "interface": "SATA III"
+  },
+  {
+    "manufacturer": "Samsung",
+    "name": "T5 Portable 1TB",
+    "sku": 600018,
+    "price": 169.99,
+    "storage_type": "External SSD",
+    "capacity_in_GB": 1000,
+    "interface": "USB 3.1 Gen2"
   }
 ]

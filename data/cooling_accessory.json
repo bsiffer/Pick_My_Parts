@@ -160,5 +160,21 @@
     "price": 7.99,
     "cooling_type": "Accessory",
     "supported_sockets": []
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "H55",
+    "sku": 800016,
+    "price": 69.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": ["LGA115x", "AM4", "TR4"]
+  },
+  {
+    "manufacturer": "Noctua",
+    "name": "NH-L9i",
+    "sku": 800017,
+    "price": 44.99,
+    "cooling_type": "Air",
+    "supported_sockets": ["LGA115x", "AM4"]
   }
 ]

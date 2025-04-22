@@ -302,5 +302,75 @@
       "PCIe 5.0",
       "PCIe 4.0"
     ]
+  },
+  {
+    "manufacturer": "ASRock",
+    "name": "X299E-ITX/ac",
+    "sku": 300016,
+    "price": 319.99,
+    "socket_type": "LGA2066",
+    "form_factor": "Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X299",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "B460M DS3H",
+    "sku": 300017,
+    "price": 99.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Micro-ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B460",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MEG X570 GODLIKE",
+    "sku": 300018,
+    "price": 699.99,
+    "socket_type": "AM4",
+    "form_factor": "E-ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+    "supported_pcie_standards": ["PCIe 4.0"]
+  },
+  {
+    "manufacturer": "ASUS",
+    "name": "ROG Strix Z590-I Gaming WiFi",
+    "sku": 300019,
+    "price": 399.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "Z590",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+    "supported_pcie_standards": ["PCIe 4.0"]
+  },
+  {
+    "manufacturer": "Supermicro",
+    "name": "X12SCA-F",
+    "sku": 300020,
+    "price": 249.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Thin Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "C246",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
   }
 ]

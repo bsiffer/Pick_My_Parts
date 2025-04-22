@@ -208,5 +208,47 @@
     "wattage_compatibility": 35.0,
     "bios_compatibility": "UEFI",
     "chipset_compatibility": "A320"
+  },
+  {
+    "manufacturer": "Intel",
+    "name": "Core i5-9600K",
+    "sku": 100016,
+    "price": 219.99,
+    "architecture": "Coffee Lake",
+    "clock_speed": 3.7,
+    "ddr4_compatibility": true,
+    "ddr5_compatibility": false,
+    "socket_type": "LGA1151",
+    "wattage_compatibility": 95.0,
+    "bios_compatibility": true,
+    "chipset_compatibility": true
+  },
+  {
+    "manufacturer": "AMD",
+    "name": "Ryzen Threadripper 3960X",
+    "sku": 100017,
+    "price": 1399.99,
+    "architecture": "Zen 2",
+    "clock_speed": 3.8,
+    "ddr4_compatibility": true,
+    "ddr5_compatibility": false,
+    "socket_type": "sTRX4",
+    "wattage_compatibility": 280.0,
+    "bios_compatibility": true,
+    "chipset_compatibility": true
+  },
+  {
+    "manufacturer": "Intel",
+    "name": "Pentium Gold G6400",
+    "sku": 100018,
+    "price": 64.99,
+    "architecture": "Comet Lake",
+    "clock_speed": 4.0,
+    "ddr4_compatibility": true,
+    "ddr5_compatibility": false,
+    "socket_type": "LGA1200",
+    "wattage_compatibility": 58.0,
+    "bios_compatibility": true,
+    "chipset_compatibility": true
   }
 ]

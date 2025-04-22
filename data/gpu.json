@@ -223,5 +223,50 @@
     "power_requirement": 185.0,
     "power_connectors": "1x8-pin",
     "color": "Black"
+  },
+  {
+    "manufacturer": "NVIDIA",
+    "name": "GeForce GTX 1060",
+    "sku": 200016,
+    "price": 249.99,
+    "architecture": "Pascal",
+    "memory_bus": 192,
+    "pcie_standard": "PCIe 3.0",
+    "slot_size": "2-Slot",
+    "length_in_mm": 210.0,
+    "cooling_type": "Air",
+    "power_requirement": 120.0,
+    "power_connectors": "1x6-pin",
+    "color": "Black"
+  },
+  {
+    "manufacturer": "AMD",
+    "name": "Radeon RX 580",
+    "sku": 200017,
+    "price": 199.99,
+    "architecture": "Polaris",
+    "memory_bus": 256,
+    "pcie_standard": "PCIe 3.0",
+    "slot_size": "2-Slot",
+    "length_in_mm": 241.0,
+    "cooling_type": "Air",
+    "power_requirement": 185.0,
+    "power_connectors": "1x8-pin",
+    "color": "Red"
+  },
+  {
+    "manufacturer": "NVIDIA",
+    "name": "Quadro RTX 4000",
+    "sku": 200018,
+    "price": 899.99,
+    "architecture": "Turing",
+    "memory_bus": 256,
+    "pcie_standard": "PCIe 3.0",
+    "slot_size": "Single Slot",
+    "length_in_mm": 267.0,
+    "cooling_type": "Blower",
+    "power_requirement": 160.0,
+    "power_connectors": "None (PCIe-powered)",
+    "color": "Black"
   }
 ]

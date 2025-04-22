@@ -235,5 +235,23 @@
       "Air",
       "Liquid"
     ]
+  },
+  {
+    "manufacturer": "Thermaltake",
+    "name": "Core V1",
+    "sku": 700016,
+    "price": 59.99,
+    "form_factor": "Mini-ITX",
+    "color": "Black",
+    "supported_form_factors": ["Mini-ITX"]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "MasterCase H500P",
+    "sku": 700017,
+    "price": 149.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": ["ATX", "Micro-ATX", "Mini-ITX"]
   }
 ]
