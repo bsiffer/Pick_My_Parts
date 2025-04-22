@@ -1,0 +1,137 @@
+[
+  {
+    "manufacturer": "Samsung",
+    "name": "970 EVO Plus 1TB",
+    "sku": 600001,
+    "price": 149.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Samsung",
+    "name": "980 Pro 1TB",
+    "sku": 600002,
+    "price": 229.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 4.0 x4"
+  },
+  {
+    "manufacturer": "Western Digital",
+    "name": "WD Blue SN550 1TB",
+    "sku": 600003,
+    "price": 109.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Western Digital",
+    "name": "Black SN750 1TB",
+    "sku": 600004,
+    "price": 159.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Crucial",
+    "name": "P5 Plus 500GB",
+    "sku": 600005,
+    "price": 89.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 500,
+    "interface": "PCIe 4.0 x4"
+  },
+  {
+    "manufacturer": "Sabrent",
+    "name": "Rocket Q 2TB",
+    "sku": 600006,
+    "price": 219.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 2000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Seagate",
+    "name": "Barracuda HDD 2TB",
+    "sku": 600007,
+    "price": 59.99,
+    "storage_type": "HDD",
+    "capacity_in_GB": 2000,
+    "interface": "SATA III"
+  },
+  {
+    "manufacturer": "Western Digital",
+    "name": "Blue HDD 1TB",
+    "sku": 600008,
+    "price": 49.99,
+    "storage_type": "HDD",
+    "capacity_in_GB": 1000,
+    "interface": "SATA III"
+  },
+  {
+    "manufacturer": "Crucial",
+    "name": "MX500 500GB",
+    "sku": 600009,
+    "price": 64.99,
+    "storage_type": "SATA SSD",
+    "capacity_in_GB": 500,
+    "interface": "SATA III"
+  },
+  {
+    "manufacturer": "ADATA",
+    "name": "XPG SX8200 Pro 1TB",
+    "sku": 600010,
+    "price": 139.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Kingston",
+    "name": "A2000 1TB",
+    "sku": 600011,
+    "price": 104.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Patriot",
+    "name": "P300 512GB",
+    "sku": 600012,
+    "price": 54.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 512,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Intel",
+    "name": "660p 1TB",
+    "sku": 600013,
+    "price": 109.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Toshiba",
+    "name": "XG6 1TB",
+    "sku": 600014,
+    "price": 119.99,
+    "storage_type": "NVMe SSD",
+    "capacity_in_GB": 1000,
+    "interface": "PCIe 3.0 x4"
+  },
+  {
+    "manufacturer": "Seagate",
+    "name": "Barracuda SSD 500GB",
+    "sku": 600015,
+    "price": 54.99,
+    "storage_type": "SATA SSD",
+    "capacity_in_GB": 500,
+    "interface": "SATA III"
+  }
+]

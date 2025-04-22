@@ -1,0 +1,164 @@
+[
+  {
+    "manufacturer": "Noctua",
+    "name": "NH-D15",
+    "sku": 800001,
+    "price": 89.99,
+    "cooling_type": "Air",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "LGA1200"
+    ]
+  },
+  {
+    "manufacturer": "Noctua",
+    "name": "NH-L9a",
+    "sku": 800002,
+    "price": 44.99,
+    "cooling_type": "Air",
+    "supported_sockets": [
+      "AM4",
+      "LGA1200",
+      "LGA1151"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "H100i RGB Platinum",
+    "sku": 800003,
+    "price": 119.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "TR4"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "H115i Platinum",
+    "sku": 800004,
+    "price": 139.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "TR4"
+    ]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "Hyper 212 EVO",
+    "sku": 800005,
+    "price": 34.99,
+    "cooling_type": "Air",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "LGA1151"
+    ]
+  },
+  {
+    "manufacturer": "be quiet!",
+    "name": "Dark Rock Pro 4",
+    "sku": 800006,
+    "price": 89.99,
+    "cooling_type": "Air",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "LGA1200"
+    ]
+  },
+  {
+    "manufacturer": "NZXT",
+    "name": "Kraken X53",
+    "sku": 800007,
+    "price": 109.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "LGA1200"
+    ]
+  },
+  {
+    "manufacturer": "NZXT",
+    "name": "Kraken Z63",
+    "sku": 800008,
+    "price": 149.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM5",
+      "AM4"
+    ]
+  },
+  {
+    "manufacturer": "Arctic",
+    "name": "Liquid Freezer II 240",
+    "sku": 800009,
+    "price": 99.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4",
+      "LGA1200"
+    ]
+  },
+  {
+    "manufacturer": "DeepCool",
+    "name": "GAMMAXX 400",
+    "sku": 800010,
+    "price": 29.99,
+    "cooling_type": "Air",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4"
+    ]
+  },
+  {
+    "manufacturer": "Thermaltake",
+    "name": "Floe DX 240",
+    "sku": 800011,
+    "price": 129.99,
+    "cooling_type": "Liquid",
+    "supported_sockets": [
+      "LGA1700",
+      "AM4"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "LL120 RGB Fan",
+    "sku": 800012,
+    "price": 39.99,
+    "cooling_type": "Air",
+    "supported_sockets": []
+  },
+  {
+    "manufacturer": "Noctua",
+    "name": "NF-A14",
+    "sku": 800013,
+    "price": 29.99,
+    "cooling_type": "Air",
+    "supported_sockets": []
+  },
+  {
+    "manufacturer": "Arctic",
+    "name": "P12 PWM Fan",
+    "sku": 800014,
+    "price": 12.99,
+    "cooling_type": "Air",
+    "supported_sockets": []
+  },
+  {
+    "manufacturer": "Arctic",
+    "name": "MX-4 Thermal Paste",
+    "sku": 800015,
+    "price": 7.99,
+    "cooling_type": "Accessory",
+    "supported_sockets": []
+  }
+]
