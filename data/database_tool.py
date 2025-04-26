@@ -18,8 +18,8 @@ def user_selection():
     match user_input:
         case "1":  # CPU
             user_input = input("Select 1 to add a CPU or select 2 to remove a CPU:")
+            filename = "cpu.json"
             if user_input == "1":
-                filename = "cpu_database.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
                         "sku": input("Please enter the SKU name: "),
@@ -34,12 +34,13 @@ def user_selection():
                         "chipset_compatibility": input("Please enter the CPU chipset type(s): ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "2":  # GPU
             user_input = input("Select 1 to add a GPU or select 2 to remove a GPU:")
             if user_input == "1":
-                filename = "gpu_data.json"
+                filename = "../Database/gpu_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
                         "sku": input("Please enter the SKU name: "),
@@ -55,12 +56,13 @@ def user_selection():
                         "color": input("Please enter the GPU's main color: ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "3":  # Motherboard
             user_input = input("Select 1 to add a Motherboard or select 2 to remove a Motherboard:")
             if user_input == "1":
-                filename = "motherboard_data.json"
+                filename = "../Database/motherboard_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
                         "sku": input("Please enter the SKU name: "),
@@ -75,12 +77,13 @@ def user_selection():
                         "supported_pcie_standards": input("Please enter the supported PCIe standard:")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "4":  # Storage
             user_input = input("Select 1 to add a Storage device or select 2 to remove a Storage device:")
             if user_input == "1":
-                filename = "storage_data.json"
+                filename = "../Database/storage_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
                         "price": input("Please enter the part price: "),
@@ -89,12 +92,13 @@ def user_selection():
                         "interface": input("Please enter the storage interface type: ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "5":  # RAM
             user_input = input("Select 1 to add RAM or select 2 to remove RAM:")
             if user_input == "1":
-                filename = "ram_data.json"
+                filename = "../Database/ram_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
                         "price": input("Please enter the part price: "),
@@ -107,12 +111,13 @@ def user_selection():
                         "color": input("Please enter the main color of the kit: ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "6":  # Case
             user_input = input("Select 1 to add a Case or select 2 to remove a Case:")
             if user_input == "1":
-                filename = "cases_data.json"
+                filename = "../Database/cases_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
                         "price": input("Please enter the part price: "),
@@ -121,12 +126,13 @@ def user_selection():
                         "supported_cooling_types": input("Please enter the supported cooling types: ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "7":  # Power Supply
             user_input = input("Select 1 to add a Power Supply or select 2 to remove a Power Supply:")
             if user_input == "1":
-                filename = "power_supplies_data.json"
+                filename = "../Database/power_supplies_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
                         "price": input("Please enter the part price: "),
@@ -143,8 +149,8 @@ def user_selection():
                 remove_part()
         case "8":  # Cooling and Accessories
             user_input = input("Select 1 to add a part or select 2 to remove a part:")
+            filename = "../Database/cooling_accessories_data.json"
             if user_input == "1":
-                filename = "cooling_accessories_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
                         "price": input("Please enter the part price: "),
@@ -152,27 +158,51 @@ def user_selection():
                         "supported_sockets": input("Please enter the supported socket types: ")}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                user_input = input("Please enter the SKU to be removed from database: ")
+                selection_to_remove = int(user_input)
+                remove_part(filename, selection_to_remove)
         case "9":  # Exit Program
             exit(0)
 
 
 def add_part(filename, data):
     if os.path.exists(filename):
+        with open(filename, 'r+') as json_file:
+            lines = json_file.readlines()
+            if lines:
+                json_file.seek(0)
+                json_file.truncate()
+                json_file.writelines(lines[:-1])
         with open(filename, 'a') as json_file:
+            json_file.write(",\n")
             json.dump(data, json_file, indent=4)
+            json_file.write("\n]")
     else:
         with open(filename, 'w') as json_file:
+            json_file.write("[\n")
             json.dump(data, json_file, indent=4)
+            json_file.write("\n]")
 
     print(f"JSON data written to {filename}")
 
     user_selection()
 
 
-def remove_part(filename, sku):
-    pass
+def remove_part(filename, target_sku):
+    with open(filename, 'r') as json_file:
+        data = json.load(json_file)
+        for element in data:
+            if element["sku"] == target_sku:
+                data.remove(element)
+                break
+
+    for x in data:
+        print(x)
+
+    with open(filename, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+
+    user_selection()
 
 
 if __name__ == '__main__':
