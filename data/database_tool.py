@@ -22,16 +22,16 @@ def user_selection():
             if user_input == "1":
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
-                        "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "architecture": input("Please enter the CPU architecture: "),
-                        "clock_speed": input("Please enter the base clock speed: "),
-                        "ddr4_compatibility": input("Please enter 'Yes' or 'No' for DDR4 compatibility: "),
-                        "ddr5_compatibility": input("Please enter 'Yes' or 'No' for DDR4 compatibility: "),
+                        "clock_speed": float(input("Please enter the base clock speed: ")),
+                        "ddr4_compatibility": input("Please enter 'Yes' or 'No' for DDR4 compatibility: ").strip().lower() == "yes",
+                        "ddr5_compatibility": input("Please enter 'Yes' or 'No' for DDR5 compatibility: ").strip().lower() == "yes",
                         "socket_type": input("Please enter the CPU socket type: "),
-                        "wattage_compatibility": input("Please enter the CPU's rated wattage: "),
-                        "bios_compatibility": input("Please enter the CPU's bios type: "),
-                        "chipset_compatibility": input("Please enter the CPU chipset type(s): ")}
+                        "wattage_compatibility": float(input("Please enter the CPU's rated wattage: ")),
+                        "bios_compatibility": input("Please enter 'Yes' or 'No' for BIOS compatibility: ").strip().lower() == "yes",
+                        "chipset_compatibility": input("Please enter 'Yes' or 'No' for chipset compatibility: ").strip().lower() == "yes"}
                 add_part(filename, data)
             else:
                 user_input = input("Please enter the SKU to be removed from database: ")
@@ -43,16 +43,16 @@ def user_selection():
                 filename = "../Database/gpu_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
-                        "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
-                        "architecture": input("Please enter the GUP architecture: "),
-                        "memory_bus": input("Please input the Memory Bus size: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
+                        "architecture": input("Please enter the GPU architecture: "),
+                        "memory_bus": int(input("Please input the Memory Bus size: ")),
                         "pcie_standard": input("Please enter the PCIe standard: "),
                         "slot_size": input("Please enter the GPU slot size: "),
-                        "length_in_mm": input("Please enter the GPU length in millimeters: "),
+                        "length_in_mm": float(input("Please enter the GPU length in millimeters: ")),
                         "cooling_type": input("Please enter the cooler type: "),
-                        "power_requirement": input("Please enter the power requirement in wattage: "),
-                        "power_connectors": input("Please enter the power connecor type: "),
+                        "power_requirement": float(input("Please enter the power requirement in wattage: ")),
+                        "power_connectors": input("Please enter the power connector type: "),
                         "color": input("Please enter the GPU's main color: ")}
                 add_part(filename, data)
             else:
@@ -65,16 +65,16 @@ def user_selection():
                 filename = "../Database/motherboard_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
                         "name": input("Please enter the part name: "),
-                        "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "socket_type": input("Please enter the motherboard socket type: "),
                         "form_factor": input("Please enter the motherboard's form factor: "),
-                        "ram_slots": input("Please enter the number of RAM slots: "),
+                        "ram_slots": int(input("Please enter the number of RAM slots: ")),
                         "supported_ram_type": input("Please enter the supported RAM type: "),
                         "chipset_compatibility": input("Please enter the motherboard's chipset: "),
                         "bios_compatibility": input("Please enter the motherboard's bios type: "),
                         "supported_storage_interfaces": input("Please enter the supported storage standards: "),
-                        "supported_pcie_standards": input("Please enter the supported PCIe standard:")}
+                        "supported_pcie_standards": input("Please enter the supported PCIe standard: ")}
                 add_part(filename, data)
             else:
                 user_input = input("Please enter the SKU to be removed from database: ")
@@ -85,10 +85,11 @@ def user_selection():
             if user_input == "1":
                 filename = "../Database/storage_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
-                        "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "name": input("Please enter the part name: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "storage_type": input("Please enter the storage standard: "),
-                        "capacity_in_GB": input("Please enter the storage capacity in GB or TB: "),
+                        "capacity_in_GB": int(input("Please enter the storage capacity in GB: ")),
                         "interface": input("Please enter the storage interface type: ")}
                 add_part(filename, data)
             else:
@@ -100,14 +101,15 @@ def user_selection():
             if user_input == "1":
                 filename = "../Database/ram_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
-                        "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
-                        "capacity_in_gb": input("Please enter the total capacity in GB: "),
+                        "name": input("Please enter the part name: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
+                        "capacity_in_gb": int(input("Please enter the total capacity in GB: ")),
                         "ddr_standard": input("Please enter the DDR standard: "),
-                        "speed_in_mhz": input("Please enter the speed in MHz: "),
-                        "sticks": input("Please enter the number of sticks in the kit: "),
+                        "speed_in_mhz": int(input("Please enter the speed in MHz: ")),
+                        "sticks": int(input("Please enter the number of sticks in the kit: ")),
                         "latency": input("Please enter the CAS latency: "),
-                        "rgb": input("Please select the RGB capability of the kit: "),
+                        "rgb": input("Please select the RGB capability of the kit (Yes/No): ").strip().lower() == "yes",
                         "color": input("Please enter the main color of the kit: ")}
                 add_part(filename, data)
             else:
@@ -119,8 +121,9 @@ def user_selection():
             if user_input == "1":
                 filename = "../Database/cases_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
-                        "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "name": input("Please enter the part name: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "form_factor": input("Please enter the case's form factor: "),
                         "color": input("Please enter the case's main color: "),
                         "supported_cooling_types": input("Please enter the supported cooling types: ")}
@@ -134,26 +137,28 @@ def user_selection():
             if user_input == "1":
                 filename = "../Database/power_supplies_data.json"
                 data = {"manufacturer": input("Please enter the manufacturer: "),
-                        "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "name": input("Please enter the part name: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "size_standard": input("Please enter the PSU size standard: "),
-                        "rated_wattage": input("Please enter the PSU rated wattage"),
+                        "rated_wattage": float(input("Please enter the PSU rated wattage: ")),
                         "certification_level": input("Please enter the PSU certification rating: "),
-                        "modular": input("Please indicate if the PSU is modular: "),
-                        "efficiency_rating_percentage": input("Please enter the rated efficiency in percentage: "),
-                        "pcie_connectors": input("Please enter the number of PCIe connectors: "),
-                        "length_in_mm": input("Please enter the PSU length in millimeters: ")}
+                        "modular": input("Is the PSU modular? (Yes/No): ").strip().lower() == "yes",
+                        "efficiency_rating_percentage": float(input("Please enter the rated efficiency in percentage: ")),
+                        "pcie_connectors": int(input("Please enter the number of PCIe connectors: ")),
+                        "length_in_mm": float(input("Please enter the PSU length in millimeters: "))}
                 add_part(filename, data)
             else:
-                selection_to_remove = input("Please enter the SKU to be removed from database: ")
-                remove_part()
+                selection_to_remove = int(input("Please enter the SKU to be removed from database: "))
+                remove_part(filename, selection_to_remove)
         case "8":  # Cooling and Accessories
             user_input = input("Select 1 to add a part or select 2 to remove a part:")
             filename = "../Database/cooling_accessories_data.json"
             if user_input == "1":
                 data = {"manufacturer": input("Please enter the manufacturer: "),
-                        "name": input("Please enter the part name: "), "sku": input("Please enter the SKU name: "),
-                        "price": input("Please enter the part price: "),
+                        "name": input("Please enter the part name: "),
+                        "sku": int(input("Please enter the SKU name: ")),
+                        "price": float(input("Please enter the part price: ")),
                         "cooling_type": input("Please enter the cooling type: "),
                         "supported_sockets": input("Please enter the supported socket types: ")}
                 add_part(filename, data)
