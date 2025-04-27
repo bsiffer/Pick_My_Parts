@@ -13,6 +13,8 @@ from .views.ram_view import ram_view
 from .views.storage_view import storage_view
 from .views.under_construction import under_construction
 from .views.computer_case_view import computer_case_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', home, name='home'),
@@ -29,4 +31,4 @@ urlpatterns = [
     path('parts/accessories', under_construction, name='All other accessories'),
     path('api/suggestions', suggestions, name='Suggestions based on current selection'),
     path('parts/<str:model_name>/<int:sku>/', detail_view, name='power_supply_detail'),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

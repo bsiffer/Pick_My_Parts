@@ -14,6 +14,8 @@ class GPU(Part, models.Model):
     power_requirement = models.DecimalField(max_digits=10, decimal_places=2)
     power_connectors = models.CharField(max_length=255)
     color = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='apps\core\static\images\gpu', null=True, blank=True)
+
 
     def check_compatibility(self, parts_list):
         """

@@ -1,6 +1,8 @@
 import os
+import sys
 import django
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Set up Django environment
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
@@ -36,7 +38,8 @@ cpus_data = [
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "Z690"
+        "chipset_compatibility": "Z690",
+        "image": r"apps\core\static\images\cpu\cpu_i9_129k.jpg"
     },
     {
         "manufacturer": "AMD",
@@ -50,7 +53,9 @@ cpus_data = [
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "B550"
+        "chipset_compatibility": "B550",
+        "image": r"apps\core\static\images\cpu\Ryzen-9-5950X.jpg"
+
     },
     {
         "manufacturer": "Intel",
@@ -64,7 +69,8 @@ cpus_data = [
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "Z690"
+        "chipset_compatibility": "Z690",
+        "image":r"apps\core\static\images\cpu\Core i7-12700K.jfif"
     },
     {
         "manufacturer": "AMD",
@@ -78,7 +84,8 @@ cpus_data = [
         "socket_type": "AM4",
         "wattage_compatibility": 105.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "B550"
+        "chipset_compatibility": "B550",
+        "image":r"apps\core\static\images\cpu\Ryzen 7 5800X.jpg"
     },
     {
         "manufacturer": "Intel",
@@ -92,7 +99,8 @@ cpus_data = [
         "socket_type": "LGA1700",
         "wattage_compatibility": 125.0,
         "bios_compatibility": "UEFI",
-        "chipset_compatibility": "Z690"
+        "chipset_compatibility": "Z690",
+        "image":r"apps\core\static\images\cpu\Core i5-12600K.jpg"
     }
 ]
 for data in cpus_data:
@@ -113,7 +121,8 @@ gpus_data = [
         "cooling_type": "Air Cooler",
         "power_requirement": 320.0,
         "power_connectors": "2x8-pin",
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\gpu\RTX 3080.webp"
     },
     {
         "manufacturer": "AMD",
@@ -128,7 +137,8 @@ gpus_data = [
         "cooling_type": "Air Cooler",
         "power_requirement": 300.0,
         "power_connectors": "2x8-pin",
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\gpu\Radeon RX 6800 X.jpg"
     },
     {
         "manufacturer": "NVIDIA",
@@ -143,7 +153,8 @@ gpus_data = [
         "cooling_type": "Air Cooler",
         "power_requirement": 220.0,
         "power_connectors": "1x8-pin",
-        "color": "White"
+        "color": "White",
+        "image":r"apps\core\static\images\gpu\RTX 3070.jpg"
     },
     {
         "manufacturer": "AMD",
@@ -158,7 +169,8 @@ gpus_data = [
         "cooling_type": "Air Cooler",
         "power_requirement": 230.0,
         "power_connectors": "1x8-pin",
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\gpu\Radeon RX 6700 XT.jpg"
     },
     {
         "manufacturer": "NVIDIA",
@@ -173,7 +185,8 @@ gpus_data = [
         "cooling_type": "Air Cooler",
         "power_requirement": 170.0,
         "power_connectors": "1x8-pin",
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\gpu\RTX 3060.jpg"
     }
 ]
 for data in gpus_data:
@@ -193,7 +206,8 @@ motherboards_data = [
         "chipset_compatibility": "Z690",
         "bios_compatibility": "UEFI",
         "supported_storage_interfaces": ["NVMe SSD", "SATA III"],
-        "supported_pcie_standards": ["PCIe 4.0", "PCIe 3.0"]
+        "supported_pcie_standards": ["PCIe 4.0", "PCIe 3.0"],
+        "image":r"apps\core\static\images\motherboards\ROG STRIX Z690-E.jpg"
     },
     {
         "manufacturer": "MSI",
@@ -207,7 +221,8 @@ motherboards_data = [
         "chipset_compatibility": "B550",
         "bios_compatibility": "UEFI",
         "supported_storage_interfaces": ["SATA III"],
-        "supported_pcie_standards": ["PCIe 4.0"]
+        "supported_pcie_standards": ["PCIe 4.0"],
+        "image":r"apps\core\static\images\motherboards\MPG B550 Gaming Edge.jfif"
     },
     {
         "manufacturer": "Gigabyte",
@@ -221,7 +236,8 @@ motherboards_data = [
         "chipset_compatibility": "B450",
         "bios_compatibility": "UEFI",
         "supported_storage_interfaces": ["SATA III"],
-        "supported_pcie_standards": ["PCIe 3.0"]
+        "supported_pcie_standards": ["PCIe 3.0"],
+        "image":r"apps\core\static\images\motherboards\AORUS Elite.jpg"
     },
     {
         "manufacturer": "ASRock",
@@ -235,7 +251,8 @@ motherboards_data = [
         "chipset_compatibility": "Z690",
         "bios_compatibility": "UEFI",
         "supported_storage_interfaces": ["NVMe SSD", "SATA III"],
-        "supported_pcie_standards": ["PCIe 4.0"]
+        "supported_pcie_standards": ["PCIe 4.0"],
+        "image":r"apps\core\static\images\motherboards\Z690 Phantom Gaming.jpg"
     },
     {
         "manufacturer": "EVGA",
@@ -249,7 +266,8 @@ motherboards_data = [
         "chipset_compatibility": "Z490",
         "bios_compatibility": "UEFI",
         "supported_storage_interfaces": ["SATA III"],
-        "supported_pcie_standards": ["PCIe 3.0"]
+        "supported_pcie_standards": ["PCIe 3.0"],
+        "image":r"apps\core\static\images\motherboards\Z490 FTW.jpg"
     },
 ]
 for data in motherboards_data:
@@ -268,7 +286,8 @@ power_supplies_data = [
         "modular": "Fully Modular",
         "efficiency_rating_percentage": 90.00,
         "pcie_connectors": 4,
-        "length_in_mm": 160
+        "length_in_mm": 160,
+        "image":r"apps\core\static\images\psu\RM850x].jfif"
     },
     {
         "manufacturer": "EVGA",
@@ -281,7 +300,8 @@ power_supplies_data = [
         "modular": "Fully Modular",
         "efficiency_rating_percentage": 89.00,
         "pcie_connectors": 3,
-        "length_in_mm": 150
+        "length_in_mm": 150,
+        "image":r"apps\core\static\images\psu\SuperNOVA 750 G5.jfif"
     },
     {
         "manufacturer": "Seasonic",
@@ -294,7 +314,8 @@ power_supplies_data = [
         "modular": "Fully Modular",
         "efficiency_rating_percentage": 88.00,
         "pcie_connectors": 2,
-        "length_in_mm": 140
+        "length_in_mm": 140,
+        "image":r"apps\core\static\images\psu\Focus GX-650.jpg"
     },
     {
         "manufacturer": "Cooler Master",
@@ -307,7 +328,8 @@ power_supplies_data = [
         "modular": "Semi-Modular",
         "efficiency_rating_percentage": 87.00,
         "pcie_connectors": 3,
-        "length_in_mm": 150
+        "length_in_mm": 150,
+        "image":r"apps\core\static\images\psu\MWE Gold 750.png"
     },
     {
         "manufacturer": "Thermaltake",
@@ -320,7 +342,8 @@ power_supplies_data = [
         "modular": "Non-Modular",
         "efficiency_rating_percentage": 85.00,
         "pcie_connectors": 1,
-        "length_in_mm": 130
+        "length_in_mm": 130,
+        "image":r"apps\core\static\images\psu\Smart 600W.jfif"
     },
 ]
 for data in power_supplies_data:
@@ -339,7 +362,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL16",
         "rgb": False,
-        "color": "Black"
+        "color": "Black",
+        "image":""
     },
     {
         "manufacturer": "G.Skill",
@@ -352,7 +376,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL16",
         "rgb": True,
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\ram\Trident Z RGB 16GB.jpg"
     },
     {
         "manufacturer": "Kingston",
@@ -365,7 +390,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL15",
         "rgb": False,
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\ram\HyperX Fury 16GB.webp"
     },
     {
         "manufacturer": "Patriot",
@@ -378,7 +404,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL15",
         "rgb": False,
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\ram\Viper Steel 16GB.jfif"
     },
     {
         "manufacturer": "Crucial",
@@ -391,7 +418,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL16",
         "rgb": True,
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\ram\Ballistix 16GB.jpg"
     },
     {
         "manufacturer": "G.Skill",
@@ -404,7 +432,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL36",
         "rgb": True,
-        "color": "Silver"
+        "color": "Silver",
+        "image":r"apps\core\static\images\ram\Trident Z5 RGB 32G.jpg"
     },
     {
         "manufacturer": "Corsair",
@@ -417,7 +446,8 @@ rams_data = [
         "sticks": 2,
         "latency": "CL36",
         "rgb": True,
-        "color": "Black"
+        "color": "Black",
+        "image":r"apps\core\static\images\ram\Dominator Platinum RGB 32G.jpg"
     }
 ]
 for data in rams_data:
@@ -483,7 +513,8 @@ computer_case_data = [
         "price": 69.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"],
+        "image":r"apps\core\static\images\case\H510.jpg"
     },
     {
         "manufacturer": "Corsair",
@@ -492,7 +523,8 @@ computer_case_data = [
         "price": 149.99,
         "form_factor": form_factors["ATX"],
         "color": "White",
-        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"],
+        "image":r"apps\core\static\images\case\Obsidian 500D.jfif"
     },
     {
         "manufacturer": "Phanteks",
@@ -501,7 +533,8 @@ computer_case_data = [
         "price": 79.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": ["Air Cooler", "Liquid Cooler", "AIO"]
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler", "AIO"],
+        "image":r"apps\core\static\images\case\Eclipse P400A.jfif"
     },
     {
         "manufacturer": "Cooler Master",
@@ -510,7 +543,8 @@ computer_case_data = [
         "price": 39.99,
         "form_factor": form_factors["Micro-ATX"],
         "color": "Black",
-        "supported_cooling_types": ["Air Cooler"]
+        "supported_cooling_types": ["Air Cooler"],
+        "image":r"apps\core\static\images\case\MasterBox Q300L.jfif"
     },
     {
         "manufacturer": "Fractal Design",
@@ -519,7 +553,8 @@ computer_case_data = [
         "price": 129.99,
         "form_factor": form_factors["ATX"],
         "color": "Black",
-        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"]
+        "supported_cooling_types": ["Air Cooler", "Liquid Cooler"],
+        "image":r"apps\core\static\images\case\Define 7.jpg"
     },
 ]
 for data in computer_case_data:
@@ -535,7 +570,8 @@ cooling_accessory_data = [
         "sku": 800001,
         "price": 89.99,
         "cooling_type": "Air Cooler",
-        "supported_sockets": ["LGA1700", "LGA1151"]
+        "supported_sockets": ["LGA1700", "LGA1151"],
+        "image":r"apps\core\static\images\cooler\NH-D15.jpg"
     },
     {
         "manufacturer": "Corsair",
@@ -543,7 +579,8 @@ cooling_accessory_data = [
         "sku": 800002,
         "price": 119.99,
         "cooling_type": "Liquid Cooler",
-        "supported_sockets": ["LGA1700", "AM4"]
+        "supported_sockets": ["LGA1700", "AM4"],
+        "image":r"apps/core/static/images/cooler/H100i.webp"
     },
     {
         "manufacturer": "be quiet!",
@@ -551,7 +588,8 @@ cooling_accessory_data = [
         "sku": 800003,
         "price": 89.99,
         "cooling_type": "Air Cooler",
-        "supported_sockets": ["AM4", "LGA1151"]
+        "supported_sockets": ["AM4", "LGA1151"],
+        "image":r"apps\core\static\images\cooler\Dark Rock Pro 4.jfif"
     },
     {
         "manufacturer": "Cooler Master",
@@ -559,7 +597,8 @@ cooling_accessory_data = [
         "sku": 800004,
         "price": 99.99,
         "cooling_type": "Liquid Cooler",
-        "supported_sockets": ["LGA1700", "AM4"]
+        "supported_sockets": ["LGA1700", "AM4"],
+        "image":r"apps\core\static\images\cooler\MasterLiquid ML240.jpg"
     },
     {
         "manufacturer": "NZXT",
@@ -567,7 +606,8 @@ cooling_accessory_data = [
         "sku": 800005,
         "price": 109.99,
         "cooling_type": "Liquid Cooler",
-        "supported_sockets": ["LGA1700"]
+        "supported_sockets": ["LGA1700"],
+        "image":r"apps\core\static\images\cooler\Kraken X53.webp"
     },
 ]
 for data in cooling_accessory_data:

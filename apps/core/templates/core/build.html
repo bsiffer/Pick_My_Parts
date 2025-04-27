@@ -99,7 +99,16 @@
             
             bubble.classList.add('bubble');
             bubble.classList.add('visible');
-
+            
+            if (part.image) {
+                const image = document.createElement('img');
+                image.src = part.image;  // Use part.image for local file path
+                image.alt = part.name || 'Part Image';
+                image.style.width = '100px';
+                image.style.height = 'auto';
+                image.style.marginBottom = '5px';
+                bubble.appendChild(image);
+            }
             const partString = Object.entries(part)
                                 .filter(([key, value]) => key !== 'id')
                                 .map(([key, value]) => `${key}: ${value}`).join(', ');
