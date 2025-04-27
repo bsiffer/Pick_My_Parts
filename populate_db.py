@@ -393,6 +393,32 @@ rams_data = [
         "rgb": True,
         "color": "Black"
     },
+    {
+        "manufacturer": "G.Skill",
+        "name": "Trident Z5 RGB 32GB",
+        "sku": 500006,
+        "price": 189.99,
+        "capacity_in_gb": 32,
+        "ddr_standard": "DDR5",
+        "speed_in_mhz": 6000,
+        "sticks": 2,
+        "latency": "CL36",
+        "rgb": True,
+        "color": "Silver"
+    },
+    {
+        "manufacturer": "Corsair",
+        "name": "Dominator Platinum RGB 32GB",
+        "sku": 500007,
+        "price": 199.99,
+        "capacity_in_gb": 32,
+        "ddr_standard": "DDR5",
+        "speed_in_mhz": 5600,
+        "sticks": 2,
+        "latency": "CL36",
+        "rgb": True,
+        "color": "Black"
+    }
 ]
 for data in rams_data:
     RAM.objects.get_or_create(**data)

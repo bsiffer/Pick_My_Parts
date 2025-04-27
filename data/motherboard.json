@@ -1,0 +1,376 @@
+[
+  {
+    "manufacturer": "ASUS",
+    "name": "ROG Strix Z690-E Gaming",
+    "sku": 300001,
+    "price": 399.99,
+    "socket_type": "LGA1700",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "Z690",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MPG Z690 Carbon WiFi",
+    "sku": 300002,
+    "price": 329.99,
+    "socket_type": "LGA1700",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "Z690",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "Z690 AORUS Elite AX",
+    "sku": 300003,
+    "price": 279.99,
+    "socket_type": "LGA1700",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "Z690",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "ASUS",
+    "name": "TUF Gaming B550-PLUS",
+    "sku": 300004,
+    "price": 159.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B550",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 3.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "B550-A PRO",
+    "sku": 300005,
+    "price": 134.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B550",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 3.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "B550 AORUS Elite",
+    "sku": 300006,
+    "price": 159.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B550",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 3.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "ASRock",
+    "name": "B550 Steel Legend",
+    "sku": 300007,
+    "price": 169.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B550",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 3.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "ASUS",
+    "name": "ROG Crosshair X670E Hero",
+    "sku": 300008,
+    "price": 499.99,
+    "socket_type": "AM5",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "X670E",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 5.0 x4",
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MAG X670E Tomahawk",
+    "sku": 300009,
+    "price": 419.99,
+    "socket_type": "AM5",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "X670E",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 5.0 x4",
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "X670 AORUS Elite",
+    "sku": 300010,
+    "price": 289.99,
+    "socket_type": "AM5",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "X670",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 5.0 x4",
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "ASUS",
+    "name": "Prime X570-P",
+    "sku": 300011,
+    "price": 159.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MAG X570 Tomahawk",
+    "sku": 300012,
+    "price": 199.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "X570 AORUS Elite",
+    "sku": 300013,
+    "price": 189.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "ASRock",
+    "name": "X570 Phantom Gaming X",
+    "sku": 300014,
+    "price": 229.99,
+    "socket_type": "AM4",
+    "form_factor": "ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 4.0",
+      "PCIe 3.0"
+    ]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MEG Z790 ACE",
+    "sku": 300015,
+    "price": 599.99,
+    "socket_type": "LGA1700",
+    "form_factor": "E-ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR5",
+    "chipset_compatibility": "Z790",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": [
+      "PCIe 5.0 x4",
+      "PCIe 4.0 x4",
+      "SATA III"
+    ],
+    "supported_pcie_standards": [
+      "PCIe 5.0",
+      "PCIe 4.0"
+    ]
+  },
+  {
+    "manufacturer": "ASRock",
+    "name": "X299E-ITX/ac",
+    "sku": 300016,
+    "price": 319.99,
+    "socket_type": "LGA2066",
+    "form_factor": "Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X299",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
+  },
+  {
+    "manufacturer": "Gigabyte",
+    "name": "B460M DS3H",
+    "sku": 300017,
+    "price": 99.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Micro-ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "B460",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
+  },
+  {
+    "manufacturer": "MSI",
+    "name": "MEG X570 GODLIKE",
+    "sku": 300018,
+    "price": 699.99,
+    "socket_type": "AM4",
+    "form_factor": "E-ATX",
+    "ram_slots": 4,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "X570",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+    "supported_pcie_standards": ["PCIe 4.0"]
+  },
+  {
+    "manufacturer": "ASUS",
+    "name": "ROG Strix Z590-I Gaming WiFi",
+    "sku": 300019,
+    "price": 399.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "Z590",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 4.0 x4"],
+    "supported_pcie_standards": ["PCIe 4.0"]
+  },
+  {
+    "manufacturer": "Supermicro",
+    "name": "X12SCA-F",
+    "sku": 300020,
+    "price": 249.99,
+    "socket_type": "LGA1200",
+    "form_factor": "Thin Mini-ITX",
+    "ram_slots": 2,
+    "supported_ram_type": "DDR4",
+    "chipset_compatibility": "C246",
+    "bios_compatibility": "UEFI",
+    "supported_storage_interfaces": ["SATA III", "M.2 PCIe 3.0 x4"],
+    "supported_pcie_standards": ["PCIe 3.0"]
+  }
+]
