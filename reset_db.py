@@ -1,10 +1,11 @@
 import os
 import django
 
-# Set up the Django environment
+# Set up Django environment
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
+# Import all models
 from apps.core.models.cpu import CPU
 from apps.core.models.gpu import GPU
 from apps.core.models.motherboard import Motherboard
@@ -15,22 +16,25 @@ from apps.core.models.computer_case import ComputerCase
 from apps.core.models.cooling_accessory import CoolingAccessory
 from apps.core.models.form_factor import FormFactor
 
-# ordered the models so that dependent records are removed before their dependencies.
-models_to_delete = [
-    CPU,
-    GPU,
-    Motherboard,
-    PowerSupply,
-    RAM,
-    Storage,
-    ComputerCase,
-    CoolingAccessory,
-    FormFactor
-]
+def wipe_database():
+    print("Wiping database...")
 
-for model in models_to_delete:
-    count = model.objects.count()
-    model.objects.all().delete()
-    print(f"Deleted {count} instances of {model.__name__}")
+    # Delete in proper order (dependent models first)
+    CPU.objects.all().delete()
+    GPU.objects.all().delete()
+    Motherboard.objects.all().delete()
+    PowerSupply.objects.all().delete()
+    RAM.objects.all().delete()
+    Storage.objects.all().delete()
+    ComputerCase.objects.all().delete()
+    CoolingAccessory.objects.all().delete()
+    FormFactor.objects.all().delete()
 
-print("Database cleared successfully!")
+    print("Database wipe complete.")
+
+if __name__ == "__main__":
+    confirm = input("Are you sure you want to wipe the entire database? (y/n): ").lower()
+    if confirm == 'y':
+        wipe_database()
+    else:
+        print("Operation canceled.")

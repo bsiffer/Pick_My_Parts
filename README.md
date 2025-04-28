@@ -59,21 +59,21 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 pip install -r requirements.txt
 ```
 
-- **Apply DB Migrations**
+- **Apply DB Migrations**  
 Apply Migrations from /apps/core/migrations folder. 
 The migrations folder hold all changes that will be applied to Database based on django models
 ```bash
 python manage.py migrate
 ```
 
-- **Populate the Database**
-Run the sample data script to populate the database with sample data
+- **Populate the Database**  
+After migrations, populate the database using structured JSON files located in the `/data/` folder:
 ```bash
 python populate_db.py
 ```
 
-- **Reset the Database**
-Run the sample data script to populate the database with sample data
+- **Reset the Database**  
+If you need to wipe all parts data clean:
 ```bash
 python reset_db.py
 ```
