@@ -1,0 +1,257 @@
+[
+  {
+    "manufacturer": "NZXT",
+    "name": "H510",
+    "sku": 700001,
+    "price": 69.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX",
+      "Mini-ITX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "NZXT",
+    "name": "H710",
+    "sku": 700002,
+    "price": 169.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": [
+      "ATX",
+      "E-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "Obsidian 500D",
+    "sku": 700003,
+    "price": 149.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "4000D",
+    "sku": 700004,
+    "price": 94.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Phanteks",
+    "name": "Eclipse P400A",
+    "sku": 700005,
+    "price": 79.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "MasterBox Q300L",
+    "sku": 700006,
+    "price": 39.99,
+    "form_factor": "Micro-ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "Micro-ATX",
+      "Mini-ITX"
+    ],
+    "supported_cooling_types": [
+      "Air"
+    ]
+  },
+  {
+    "manufacturer": "Fractal Design",
+    "name": "Meshify C",
+    "sku": 700007,
+    "price": 89.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Lian Li",
+    "name": "PC-O11 Dynamic",
+    "sku": 700008,
+    "price": 129.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Thermaltake",
+    "name": "V200",
+    "sku": 700009,
+    "price": 49.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air"
+    ]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "NR200",
+    "sku": 700010,
+    "price": 79.99,
+    "form_factor": "Mini-ITX",
+    "color": "Black",
+    "supported_form_factors": [
+      "Mini-ITX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Fractal Design",
+    "name": "Define 7",
+    "sku": 700011,
+    "price": 149.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "E-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Corsair",
+    "name": "iCUE 4000X",
+    "sku": 700012,
+    "price": 124.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Be Quiet!",
+    "name": "Pure Base 500DX",
+    "sku": 700013,
+    "price": 129.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air"
+    ]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "H500M",
+    "sku": 700014,
+    "price": 149.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "E-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Phanteks",
+    "name": "Enthoo Pro",
+    "sku": 700015,
+    "price": 89.99,
+    "form_factor": "ATX",
+    "color": "Black",
+    "supported_form_factors": [
+      "ATX",
+      "Micro-ATX"
+    ],
+    "supported_cooling_types": [
+      "Air",
+      "Liquid"
+    ]
+  },
+  {
+    "manufacturer": "Thermaltake",
+    "name": "Core V1",
+    "sku": 700016,
+    "price": 59.99,
+    "form_factor": "Mini-ITX",
+    "color": "Black",
+    "supported_form_factors": ["Mini-ITX"]
+  },
+  {
+    "manufacturer": "Cooler Master",
+    "name": "MasterCase H500P",
+    "sku": 700017,
+    "price": 149.99,
+    "form_factor": "ATX",
+    "color": "White",
+    "supported_form_factors": ["ATX", "Micro-ATX", "Mini-ITX"]
+  }
+]

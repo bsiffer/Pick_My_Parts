@@ -1,15 +1,18 @@
 import unittest
+from django.test import TestCase
 from apps.core.models.part import Part
 from apps.core.models.parts_list import PartsList
 
 
 class MockPart(Part):
-    """Mock part class for testing purposes."""
-
+    """A mock Part for testing PartsList behavior."""
     def __init__(self, name, sku, part_type):
+        # define internal variables (mock data)
         self._name = name
         self._sku = sku
         self._part_type = part_type
+        self.manufacturer = "MockManufacturer"
+        self.price = 0.0
 
     def get_name(self):
         return self._name
@@ -24,75 +27,66 @@ class MockPart(Part):
         return f"Part Name: {self._name}, SKU: {self._sku}"
 
     def check_compatibility(self, parts_list):
-        return []  # No compatibility issues for test cases
+        # For mock testing, simply return an empty list indicating no issues.
+        return []
 
     def get_part_type(self):
         return self._part_type
 
-
-class TestPartsList(unittest.TestCase):
+class TestPartsList(TestCase):
     def setUp(self):
         self.parts_list = PartsList()
-        self.part1 = MockPart("CPU", 1001, "CPU")
-        self.part2 = MockPart("RAM", 1002, "RAM")
-        self.part3 = MockPart("GPU", 1003, "GPU")
+        self.cpu = MockPart("CPU Mock", 1001, "CPU")
+        self.ram = MockPart("RAM Mock", 1002, "RAM")
+        self.gpu = MockPart("GPU Mock", 1003, "GPU")
 
     def test_add_part(self):
-        print("Testing adding a single part to the list...")
-        self.parts_list.add_part(self.part1)
-        self.assertIn(self.part1, self.parts_list.parts["CPU"])
+        self.parts_list.add_part(self.cpu)
+        self.assertIn(self.cpu, self.parts_list.parts["CPU"])
 
     def test_add_duplicate_part(self):
-        print("Testing adding multiple parts with the same SKU...")
-        self.parts_list.add_part(self.part1)
-        self.parts_list.add_part(self.part1)
+        self.parts_list.add_part(self.cpu)
+        self.parts_list.add_part(self.cpu)
         self.assertEqual(len(self.parts_list.parts["CPU"]), 2)
 
     def test_remove_part(self):
-        print("Testing removing a part by SKU...")
-        self.parts_list.add_part(self.part1)
+        self.parts_list.add_part(self.cpu)
         self.parts_list.remove_part(1001)
-        self.assertNotIn(self.part1, self.parts_list.parts["CPU"])
+        self.assertNotIn(self.cpu, self.parts_list.parts["CPU"])
 
     def test_remove_one_of_multiple_parts(self):
-        print("Testing removing one instance of a part when multiple exist...")
-        self.parts_list.add_part(self.part1)
-        self.parts_list.add_part(self.part1)
+        self.parts_list.add_part(self.cpu)
+        self.parts_list.add_part(self.cpu)
         self.parts_list.remove_part(1001)
         self.assertEqual(len(self.parts_list.parts["CPU"]), 1)
 
     def test_update_part(self):
-        print("Testing updating an attribute of a part...")
-        self.parts_list.add_part(self.part1)
+        self.parts_list.add_part(self.cpu)
         self.parts_list.update_part(1001, "_name", "Updated CPU")
         self.assertEqual(self.parts_list.parts["CPU"][0].get_name(), "Updated CPU")
 
-    def test_get_part(self):
-        print("Testing retrieving a part by SKU...")
-        self.parts_list.add_part(self.part1)
-
-        part_found = None
-        for part in self.parts_list.parts["CPU"]:
-            if part.get_sku() == 1001:
-                part_found = part
-                break
-
-        self.assertIsNotNone(part_found)
-        self.assertEqual(part_found.get_name(), "CPU")
-        self.assertEqual(part_found.get_sku(), 1001)
-
     def test_clear_list(self):
-        print("Testing clearing the parts list...")
-        self.parts_list.add_part(self.part1)
+        # Add parts to multiple categories.
+        self.parts_list.add_part(self.cpu)
+        self.parts_list.add_part(self.ram)
+        self.parts_list.add_part(self.gpu)
         self.parts_list.clear_list()
-        self.assertEqual(len(self.parts_list.parts["CPU"]), 0)
+        # All lists in the dictionary should now be empty.
+        for key in self.parts_list.parts:
+            self.assertEqual(self.parts_list.parts[key], [])
 
     def test_check_compatibility(self):
-        print("Testing compatibility check function...")
-        self.parts_list.add_part(self.part1)
-        self.parts_list.check_compatibility('CPU')
-        self.assertEqual(len(self.parts_list.incompatibilities), 0)
+        # Add our mock parts.
+        self.parts_list.add_part(self.cpu)
+        self.parts_list.add_part(self.ram)
+        self.parts_list.add_part(self.gpu)
+        # Check compatibility for CPU parts.
+        result = self.parts_list.check_compatibility("CPU")
+        # Our mock returns no issues.
+        self.assertEqual(result["incompatibilities"], [])
+        # Verify that the compatible parts list contains the CPU.
+        self.assertIn(self.cpu, result["compatible_parts"])
 
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
