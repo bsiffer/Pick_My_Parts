@@ -197,7 +197,7 @@
   {
     "manufacturer": "G.Skill",
     "name": "Trident Z5 RGB 32GB",
-    "sku": 500006,
+    "sku": 500016,
     "price": 189.99,
     "capacity_in_gb": 32,
     "ddr_standard": "DDR5",
@@ -210,7 +210,7 @@
 {
     "manufacturer": "Corsair",
     "name": "Dominator Platinum RGB 32GB",
-    "sku": 500007,
+    "sku": 500017,
     "price": 199.99,
     "capacity_in_gb": 32,
     "ddr_standard": "DDR5",
